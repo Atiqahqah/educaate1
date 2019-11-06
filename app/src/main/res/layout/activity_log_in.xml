@@ -4,44 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp">
+    tools:context=".LogIn">
 
     <EditText
         android:id="@+id/fieldEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="79dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="228dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/fieldPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/fieldPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="79dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/emailCreateAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldEmail" />
 
     <Button
-        android:id="@+id/emailCreateAccountButton"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="282dp"
-        android:onClick="onSignUp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onLogIn"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldPassword"
+        app:layout_constraintVertical_bias="0.089" />
 </android.support.constraint.ConstraintLayout>

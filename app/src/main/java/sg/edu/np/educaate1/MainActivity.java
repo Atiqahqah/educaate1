@@ -14,9 +14,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClick(View v){
+    public void signUp(View v){
         Button button=findViewById(R.id.signup);
         Intent intent=new Intent(MainActivity.this,SignUp.class);
+        startActivity(intent);
+    }
+
+    public void logIn(View v){
+        Button button=findViewById(R.id.login);
+        Intent intent=new Intent(MainActivity.this,LogIn.class);
         startActivity(intent);
     }
 }
