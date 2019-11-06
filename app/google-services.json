@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "254878139974",
+    "firebase_url": "https://educaate1.firebaseio.com",
+    "project_id": "educaate1",
+    "storage_bucket": "educaate1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254878139974:android:5fba23e051dac43680ec47",
+        "android_client_info": {
+          "package_name": "sg.edu.np.educaate1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254878139974-g2q7pm79acrg6ask0c4rpao2mt41en7o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.edu.np.educaate1",
+            "certificate_hash": "eeceb43db4d818464d7b5197ad67a4dc3c3ed89d"
+          }
+        },
+        {
+          "client_id": "254878139974-566atesbe7mcin6ocn6vogu7fm9fdltl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1xd87OXQhgc6FdScCFkcJvmyH3CQ3lzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254878139974-566atesbe7mcin6ocn6vogu7fm9fdltl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
