@@ -60,7 +60,7 @@ public class LogIn extends AppCompatActivity {
     public void  updateUI(FirebaseUser account){
         if(account != null){
             Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,success.class));
+            startActivity(new Intent(this,success.class)); //currently after signing in and signing up, it brings u to the same page
         }else {
             Toast.makeText(this,"U Didnt sign in",Toast.LENGTH_LONG).show();
         }

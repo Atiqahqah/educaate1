@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void signUp(View v){
         Button button=findViewById(R.id.signup);
-        Intent intent=new Intent(MainActivity.this,SignUp.class);
+        Intent intent=new Intent(MainActivity.this,selectUserType.class);
         startActivity(intent);
     }
 
