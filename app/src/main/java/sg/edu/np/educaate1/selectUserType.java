@@ -20,7 +20,7 @@ public class selectUserType extends AppCompatActivity {
         SharedPreferences.Editor editor= pref.edit();
         editor.putString("USER","student");
         editor.apply();
-        Intent intent=new Intent(selectUserType.this,SignUp.class);
+        Intent intent=new Intent(selectUserType.this,StudentRegister.class);
         startActivity(intent);
     }
 
@@ -29,7 +29,7 @@ public class selectUserType extends AppCompatActivity {
         SharedPreferences.Editor editor= pref.edit();
         editor.putString("USER","tutor");
         editor.apply();
-        Intent intent=new Intent(selectUserType.this,SignUp.class);
+        Intent intent=new Intent(selectUserType.this,TutorRegister.class);
         startActivity(intent);
     }
 }

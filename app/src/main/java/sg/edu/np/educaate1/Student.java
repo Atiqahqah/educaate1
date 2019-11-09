@@ -1,11 +1,20 @@
 package sg.edu.np.educaate1;
 
 public class Student {
+    private String email;
     private String name;
     private String age;
     private String gender;
     private String phoneNo;
     private String eduLevel;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getName() {
         return name;

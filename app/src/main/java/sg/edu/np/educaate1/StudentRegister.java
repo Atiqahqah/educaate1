@@ -72,6 +72,7 @@ public class StudentRegister extends AppCompatActivity {
                             //add user type into database
                             databaseReference= FirebaseDatabase.getInstance().getReference();
                             Student s = new Student();
+                            s.setEmail(sEmailField.getText().toString());
                             s.setName(sName.getText().toString());
                             s.setAge(sAge.getText().toString());
                             s.setGender(sGender.getText().toString());
