@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    public void createAccount(String email,String password){
+    public void createAccount(final String email, String password){
         pref= PreferenceManager.getDefaultSharedPreferences(this);
         final String type=pref.getString("USER",null);
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -67,7 +67,8 @@ public class SignUp extends AppCompatActivity {
                             }
                             else if(type=="student"){
                                 databaseReference= FirebaseDatabase.getInstance().getReference();
-                                databaseReference.child("student").child("student").setValue("atiqah");
+                                databaseReference.child("student").child("name").setValue("atiqah");
+                                databaseReference.child("student").child("email").setValue(email);
                             }
                         } else {
                             // If sign in fails, display a message to the user.

@@ -52,7 +52,7 @@ public class StudentRegister extends AppCompatActivity {
     public void  updateUI(FirebaseUser account){
         if(account != null){
             Toast.makeText(this,"U signed in successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,success.class));
+            startActivity(new Intent(this,BookingList.class));
         }else {
             Toast.makeText(this,"U didnt signed in",Toast.LENGTH_LONG).show();
         }
