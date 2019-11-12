@@ -78,11 +78,8 @@ public class StudentRegister extends AppCompatActivity {
                             s.setGender(sGender.getText().toString());
                             s.setPhoneNo(sPhoneNo.getText().toString());
                             s.setEduLevel(sEduLvl.getText().toString());
-                            s.setType("student");
 
                             databaseReference.child("users").child(user.getUid()).setValue(s);
-                            //databaseReference.child("email").child("student").child("studentEmail").setValue(sEmailField.getText().toString());
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
