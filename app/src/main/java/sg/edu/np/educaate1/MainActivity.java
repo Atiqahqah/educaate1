@@ -25,4 +25,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this,LogIn.class);
         startActivity(intent);
     }
+
+    public void etPhoneHome(View v){
+        Button button=findViewById(R.id.homeBtn);
+        Intent intent=new Intent(MainActivity.this,Home.class);
+        startActivity(intent);
+    }
 }
