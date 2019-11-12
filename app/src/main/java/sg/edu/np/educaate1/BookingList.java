@@ -1,10 +1,14 @@
 package sg.edu.np.educaate1;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +36,7 @@ public class BookingList extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                bookingList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     String subj=snapshot.child("subject").getValue().toString();
                     String date=snapshot.child("date").getValue().toString();
@@ -44,6 +49,7 @@ public class BookingList extends AppCompatActivity {
                     bookingList.add(booking);
                     Log.d(TAG, "data added");
                     adapter.notifyDataSetChanged();//important line!!!!
+
                 }
             }
 
@@ -56,5 +62,15 @@ public class BookingList extends AppCompatActivity {
         adapter=new BookingAdapter(this,R.layout.bookinglayout,bookingList);//The data will displayed in the ListView following the layout in goallayout
         listView=(ListView)findViewById(R.id.listView);
         listView.setAdapter(adapter);
+
+        Button update = findViewById(R.id.button2);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookingList.this,StudentUpdate.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }

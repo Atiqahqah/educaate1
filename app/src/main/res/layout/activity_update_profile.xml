@@ -60,8 +60,8 @@
 
         <EditText
             android:id="@+id/sUpdateDescription"
-            android:layout_width="381dp"
-            android:layout_height="99dp"
+            android:layout_width="389dp"
+            android:layout_height="167dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
@@ -87,32 +87,18 @@
             app:layout_constraintTop_toBottomOf="@+id/sUpdateName" />
 
         <EditText
-            android:id="@+id/sUpdatePassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sUpdateEmail" />
-
-        <EditText
             android:id="@+id/sUpdateNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Phone Number"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sUpdatePassword" />
+            tools:layout_editor_absoluteY="103dp" />
 
         <EditText
             android:id="@+id/sUpdateEdu"

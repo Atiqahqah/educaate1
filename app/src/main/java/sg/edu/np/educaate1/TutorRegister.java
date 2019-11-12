@@ -42,10 +42,10 @@ public class TutorRegister extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         tEmailField = findViewById(R.id.trEmailET);
-        tPasswordField = findViewById(R.id.trEmailET);
+        tPasswordField = findViewById(R.id.trPasswordET);
         tName = findViewById(R.id.trNameET);
         tAge = findViewById(R.id.trAgeET);
-        tGender = findViewById(R.id.trPasswordET);
+        tGender = findViewById(R.id.trGenderET);
         tPhoneNo = findViewById(R.id.trPhoneNoET);
         tEduLvl = findViewById(R.id.trEduLvlET);
         tQuali = findViewById(R.id.trQualificationET);
@@ -83,8 +83,10 @@ public class TutorRegister extends AppCompatActivity {
                             t.setEduLevel(tEduLvl.getText().toString());
                             t.setQualification(tQuali.getText().toString());
                             t.setDescription(tDesc.getText().toString());
+                            t.setType("tutor");
 
-                            databaseReference.child("tutor").child(user.getUid()).setValue(t);
+                            databaseReference.child("users").child(user.getUid()).setValue(t);
+                            //databaseReference.child("email").child("tutor").child("tutorEmail").setValue(tEmailField.getText().toString());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
