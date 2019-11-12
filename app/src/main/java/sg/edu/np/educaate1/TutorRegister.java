@@ -84,7 +84,7 @@ public class TutorRegister extends AppCompatActivity {
                             t.setEduLevel(tQuali.getText().toString());
                             t.setEduLevel(tDesc.getText().toString());
 
-                            databaseReference.child("tutor").child(user.getUid()).setValue(t);
+                            databaseReference.child("users").child(user.getUid()).setValue(t);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

@@ -29,6 +29,12 @@
             android:name=".SignUp"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".PostSchedule"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".BookingList"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

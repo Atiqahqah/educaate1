@@ -32,6 +32,7 @@ public class BookingList extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                bookingList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     String subj=snapshot.child("subject").getValue().toString();
                     String date=snapshot.child("date").getValue().toString();
