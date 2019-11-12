@@ -9,6 +9,7 @@ public class Tutor {
     private String eduLevel;
     private String qualification;
     private String description;
+    private String type;
 
     public String getEmail() {
         return email;
@@ -72,5 +73,13 @@ public class Tutor {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

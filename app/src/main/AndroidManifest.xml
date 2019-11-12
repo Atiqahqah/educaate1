@@ -35,6 +35,12 @@
             android:name=".BookingList"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".StudentHome"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".TutorHome"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

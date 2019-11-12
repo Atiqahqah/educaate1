@@ -7,6 +7,7 @@ public class Student {
     private String gender;
     private String phoneNo;
     private String eduLevel;
+    private String type;
 
     public String getEmail() {
         return email;
@@ -54,5 +55,13 @@ public class Student {
 
     public void setEduLevel(String eduLevel) {
         this.eduLevel = eduLevel;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
