@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class TutorRegister extends AppCompatActivity {
+public class TutorUpdate extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private static final String TAG = "EmailPassword";
@@ -28,8 +28,6 @@ public class TutorRegister extends AppCompatActivity {
     private EditText tEmailField;
     private EditText tPasswordField;
     private EditText tName;
-    private EditText tAge;
-    private EditText tGender;
     private EditText tPhoneNo;
     private EditText tEduLvl;
     private EditText tQuali;
@@ -41,25 +39,15 @@ public class TutorRegister extends AppCompatActivity {
         setContentView(R.layout.activity_tutor_register);
         mAuth = FirebaseAuth.getInstance();
 
-        tEmailField = findViewById(R.id.trEmailET);
-        tPasswordField = findViewById(R.id.trEmailET);
-        tName = findViewById(R.id.trNameET);
-        tAge = findViewById(R.id.trAgeET);
-        tGender = findViewById(R.id.trPasswordET);
-        tPhoneNo = findViewById(R.id.trPhoneNoET);
-        tEduLvl = findViewById(R.id.trEduLvlET);
-        tQuali = findViewById(R.id.trQualificationET);
-        tDesc = findViewById(R.id.trDescriptionET);
+        tEmailField = findViewById(R.id.tUpdateEmail);
+        tPasswordField = findViewById(R.id.tUpdatePassword);
+        tName = findViewById(R.id.tUpdateName);
+        tPhoneNo = findViewById(R.id.tUpdatePhone);
+        tEduLvl = findViewById(R.id.tUpdateEdu);
+        tQuali = findViewById(R.id.tUpdateQualifications);
+        tDesc = findViewById(R.id.tUpdateDescription);
     }
 
-    public void  updateUI(FirebaseUser account){
-        if(account != null){
-            Toast.makeText(this,"U signed in successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,PostSchedule.class));
-        }else {
-            Toast.makeText(this,"U didnt signed in",Toast.LENGTH_LONG).show();
-        }
-    }
 
     public void createTutorAccount(String email,String password){
         pref= PreferenceManager.getDefaultSharedPreferences(this);
@@ -71,14 +59,12 @@ public class TutorRegister extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            //updateUI(user);
                             //add user type into database
                             databaseReference= FirebaseDatabase.getInstance().getReference();
                             Tutor t = new Tutor();
                             t.setEmail(tEmailField.getText().toString());
                             t.setName(tName.getText().toString());
-                            t.setAge(tAge.getText().toString());
-                            t.setGender(tGender.getText().toString());
                             t.setPhoneNo(tPhoneNo.getText().toString());
                             t.setEduLevel(tEduLvl.getText().toString());
                             t.setQualification(tQuali.getText().toString());
@@ -88,9 +74,9 @@ public class TutorRegister extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(TutorRegister.this, "Authentication failed.",
+                            Toast.makeText(TutorUpdate.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            //updateUI(null);
                         }
 
                     }
@@ -104,3 +90,5 @@ public class TutorRegister extends AppCompatActivity {
         }
     }
 }
+
+

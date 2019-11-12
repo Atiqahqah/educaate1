@@ -1,6 +1,5 @@
 package sg.edu.np.educaate1;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -19,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class StudentRegister extends AppCompatActivity {
+public class StudentUpdate extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private static final String TAG = "EmailPassword";
@@ -28,38 +27,25 @@ public class StudentRegister extends AppCompatActivity {
     private EditText sEmailField;
     private EditText sPasswordField;
     private EditText sName;
-    private EditText sAge;
-    private EditText sGender;
+    private EditText sDescription;
     private EditText sPhoneNo;
     private EditText sEduLvl;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_register);
-
+        setContentView(R.layout.activity_update_profile);
         mAuth = FirebaseAuth.getInstance();
 
-        sEmailField = findViewById(R.id.suEmailET);
-        sPasswordField = findViewById(R.id.suPasswordET);
-        sName = findViewById(R.id.suNameET);
-        sAge = findViewById(R.id.suAgeET);
-        sGender = findViewById(R.id.suGenderET);
-        sPhoneNo = findViewById(R.id.suPhoneNoET);
-        sEduLvl = findViewById(R.id.suEduLvlET);
+        sEmailField = findViewById(R.id.sUpdateEmail);
+        sPasswordField = findViewById(R.id.sUpdatePassword);
+        sName = findViewById(R.id.sUpdateName);
+        //sDescription = findViewById(R.id.sUpdateDescription);
+        sPhoneNo = findViewById(R.id.sUpdateNumber);
+        sEduLvl = findViewById(R.id.sUpdateEdu);
     }
 
-    public void  updateUI(FirebaseUser account){
-        if(account != null){
-            Toast.makeText(this,"U signed in successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,BookingList.class));
-        }else {
-            Toast.makeText(this,"U didnt signed in",Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void createStudentAccount(String email,String password){
-        pref= PreferenceManager.getDefaultSharedPreferences(this);
+    public void createStudentAccount(String email,String password) {
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -68,14 +54,12 @@ public class StudentRegister extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            //updateUI(user);
                             //add user type into database
-                            databaseReference= FirebaseDatabase.getInstance().getReference();
+                            databaseReference = FirebaseDatabase.getInstance().getReference();
                             Student s = new Student();
                             s.setEmail(sEmailField.getText().toString());
                             s.setName(sName.getText().toString());
-                            s.setAge(sAge.getText().toString());
-                            s.setGender(sGender.getText().toString());
                             s.setPhoneNo(sPhoneNo.getText().toString());
                             s.setEduLevel(sEduLvl.getText().toString());
 
@@ -83,19 +67,21 @@ public class StudentRegister extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(StudentRegister.this, "Authentication failed.",
+                            Toast.makeText(StudentUpdate.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            //updateUI(null);
                         }
 
                     }
                 });
+
     }
 
-    public void onStudentRegister(View v) {
+    public void onStudentUpdate(View v) {
         int i = v.getId();
-        if (i == R.id.suRegisterBtn) {
+        if (i == R.id.sUpdateBtn) {
             createStudentAccount(sEmailField.getText().toString(), sPasswordField.getText().toString());
         }
     }
+
 }
