@@ -45,6 +45,7 @@ public class BookingList extends AppCompatActivity {
                     bookingList.add(booking);
                     Log.d(TAG, "data added");
                     adapter.notifyDataSetChanged();//important line!!!!
+
                 }
             }
 

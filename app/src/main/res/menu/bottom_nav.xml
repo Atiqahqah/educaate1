@@ -7,9 +7,10 @@
         android:icon="@drawable/ic_home_black_24dp"/>
 
     <item
-        android:id="@+id/explore"
-        android:title="Explore"
-        android:icon="@drawable/ic_explore_black_24dp"/>
+        android:id="@+id/appointments"
+        android:title="Appointments"
+        android:icon="@drawable/ic_perm_contact_calendar_black_24dp"/>
+
     <item
         android:id="@+id/profile"
         android:title="Profile"

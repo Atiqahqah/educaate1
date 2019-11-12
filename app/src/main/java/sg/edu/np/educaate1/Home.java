@@ -22,24 +22,24 @@ public class Home extends AppCompatActivity {
 
                 int id = menuItem.getItemId();
 
+                //home fragment
                 if (id == R.id.home) {
-                    // now create three fragments
                     HomeFragment fragment = new HomeFragment();
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.frame_layout, fragment);
                     fragmentTransaction.commit();
                 }
 
-                if (id == R.id.explore) {
-                    // now create three fragments
-                    ExploreFragment fragment = new ExploreFragment();
+                //appointment fragment
+                if (id == R.id.appointments) {
+                    AppointmentsFragment fragment = new AppointmentsFragment();
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.frame_layout, fragment);
                     fragmentTransaction.commit();
                 }
 
+                //profile fragment
                 if (id == R.id.profile) {
-                    // now create three fragments
                     ProfileFragment fragment = new ProfileFragment();
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.frame_layout, fragment);
