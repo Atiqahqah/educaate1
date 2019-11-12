@@ -1,6 +1,7 @@
 package sg.edu.np.educaate1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class LogIn extends AppCompatActivity {
 
     private EditText mEmailField;
     private EditText mPasswordField;
+
+    SharedPreferences pref;
 
     String role;
 

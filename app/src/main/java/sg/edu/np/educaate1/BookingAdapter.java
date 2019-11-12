@@ -37,15 +37,15 @@ public class BookingAdapter extends ArrayAdapter<Booking> {
 
         Booking s = data.get(position);
         TextView datetime = item.findViewById(R.id.dateTimeTxt);
-        datetime.setText(s.getDate()+" "+s.getTime());
+        datetime.setText(s.getDate()+", "+s.getTime());
         TextView price=item.findViewById(R.id.priceTxt);
-        price.setText(s.getPrice());
+        price.setText("$"+s.getPrice());
         TextView subj=item.findViewById(R.id.subjTxt);
         subj.setText(s.getSubject());
         TextView location=item.findViewById(R.id.locationTxt);
         location.setText(s.getLocation());
-        //TextView name=item.findViewById(R.id.nameTxt);
-        //name.setText(s.getName());
+        TextView name=item.findViewById(R.id.nameTxt);
+        name.setText(s.getName());
 
         return item;
     }
