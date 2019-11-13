@@ -91,7 +91,7 @@ public class Home extends AppCompatActivity {
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
                                 fragmentTransaction.commit();
-                            }
+                        }
                         }
 
                         @Override
