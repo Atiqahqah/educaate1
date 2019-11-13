@@ -40,13 +40,12 @@ public class StudentRegister extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        sEmailField = findViewById(R.id.suEmailET);
-        sPasswordField = findViewById(R.id.suPasswordET);
-        sName = findViewById(R.id.suNameET);
-        sAge = findViewById(R.id.suAgeET);
-        sGender = findViewById(R.id.suGenderET);
-        sPhoneNo = findViewById(R.id.suPhoneNoET);
-        sEduLvl = findViewById(R.id.suEduLvlET);
+        sEmailField = findViewById(R.id.srEmailET);
+        sPasswordField = findViewById(R.id.srPasswordET);
+        sName = findViewById(R.id.srNameET);
+        sAge = findViewById(R.id.srAgeET);
+        //sGender = findViewById(R.id.srGenderET);
+        sPhoneNo = findViewById(R.id.srPhoneNoET);
     }
 
     public void  updateUI(FirebaseUser account){
@@ -94,7 +93,7 @@ public class StudentRegister extends AppCompatActivity {
 
     public void onStudentRegister(View v) {
         int i = v.getId();
-        if (i == R.id.suRegisterBtn) {
+        if (i == R.id.srRegisterBtn) {
             createStudentAccount(sEmailField.getText().toString(), sPasswordField.getText().toString());
         }
     }
