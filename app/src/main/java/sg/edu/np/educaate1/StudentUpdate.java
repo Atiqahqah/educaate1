@@ -1,13 +1,19 @@
 package sg.edu.np.educaate1;
 
 import android.content.SharedPreferences;
+import android.os.health.UidHealthStats;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,9 +41,6 @@ public class StudentUpdate extends AppCompatActivity {
     private String uid;
 
     private Student student;
-
-    FirebaseUser user = mAuth.getCurrentUser();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,24 +53,28 @@ public class StudentUpdate extends AppCompatActivity {
         sPhoneNo = findViewById(R.id.sUpdateNumber);
         sEduLvl = findViewById(R.id.sUpdateEdu);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES ,0);
+        uid = sharedPreferences.getString(UID, null);
 
-        uid = user.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(uid);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                student = dataSnapshot.getValue(Student.class);
-                sEmailField.setText(student.getEmail());
-                sName.setText(student.getName());
-                sPhoneNo.setText(student.getPhoneNo());
-                sEduLvl.setText(student.getEduLevel());
-            }
+        if(uid != null){
+            databaseReference = FirebaseDatabase.getInstance().getReference().child(uid);
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    student = dataSnapshot.getValue(Student.class);
+                    sEmailField.setText(student.getEmail());
+                    sName.setText(student.getName());
+                    sPhoneNo.setText(student.getPhoneNo());
+                    sEduLvl.setText(student.getEduLevel());
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
+
 
 
 
@@ -77,18 +84,19 @@ public class StudentUpdate extends AppCompatActivity {
     public void UpdateStudentProfile() {
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = mAuth.getCurrentUser();
+        //add user type into database
+        databaseReference= FirebaseDatabase.getInstance().getReference();
         Student s = new Student();
         s.setEmail(sEmailField.getText().toString());
         s.setName(sName.getText().toString());
-        s.setAge(student.getAge());
-        s.setGender(student.getGender());
         s.setPhoneNo(sPhoneNo.getText().toString());
         s.setEduLevel(sEduLvl.getText().toString());
-        s.setType("Student");
-
-
+        s.setAge(student.getAge());
+        s.setGender(student.getGender());
+        s.setType("student");
+        Log.d(TAG,student.getName());
         databaseReference.child("users").child(user.getUid()).setValue(s);
-
     }
 
     public void onStudentUpdate(View v) {

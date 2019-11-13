@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "254878139974-77nslsqjnl89vak2p9kiof6u8m0c5ptd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.edu.np.educaate1",
+            "certificate_hash": "599eb755774f58df617a1c5ecf98ee64206e0bf7"
+          }
+        },
+        {
+          "client_id": "254878139974-ur1usbd3kcubji68b9v2nkfjh9pmbr5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.edu.np.educaate1",
+            "certificate_hash": "c550551ffc3587855ad16e2415d9454f899c7f76"
+          }
+        },
+        {
           "client_id": "254878139974-g2q7pm79acrg6ask0c4rpao2mt41en7o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
