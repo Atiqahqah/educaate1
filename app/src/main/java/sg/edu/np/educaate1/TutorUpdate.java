@@ -53,7 +53,7 @@ public class TutorUpdate extends AppCompatActivity {
 
         String uid = user.getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(uid);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

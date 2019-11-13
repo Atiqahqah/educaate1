@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,9 +32,9 @@ public class StudentUpdate extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String UID = "Uid";
 
-    private EditText sEmailField;
+    private TextView sEmailField;
     private EditText sPasswordField;
-    private EditText sName;
+    private TextView sName;
     private EditText sDescription;
     private EditText sPhoneNo;
     private EditText sEduLvl;
@@ -57,7 +58,7 @@ public class StudentUpdate extends AppCompatActivity {
         uid = sharedPreferences.getString(UID, null);
 
         if(uid != null){
-            databaseReference = FirebaseDatabase.getInstance().getReference().child(uid);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -92,6 +93,7 @@ public class StudentUpdate extends AppCompatActivity {
         s.setName(sName.getText().toString());
         s.setPhoneNo(sPhoneNo.getText().toString());
         s.setEduLevel(sEduLvl.getText().toString());
+        Log.d("Age", student.getAge());
         s.setAge(student.getAge());
         s.setGender(student.getGender());
         s.setType("student");
