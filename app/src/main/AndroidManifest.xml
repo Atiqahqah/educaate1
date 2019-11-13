@@ -54,6 +54,9 @@
             android:name=".TutorHome"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".StudentUpdate"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".StudentUpdate"

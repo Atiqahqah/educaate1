@@ -106,13 +106,15 @@ public class LogIn extends AppCompatActivity {
                     //String type = "student";
 
                     if(type.equals("student")){
-                        Intent intent=new Intent(LogIn.this,BookingList.class);
+                        Intent intent=new Intent(LogIn.this,Home.class);
+                        intent.putExtra("uid", uid);
                         startActivity(intent);
                         //Toast.makeText(this,"Student Signed In",Toast.LENGTH_LONG).show();
                         //role = "student";
                     }
                     else if(type.equals("tutor")){
-                        Intent intent=new Intent(LogIn.this,PostSchedule.class);
+                        Intent intent=new Intent(LogIn.this,Home.class);
+                        intent.putExtra("uid", uid);
                         startActivity(intent);
                         //role = "tutor";
                     }

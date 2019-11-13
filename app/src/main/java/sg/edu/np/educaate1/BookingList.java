@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -108,5 +109,20 @@ public class BookingList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        /*Button update = findViewById(R.id.btn2);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BookingList.this, StudentUpdate.class));
+            }
+        });*/
+
+    }
+
+    public void onClick(View v){
+        startActivity(new Intent(BookingList.this, StudentUpdate.class));
+
     }
 }
