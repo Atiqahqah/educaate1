@@ -37,6 +37,8 @@ public class LogIn extends AppCompatActivity {
     private EditText mEmailField;
     private EditText mPasswordField;
 
+    SharedPreferences pref;
+
     String role;
 
     ArrayList<String> studentEmailList;

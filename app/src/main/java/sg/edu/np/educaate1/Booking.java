@@ -7,18 +7,21 @@ public class Booking {
     private String price;
     private String desc;
     private String location;
-    //private String name;
+    private String name;
 
     public Booking(){ }
 
-    public Booking(String subject,String date,String time,String price,String location,String desc){
+    public Booking(String name,String subject,String date,String time,String price,String location,String desc){
         this.time=time;
         this.date=date;
         this.subject=subject;
         this.price=price;
         this.location=location;
         this.desc=desc;
+        this.name=name;
     }
+
+
 
     public String getTime() {
         return time;
@@ -66,11 +69,11 @@ public class Booking {
         this.location = location;
     }
 
-    /*public String getName() {
+    public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }*/
+    }
 }
