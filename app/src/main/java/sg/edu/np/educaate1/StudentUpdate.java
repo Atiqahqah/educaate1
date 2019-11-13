@@ -40,6 +40,7 @@ public class StudentUpdate extends AppCompatActivity {
 
     private String uid;
 
+    private Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class StudentUpdate extends AppCompatActivity {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Student student = dataSnapshot.getValue(Student.class);
+                    student = dataSnapshot.getValue(Student.class);
                     sEmailField.setText(student.getEmail());
                     sName.setText(student.getName());
                     sPhoneNo.setText(student.getPhoneNo());
@@ -80,21 +81,20 @@ public class StudentUpdate extends AppCompatActivity {
 
     public void UpdateStudentProfile() {
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(uid);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                databaseReference.child("users").child("name").setValue(sName);
-                databaseReference.child("users").child("eduLevel").setValue(sEduLvl);
-                databaseReference.child("users").child("phoneNo").setValue(sPhoneNo);
-                databaseReference.child("users").child("email").setValue(sEmailField);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = mAuth.getCurrentUser();
+        //add user type into database
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+        Student s = new Student();
+        s.setEmail(sEmailField.getText().toString());
+        s.setName(sName.getText().toString());
+        s.setPhoneNo(sPhoneNo.getText().toString());
+        s.setEduLevel(sEduLvl.getText().toString());
+        s.setAge(student.getAge());
+        s.setGender(student.getGender());
+        s.setType("student");
+        Log.d(TAG,student.getName());
+        databaseReference.child("users").child(user.getUid()).setValue(s);
     }
 
     public void onStudentUpdate(View v) {
