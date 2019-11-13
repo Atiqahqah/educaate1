@@ -48,12 +48,6 @@
             android:name=".SignUp"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PostSchedule"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".BookingList"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".StudentHome"
             android:screenOrientation="portrait" />
         <activity
@@ -61,6 +55,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".StudentUpdate"
             android:screenOrientation="portrait"></activity>
     </application>
 

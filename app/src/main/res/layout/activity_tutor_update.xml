@@ -7,14 +7,15 @@
     tools:context=".TutorUpdate">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="238dp"
+        android:layout_height="519dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tUpdateTitle">
+        app:layout_constraintTop_toBottomOf="@+id/tUpdateTitle"
+        app:layout_constraintVertical_bias="0.245">
 
         <EditText
             android:id="@+id/tUpdateName"
@@ -41,30 +42,17 @@
             app:layout_constraintTop_toBottomOf="@+id/tUpdateName" />
 
         <EditText
-            android:id="@+id/tUpdatePassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdateEmail" />
-
-        <EditText
             android:id="@+id/tUpdateDescription"
             android:layout_width="222dp"
             android:layout_height="106dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Description "
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tUpdateQualifications" />
 
@@ -72,13 +60,15 @@
             android:id="@+id/tUpdatePhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="Phone"
             android:inputType="phone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdatePassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tUpdateEmail"
+            app:layout_constraintVertical_bias="0.041" />
 
         <EditText
             android:id="@+id/tUpdateEdu"

@@ -49,7 +49,7 @@
             android:id="@+id/sUpdateName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
@@ -59,30 +59,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/sUpdateDescription"
-            android:layout_width="389dp"
-            android:layout_height="167dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Description"
-            android:inputType="textMultiLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sUpdateEdu" />
-
-        <EditText
             android:id="@+id/sUpdateEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="52dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sUpdateName" />
 
@@ -91,26 +76,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Phone Number"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="103dp" />
+            app:layout_constraintTop_toBottomOf="@+id/sUpdateEmail" />
 
         <EditText
             android:id="@+id/sUpdateEdu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Education Level"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sUpdateNumber" />
 
@@ -118,13 +105,12 @@
             android:id="@+id/sUpdateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="7dp"
+            android:onClick="onStudentUpdate"
             android:text="Update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sUpdateDescription" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
