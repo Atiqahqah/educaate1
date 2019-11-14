@@ -1,10 +1,12 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import sg.edu.np.educaate1.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,19 +18,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void signUp(View v){
         Button button=findViewById(R.id.signup);
-        Intent intent=new Intent(MainActivity.this,selectUserType.class);
+        Intent intent=new Intent(MainActivity.this, selectUserType.class);
         startActivity(intent);
     }
 
     public void logIn(View v){
         Button button=findViewById(R.id.login);
-        Intent intent=new Intent(MainActivity.this,LogIn.class);
+        Intent intent=new Intent(MainActivity.this, LogIn.class);
         startActivity(intent);
     }
 
     public void etPhoneHome(View v){
         Button button=findViewById(R.id.homeBtn);
-        Intent intent=new Intent(MainActivity.this,Home.class);
+        Intent intent=new Intent(MainActivity.this, Home.class);
         startActivity(intent);
     }
 }

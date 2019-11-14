@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Classes;
 
 public class Booking {
     private String time;
@@ -8,10 +8,12 @@ public class Booking {
     private String desc;
     private String location;
     private String name;
+    private String id;
+    private String status;
 
     public Booking(){ }
 
-    public Booking(String name,String subject,String date,String time,String price,String location,String desc){
+    public Booking(String name,String subject,String date,String time,String price,String location,String desc,String id,String status){
         this.time=time;
         this.date=date;
         this.subject=subject;
@@ -19,6 +21,8 @@ public class Booking {
         this.location=location;
         this.desc=desc;
         this.name=name;
+        this.id=id;
+        this.status=status;
     }
 
 
@@ -75,5 +79,21 @@ public class Booking {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

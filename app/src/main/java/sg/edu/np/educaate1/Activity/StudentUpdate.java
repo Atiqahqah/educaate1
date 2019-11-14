@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.SharedPreferences;
 import android.os.health.UidHealthStats;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.Classes.Student;
+import sg.edu.np.educaate1.R;
+
 public class StudentUpdate extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
@@ -31,6 +38,8 @@ public class StudentUpdate extends AppCompatActivity {
     SharedPreferences pref;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String UID = "Uid";
+
+    ArrayList<Booking>bookingList;
 
     private TextView sEmailField;
     private EditText sPasswordField;
@@ -59,14 +68,36 @@ public class StudentUpdate extends AppCompatActivity {
 
         if(uid != null){
             databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+            bookingList=new ArrayList<>();
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot:dataSnapshot.child("booking").getChildren()){
+                        Log.d("long",Long.toString(snapshot.getChildrenCount()));
+                        //Log.d("subject",snapshot.child("subject").getValue().toString());
+                        /*String subj=snapshot.child("subject").getValue().toString();
+                        String date=snapshot.child("date").getValue().toString();
+                        String time=snapshot.child("time").getValue().toString();
+                        String price=snapshot.child("price").getValue().toString();
+                        String location=snapshot.child("location").getValue().toString();
+                        String status=snapshot.child("status").getValue().toString();
+                        String id=snapshot.child("id").getValue().toString();
+                        String desc=snapshot.child("desc").getValue().toString();
+                        String name=snapshot.child("name").getValue().toString();*/
+
+                        //Booking booking=new Booking(name,subj,date,time,price,location,desc,id,status);
+                        Booking booking=snapshot.getValue(Booking.class);
+                        bookingList.add(booking);
+                    }
                     student = dataSnapshot.getValue(Student.class);
                     sEmailField.setText(student.getEmail());
                     sName.setText(student.getName());
                     sPhoneNo.setText(student.getPhoneNo());
                     sEduLvl.setText(student.getEduLevel());
+                    //Log.d(TAG,Long.toString(dataSnapshot.getChildrenCount()));
+                    //if(dataSnapshot.getChildrenCount()>7){
+
+                    //}
                 }
 
                 @Override
@@ -75,11 +106,6 @@ public class StudentUpdate extends AppCompatActivity {
                 }
             });
         }
-
-
-
-
-
     }
 
     public void UpdateStudentProfile() {
@@ -98,7 +124,18 @@ public class StudentUpdate extends AppCompatActivity {
         s.setGender(student.getGender());
         s.setType("student");
         Log.d(TAG,student.getName());
-        databaseReference.child("users").child(user.getUid()).setValue(s);
+
+        if(bookingList.size()!=0){
+            databaseReference.child("users").child(user.getUid()).setValue(s);
+            for(int i=0;i<bookingList.size();i++){
+                String id=bookingList.get(i).getId();
+                databaseReference.child("users").child(user.getUid()).child("booking").child(id).setValue(bookingList.get(i));
+            }
+        }
+        else{
+            databaseReference.child("users").child(user.getUid()).setValue(s);
+        }
+        //databaseReference.child("users").child(user.getUid()).setValue(s);
     }
 
     public void onStudentUpdate(View v) {
@@ -108,4 +145,25 @@ public class StudentUpdate extends AppCompatActivity {
         }
     }
 
+    public void checkBooking(){
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        bookingList=new ArrayList<>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                bookingList.clear();
+                if(dataSnapshot.getChildrenCount()>7){
+                    for(DataSnapshot snapshot:dataSnapshot.child("booking").getChildren()){
+                            Booking s=snapshot.getValue(Booking.class);
+                            bookingList.add(s);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

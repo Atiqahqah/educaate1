@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ViewSchedule"></activity>
+        <activity android:name=".TutorMessage"></activity>
+        <activity android:name=".TutorViewSchedule" />
+        <activity android:name=".Activity.ViewSchedule" />
         <activity
             android:name=".Splash"
             android:noHistory="true">
@@ -20,32 +22,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostSchedule"
+            android:name=".Activity.PostSchedule"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BookingList"
+            android:name=".Activity.BookingList"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Home"
+            android:name=".Activity.Home"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TutorRegister"
+            android:name=".Activity.TutorRegister"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StudentRegister"
+            android:name=".Activity.StudentRegister"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".selectUserType"
+            android:name=".Activity.selectUserType"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LogIn"
+            android:name=".Activity.LogIn"
             android:screenOrientation="portrait" />
         <activity
             android:name=".success"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUp"
+            android:name=".Activity.SignUp"
             android:screenOrientation="portrait" />
         <activity
             android:name=".StudentHome"
@@ -54,13 +56,11 @@
             android:name=".TutorHome"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StudentUpdate"
+            android:name=".Activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".StudentUpdate"
-            android:screenOrientation="portrait"></activity>
+            android:name=".Activity.StudentUpdate"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

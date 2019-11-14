@@ -1,9 +1,8 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -15,8 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Random;
+import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.R;
 
 public class PostSchedule extends AppCompatActivity {
     private DatabaseReference databaseReference;
@@ -58,15 +57,18 @@ public class PostSchedule extends AppCompatActivity {
         EditText price=findViewById(R.id.priceField);
         EditText location=findViewById(R.id.locationField);
 
-        booking.setDate(time.getText().toString());
-        booking.setTime(date.getText().toString());
+        booking.setDate(date.getText().toString());
+        booking.setTime(time.getText().toString());
         booking.setSubject(subj.getText().toString());
         booking.setDesc(desc.getText().toString());
         booking.setPrice(price.getText().toString());
         booking.setLocation(location.getText().toString());
         booking.setName(name);
 
-        databaseReference.child("users").child(user.getUid()).child("booking").push().setValue(booking);
-        databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
+        String key=databaseReference.child("users").child(user.getUid()).child("booking").push().getKey();
+        booking.setId(key);
+
+        databaseReference.child("users").child(user.getUid()).child("booking").child(key).setValue(booking);
+        //databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
     }
 }
