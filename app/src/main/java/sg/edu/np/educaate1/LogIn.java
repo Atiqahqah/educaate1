@@ -131,15 +131,19 @@ public class LogIn extends AppCompatActivity {
                 }
             });
 
-            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Sign In successful.",Toast.LENGTH_LONG).show();
             //startActivity(new Intent(this,success.class)); //currently after signing in and signing up, it brings u to the same page
 
         }else {
-            Toast.makeText(this,"U Didnt sign in",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Error logging in. Are details correct?",Toast.LENGTH_LONG).show();
         }
     }
 
     public void onLogIn(View v) {
         signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+    }
+
+    public void clickSignup(View v){
+        startActivity(new Intent(LogIn.this, selectUserType.class));
     }
 }
