@@ -77,6 +77,7 @@ public class StudentRegister extends AppCompatActivity {
                             s.setGender(sGender.getText().toString());
                             s.setPhoneNo(sPhoneNo.getText().toString());
                             s.setEduLevel(sEduLvl.getText().toString());
+                            s.setType("student");
 
                             databaseReference.child("users").child(user.getUid()).setValue(s);
                         } else {

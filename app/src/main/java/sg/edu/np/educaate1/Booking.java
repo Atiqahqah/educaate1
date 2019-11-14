@@ -13,7 +13,7 @@ public class Booking {
 
     public Booking(){ }
 
-    public Booking(String name,String subject,String date,String time,String price,String location,String desc){
+    public Booking(String name,String subject,String date,String time,String price,String location,String desc,String id,String status){
         this.time=time;
         this.date=date;
         this.subject=subject;
@@ -21,6 +21,8 @@ public class Booking {
         this.location=location;
         this.desc=desc;
         this.name=name;
+        this.id=id;
+        this.status=status;
     }
 
 

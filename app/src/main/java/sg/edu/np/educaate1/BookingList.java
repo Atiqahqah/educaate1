@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class BookingList extends AppCompatActivity {
     ListView listView;
@@ -42,7 +41,15 @@ public class BookingList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 bookingList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
+                    if(snapshot.child("type").getValue().toString().equals("tutor")){
+                        for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
+                            Log.d(TAG, msgSnapshot.getKey());
+                            Booking booking=msgSnapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                            bookingList.add(booking);
+                            adapter.notifyDataSetChanged();//important line!!
+                        }
+                    }
+                    /*for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
                         //long no=msgSnapshot.getChildrenCount();
                         //Log.d(TAG, Objects.toString(no));
                         /*String subj=msgSnapshot.child("subject").getValue().toString();
@@ -51,28 +58,13 @@ public class BookingList extends AppCompatActivity {
                         String price=msgSnapshot.child("price").getValue().toString();
                         String location=msgSnapshot.child("location").getValue().toString();
                         String desc=msgSnapshot.child("desc").getValue().toString();
-                        Booking booking=new Booking(subj,date,time,price,location,desc);*/
+                        Booking booking=new Booking(subj,date,time,price,location,desc);
                         //Log.d(TAG,msgSnapshot.getKey()); //get name of child
-
+                        Log.d(TAG, msgSnapshot.getKey());
                         Booking booking=msgSnapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
                         bookingList.add(booking);
                         adapter.notifyDataSetChanged();//important line!!
-                    }
-                    //long no=snapshot.getChildrenCount();
-                    //Log.d(TAG, Objects.toString(no));
-
-                    /*String subj=snapshot.child("subject").getValue().toString();
-                    String date=snapshot.child("date").getValue().toString();
-                    String time=snapshot.child("time").getValue().toString();
-                    String price=snapshot.child("price").getValue().toString();
-                    String location=snapshot.child("location").getValue().toString();
-                    String desc=snapshot.child("desc").getValue().toString();
-                    Booking booking=new Booking(subj,date,time,price,location,desc);*/
-
-                    /*bookingList.add(booking);
-                    Log.d(TAG, "data added");
-                    adapter.notifyDataSetChanged();*/  //important line!!!!
-
+                    }*/
                 }
             }
 
@@ -82,7 +74,7 @@ public class BookingList extends AppCompatActivity {
             }
         });
 
-        adapter=new BookingAdapter(this,R.layout.bookinglayout,bookingList);//The data will displayed in the ListView following the layout in goallayout
+        adapter=new BookingAdapter(this,R.layout.bookinglayout,bookingList);
         listView=(ListView)findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
@@ -92,9 +84,8 @@ public class BookingList extends AppCompatActivity {
                                     View view, int position, long id){
                 Booking b = (Booking) parent.getItemAtPosition(position);
                 Intent intent = new Intent(BookingList.this,
-                        ViewSchedule.class);//open view goal page
+                        ViewSchedule.class);
 
-                //get name of goal so viewgoal will display information about that goal
                 intent.putExtra("name",b.getName());
                 intent.putExtra("date",b.getDate());
                 intent.putExtra("time",b.getTime());
@@ -103,7 +94,6 @@ public class BookingList extends AppCompatActivity {
                 intent.putExtra("price",b.getPrice());
                 intent.putExtra("subj",b.getSubject());
                 intent.putExtra("id",b.getId());
-
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/
