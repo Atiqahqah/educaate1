@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1.Fragments.StudentChildFragment;
+package sg.edu.np.educaate1.Fragments.ChildFragment;
 
 
 import android.os.Bundle;

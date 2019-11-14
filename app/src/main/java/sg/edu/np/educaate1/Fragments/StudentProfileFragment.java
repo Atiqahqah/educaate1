@@ -26,9 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
 import sg.edu.np.educaate1.Classes.Student;
-import sg.edu.np.educaate1.Fragments.StudentChildFragment.RatingsFragment;
-import sg.edu.np.educaate1.Fragments.StudentChildFragment.ReviewFragment;
-import sg.edu.np.educaate1.Fragments.StudentChildFragment.SummaryFragment;
+import sg.edu.np.educaate1.Fragments.ChildFragment.RatingsFragment;
+import sg.edu.np.educaate1.Fragments.ChildFragment.ReviewFragment;
+import sg.edu.np.educaate1.Fragments.ChildFragment.StudentSummaryFragment;
 import sg.edu.np.educaate1.R;
 import sg.edu.np.educaate1.Activity.StudentUpdate;
 
@@ -132,7 +132,7 @@ public class StudentProfileFragment extends Fragment {
     private void setUpViewPager(ViewPager viewPager){
         SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
 
-        adapter.addFragment(new SummaryFragment(),"Summary");
+        adapter.addFragment(new StudentSummaryFragment(),"StudentSummary");
         adapter.addFragment(new RatingsFragment(),"Ratings");
         adapter.addFragment(new ReviewFragment(),"Reviews");
 

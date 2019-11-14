@@ -4,7 +4,10 @@ package sg.edu.np.educaate1.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
 import sg.edu.np.educaate1.Classes.Tutor;
+import sg.edu.np.educaate1.Fragments.ChildFragment.RatingsFragment;
+import sg.edu.np.educaate1.Fragments.ChildFragment.ReviewFragment;
+import sg.edu.np.educaate1.Fragments.ChildFragment.StudentSummaryFragment;
+import sg.edu.np.educaate1.Fragments.ChildFragment.TutorSummaryFragment;
 import sg.edu.np.educaate1.R;
 import sg.edu.np.educaate1.Activity.TutorUpdate;
 
@@ -46,6 +54,10 @@ public class TutorProfileFragment extends Fragment {
     Button summary;
     Button rating;
     Button review;
+
+    //Fragments and TabLayout
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
 
     public TutorProfileFragment() {
@@ -91,13 +103,48 @@ public class TutorProfileFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        setUpViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void setUpViewPager(ViewPager viewPager){
+        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
+
+        adapter.addFragment(new TutorSummaryFragment(),"TutorSummary");
+        adapter.addFragment(new RatingsFragment(),"Ratings");
+        adapter.addFragment(new ReviewFragment(),"Reviews");
+
+        viewPager.setAdapter(adapter);
+    }
+
     public void InitialiseViews(View v){
         name = v.findViewById(R.id.tProfileNameTV);
         profilepic = v.findViewById(R.id.tProfileImage);
         editprofile = v.findViewById(R.id.tUpdateProfileBtn);
-        summary = v.findViewById(R.id.tSummaryProfileBtn);
-        rating = v.findViewById(R.id.tRatingProfileBtn);
-        review = v.findViewById(R.id.tReviewProfileBtn);
+
+        viewPager = v.findViewById(R.id.viewPager);
+        tabLayout = v.findViewById(R.id.tabLayout);
     }
 
 }

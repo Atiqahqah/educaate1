@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1.Fragments.StudentChildFragment;
+package sg.edu.np.educaate1.Fragments.ChildFragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import sg.edu.np.educaate1.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewFragment extends Fragment {
+public class TutorSummaryFragment extends Fragment {
 
 
-    public ReviewFragment() {
+    public TutorSummaryFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_review, container, false);
+        return inflater.inflate(R.layout.fragment_tutor_summary, container, false);
     }
 
 }

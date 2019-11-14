@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1.Fragments.StudentChildFragment;
+package sg.edu.np.educaate1.Fragments.ChildFragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import sg.edu.np.educaate1.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SummaryFragment extends Fragment {
+public class StudentSummaryFragment extends Fragment {
 
 
-    public SummaryFragment() {
+    public StudentSummaryFragment() {
         // Required empty public constructor
     }
 
