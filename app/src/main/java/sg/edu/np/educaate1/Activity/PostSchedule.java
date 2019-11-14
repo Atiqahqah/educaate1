@@ -57,15 +57,19 @@ public class PostSchedule extends AppCompatActivity {
         EditText price=findViewById(R.id.priceField);
         EditText location=findViewById(R.id.locationField);
 
-        booking.setDate(time.getText().toString());
-        booking.setTime(date.getText().toString());
+        booking.setDate(date.getText().toString());
+        booking.setTime(time.getText().toString());
         booking.setSubject(subj.getText().toString());
         booking.setDesc(desc.getText().toString());
         booking.setPrice(price.getText().toString());
         booking.setLocation(location.getText().toString());
         booking.setName(name);
 
-        databaseReference.child("users").child(user.getUid()).child("booking").push().setValue(booking);
+        String key = databaseReference.child("users").child(user.getUid()).child("booking").push().getKey();
+        booking.setId(key);
+        booking.setStatus("Open");
+
+        databaseReference.child("users").child(user.getUid()).child("booking").child(key).setValue(booking);
         databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
     }
 }

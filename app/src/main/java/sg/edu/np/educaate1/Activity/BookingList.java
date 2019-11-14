@@ -103,6 +103,8 @@ public class BookingList extends AppCompatActivity {
                 intent.putExtra("location",b.getLocation());
                 intent.putExtra("price",b.getPrice());
                 intent.putExtra("subj",b.getSubject());
+                intent.putExtra("id",b.getId());
+
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/
