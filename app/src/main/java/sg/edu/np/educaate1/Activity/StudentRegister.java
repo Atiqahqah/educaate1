@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import sg.edu.np.educaate1.Activity.Home;
 import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.R;
 
@@ -43,6 +44,7 @@ public class StudentRegister extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
         sEmailField = findViewById(R.id.srEmailET);
         sPasswordField = findViewById(R.id.srPasswordET);
         sName = findViewById(R.id.srNameET);
@@ -53,10 +55,13 @@ public class StudentRegister extends AppCompatActivity {
 
     public void  updateUI(FirebaseUser account){
         if(account != null){
-            Toast.makeText(this,"U signed in successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, BookingList.class));
+            Toast.makeText(this,"Account created successfully",Toast.LENGTH_LONG).show();
+            String uid=account.getUid();
+            Intent intent=new Intent(StudentRegister.this, Home.class);
+            intent.putExtra("uid", uid);
+            startActivity(intent);
         }else {
-            Toast.makeText(this,"U didnt signed in",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Registration unsuccessful",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -77,9 +82,9 @@ public class StudentRegister extends AppCompatActivity {
                             s.setEmail(sEmailField.getText().toString());
                             s.setName(sName.getText().toString());
                             s.setAge(sAge.getText().toString());
-                            s.setGender(sGender.getText().toString());
+                            s.setGender("not specified");
                             s.setPhoneNo(sPhoneNo.getText().toString());
-                            s.setEduLevel(sEduLvl.getText().toString());
+                            s.setEduLevel("not specified");
                             s.setType("student");
 
                             databaseReference.child("users").child(user.getUid()).setValue(s);

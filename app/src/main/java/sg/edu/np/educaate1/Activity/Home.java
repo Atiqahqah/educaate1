@@ -17,12 +17,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.educaate1.R;
-import sg.edu.np.educaate1.Fragments.StudentApptFragment;
 import sg.edu.np.educaate1.Fragments.StudentHomeFragment;
 import sg.edu.np.educaate1.Fragments.StudentProfileFragment;
 import sg.edu.np.educaate1.Fragments.TutorApptFragment;
 import sg.edu.np.educaate1.Fragments.TutorHomeFragment;
 import sg.edu.np.educaate1.Fragments.TutorProfileFragment;
+import sg.edu.np.educaate1.Fragments.StudentApptFragment;
 
 public class Home extends AppCompatActivity {
     private FirebaseAuth mAuth;
