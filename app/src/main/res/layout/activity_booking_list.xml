@@ -19,7 +19,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.227"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
 
     <TextView
         android:id="@+id/textView2"

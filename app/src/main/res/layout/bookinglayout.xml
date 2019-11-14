@@ -4,85 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@drawable/listdesign">
 
     <TextView
         android:id="@+id/lblPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:text="Price:"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/priceTxt"
-        app:layout_constraintEnd_toEndOf="@+id/priceTxt"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBaseline_toBaselineOf="@+id/subjTxt"
         app:layout_constraintStart_toStartOf="@+id/priceTxt" />
 
     <TextView
         android:id="@+id/nameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:drawableLeft="@drawable/ic_face_black_24dp"
-        android:fontFamily="@font/montserrat_regular"
+        android:fontFamily="@font/opensans_regular"
         android:text="TextView"
         android:textAllCaps="false"
         android:textSize="18sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/subjTxt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subjTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/dateTimeTxt" />
 
     <TextView
         android:id="@+id/dateTimeTxt"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_access_time_black_24dp"
-        android:drawablePadding="4dp"
+        android:drawablePadding="2dp"
         android:fontFamily="@font/opensans_regular"
+        android:gravity="center_vertical"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTxt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/subjTxt" />
 
     <TextView
         android:id="@+id/locationTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="8dp"
         android:drawableLeft="@drawable/ic_location_on_black_24dp"
-        android:drawablePadding="4dp"
+        android:drawablePadding="2dp"
         android:fontFamily="@font/opensans_regular"
+        android:gravity="center_vertical"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/dateTimeTxt"
         app:layout_constraintStart_toEndOf="@+id/dateTimeTxt" />
 
     <TextView
         android:id="@+id/priceTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/opensans_bold"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/locationTxt"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/subjTxt"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/ic_library_books_black_24dp"
         android:fontFamily="@font/montserrat_bold"
-        android:paddingLeft="4dp"
         android:text="TextView"
+        android:textAlignment="center"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
