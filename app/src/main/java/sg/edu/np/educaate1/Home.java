@@ -53,13 +53,14 @@ public class Home extends AppCompatActivity {
                                 StudentHomeFragment fragment = new StudentHomeFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commitAllowingStateLoss();
+
                             }
                             else if(type.equals("tutor")){
                                 TutorHomeFragment fragment = new TutorHomeFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commitAllowingStateLoss();
                             }
                         }
 
@@ -84,13 +85,13 @@ public class Home extends AppCompatActivity {
                                 StudentApptFragment fragment = new StudentApptFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commitAllowingStateLoss();
                             }
                             else if(type.equals("tutor")){
                                 TutorApptFragment fragment = new TutorApptFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commitAllowingStateLoss();
                         }
                         }
 
@@ -115,13 +116,13 @@ public class Home extends AppCompatActivity {
                                 StudentProfileFragment fragment = new StudentProfileFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commitAllowingStateLoss();
                             }
                             else if(type.equals("tutor")){
                                 TutorProfileFragment fragment = new TutorProfileFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame_layout, fragment);
-                                fragmentTransaction.commit();
+                                fragmentTransaction.commitAllowingStateLoss();
                             }
                         }
 
