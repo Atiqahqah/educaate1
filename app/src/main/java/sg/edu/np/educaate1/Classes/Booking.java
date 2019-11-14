@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Classes;
 
 public class Booking {
     private String time;

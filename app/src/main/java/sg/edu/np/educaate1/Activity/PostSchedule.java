@@ -1,9 +1,8 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -15,8 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Random;
+import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.R;
 
 public class PostSchedule extends AppCompatActivity {
     private DatabaseReference databaseReference;

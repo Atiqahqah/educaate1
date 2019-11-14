@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import sg.edu.np.educaate1.R;
 
 public class selectUserType extends AppCompatActivity {
     SharedPreferences pref;
@@ -20,7 +22,7 @@ public class selectUserType extends AppCompatActivity {
         SharedPreferences.Editor editor= pref.edit();
         editor.putString("USER","student");
         editor.apply();
-        Intent intent=new Intent(selectUserType.this,StudentRegister.class);
+        Intent intent=new Intent(selectUserType.this, StudentRegister.class);
         startActivity(intent);
     }
 
@@ -29,7 +31,7 @@ public class selectUserType extends AppCompatActivity {
         SharedPreferences.Editor editor= pref.edit();
         editor.putString("USER","tutor");
         editor.apply();
-        Intent intent=new Intent(selectUserType.this,TutorRegister.class);
+        Intent intent=new Intent(selectUserType.this, TutorRegister.class);
         startActivity(intent);
     }
 }

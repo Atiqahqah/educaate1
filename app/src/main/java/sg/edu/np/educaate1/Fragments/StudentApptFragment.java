@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Fragments;
 
 
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import sg.edu.np.educaate1.Activity.BookingList;
+import sg.edu.np.educaate1.R;
 
 
 /**
@@ -31,7 +34,7 @@ public class StudentApptFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),BookingList.class);
+                Intent intent=new Intent(getActivity(), BookingList.class);
                 startActivity(intent);
             }
         });

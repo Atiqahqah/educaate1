@@ -1,16 +1,13 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.UUID;
+
+import sg.edu.np.educaate1.R;
+import sg.edu.np.educaate1.success;
 
 public class LogIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -106,7 +105,7 @@ public class LogIn extends AppCompatActivity {
                     //String type = "student";
 
                     if(type.equals("student")){
-                        Intent intent=new Intent(LogIn.this,Home.class);
+                        Intent intent=new Intent(LogIn.this, Home.class);
                         intent.putExtra("uid", uid);
                         startActivity(intent);
                         //Toast.makeText(this,"Student Signed In",Toast.LENGTH_LONG).show();
@@ -119,7 +118,7 @@ public class LogIn extends AppCompatActivity {
                         //role = "tutor";
                     }
                     else {
-                        Intent intent=new Intent(LogIn.this,success.class);
+                        Intent intent=new Intent(LogIn.this, success.class);
                         startActivity(intent);
                     }
 

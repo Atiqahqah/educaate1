@@ -1,11 +1,13 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Fragments;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
+import sg.edu.np.educaate1.Classes.Student;
+import sg.edu.np.educaate1.Fragments.StudentChildFragment.RatingsFragment;
+import sg.edu.np.educaate1.Fragments.StudentChildFragment.ReviewFragment;
+import sg.edu.np.educaate1.Fragments.StudentChildFragment.SummaryFragment;
+import sg.edu.np.educaate1.R;
+import sg.edu.np.educaate1.Activity.StudentUpdate;
 
 
 /**
@@ -43,6 +53,10 @@ public class StudentProfileFragment extends Fragment {
     Button summary;
     Button rating;
     Button review;
+
+    //Fragments and TabLayout
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
     public StudentProfileFragment() {
         // Required empty public constructor
@@ -83,26 +97,55 @@ public class StudentProfileFragment extends Fragment {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),StudentUpdate.class));
+                startActivity(new Intent(getActivity(), StudentUpdate.class));
             }
         });
-
-
 
         return view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+        setUpViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
 
+        tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
 
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void setUpViewPager(ViewPager viewPager){
+        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
+
+        adapter.addFragment(new SummaryFragment(),"Summary");
+        adapter.addFragment(new RatingsFragment(),"Ratings");
+        adapter.addFragment(new ReviewFragment(),"Reviews");
+
+        viewPager.setAdapter(adapter);
+    }
 
     public void InitialiseViews(View v){
-        name = v.findViewById(R.id.profileNameTV);
-        profilepic = v.findViewById(R.id.profileImage);
-        editprofile = v.findViewById(R.id.updateProfileBtn);
-        summary = v.findViewById(R.id.summaryProfileBtn);
-        rating = v.findViewById(R.id.ratingProfileBtn);
-        review = v.findViewById(R.id.reviewProfileBtn);
+        name = v.findViewById(R.id.sProfileNameTV);
+        profilepic = v.findViewById(R.id.sProfileImage);
+        editprofile = v.findViewById(R.id.sUpdateProfileBtn);
+
+        viewPager = v.findViewById(R.id.viewPager);
+        tabLayout = v.findViewById(R.id.tabLayout);
     }
 
 

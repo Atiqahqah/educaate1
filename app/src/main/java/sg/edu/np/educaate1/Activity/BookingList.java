@@ -1,15 +1,13 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +17,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
+
+import sg.edu.np.educaate1.Adapters.BookingAdapter;
+import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.R;
 
 public class BookingList extends AppCompatActivity {
     ListView listView;

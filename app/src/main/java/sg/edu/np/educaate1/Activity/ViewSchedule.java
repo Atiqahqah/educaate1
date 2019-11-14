@@ -1,9 +1,11 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import sg.edu.np.educaate1.R;
 
 public class ViewSchedule extends AppCompatActivity {
 

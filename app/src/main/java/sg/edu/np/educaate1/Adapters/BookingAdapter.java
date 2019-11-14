@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+
+import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.R;
 
 public class BookingAdapter extends ArrayAdapter<Booking> {
     Context c;

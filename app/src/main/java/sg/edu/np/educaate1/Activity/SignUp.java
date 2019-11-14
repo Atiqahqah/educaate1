@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import sg.edu.np.educaate1.R;
+import sg.edu.np.educaate1.success;
 
 public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -42,7 +45,7 @@ public class SignUp extends AppCompatActivity {
     public void  updateUI(FirebaseUser account){
         if(account != null){
             Toast.makeText(this,"U signed in successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,success.class));
+            startActivity(new Intent(this, success.class));
         }else {
             Toast.makeText(this,"U didnt signed in",Toast.LENGTH_LONG).show();
         }

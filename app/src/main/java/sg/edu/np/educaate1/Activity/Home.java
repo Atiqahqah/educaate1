@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,12 +10,19 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import sg.edu.np.educaate1.R;
+import sg.edu.np.educaate1.Fragments.StudentApptFragment;
+import sg.edu.np.educaate1.Fragments.StudentHomeFragment;
+import sg.edu.np.educaate1.Fragments.StudentProfileFragment;
+import sg.edu.np.educaate1.Fragments.TutorApptFragment;
+import sg.edu.np.educaate1.Fragments.TutorHomeFragment;
+import sg.edu.np.educaate1.Fragments.TutorProfileFragment;
 
 public class Home extends AppCompatActivity {
     private FirebaseAuth mAuth;

@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TutorUpdate">
+    tools:context=".Activity.TutorUpdate">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="238dp"
-        android:layout_height="519dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="293dp"
+        android:layout_height="441dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tUpdateTitle"
-        app:layout_constraintVertical_bias="0.245">
+        app:layout_constraintVertical_bias="0.239">
 
         <EditText
             android:id="@+id/tUpdateName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Name"
@@ -30,21 +29,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/tUpdateEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="Email "
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdateName" />
-
-        <EditText
             android:id="@+id/tUpdateDescription"
-            android:layout_width="222dp"
-            android:layout_height="106dp"
+            android:layout_width="240dp"
+            android:layout_height="140dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
@@ -58,22 +45,23 @@
 
         <EditText
             android:id="@+id/tUpdatePhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="Phone"
             android:inputType="phone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdateEmail"
-            app:layout_constraintVertical_bias="0.041" />
+            app:layout_constraintTop_toBottomOf="@+id/tUpdateName"
+            app:layout_constraintVertical_bias="0.026" />
 
         <EditText
             android:id="@+id/tUpdateEdu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Education Level"
@@ -84,8 +72,8 @@
 
         <EditText
             android:id="@+id/tUpdateQualifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Qualifications"
@@ -98,13 +86,14 @@
             android:id="@+id/tUpdateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdateDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/tUpdateDescription"
+            app:layout_constraintVertical_bias="0.716" />
 
     </android.support.constraint.ConstraintLayout>
 
