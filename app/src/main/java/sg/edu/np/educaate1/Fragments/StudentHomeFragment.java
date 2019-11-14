@@ -1,12 +1,30 @@
 package sg.edu.np.educaate1.Fragments;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import sg.edu.np.educaate1.Activity.ViewSchedule;
+import sg.edu.np.educaate1.Adapters.BookingAdapter;
+import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.R;
 
 
@@ -15,6 +33,13 @@ import sg.edu.np.educaate1.R;
  */
 public class StudentHomeFragment extends Fragment {
 
+    ListView listView;
+    ArrayList<Booking> bookingList;
+    DatabaseReference databaseReference;
+    ArrayAdapter<Booking> adapter;
+    String TAG;
+    SharedPreferences pref;
+    String name;
 
     public StudentHomeFragment() {
         // Required empty public constructor
@@ -25,7 +50,61 @@ public class StudentHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_student_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_student_home, container, false);
+
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
+        bookingList=new ArrayList<>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                bookingList.clear();
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    if(snapshot.child("type").getValue().toString().equals("tutor")){
+                        for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
+                            Log.d(TAG, msgSnapshot.getKey());
+                            Booking booking=msgSnapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                            bookingList.add(booking);
+                            adapter.notifyDataSetChanged();//important line!!
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        adapter=new BookingAdapter(getActivity(),R.layout.bookinglayout,bookingList);
+        listView=(ListView)view.findViewById(R.id.studentListV);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent,
+                                    View view, int position, long id){
+                Booking b = (Booking) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(),
+                        ViewSchedule.class);
+
+                intent.putExtra("name",b.getName());
+                intent.putExtra("date",b.getDate());
+                intent.putExtra("time",b.getTime());
+                intent.putExtra("desc",b.getDesc());
+                intent.putExtra("location",b.getLocation());
+                intent.putExtra("price",b.getPrice());
+                intent.putExtra("subj",b.getSubject());
+                intent.putExtra("id",b.getId());
+                /*SharedPreferences.Editor editor=pref.edit();
+                editor.putString("DATE",b.getDate());
+                editor.apply();*/
+
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
 }
