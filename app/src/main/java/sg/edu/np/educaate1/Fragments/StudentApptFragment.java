@@ -7,9 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import sg.edu.np.educaate1.Activity.BookingList;
+import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.R;
 
 
@@ -23,6 +27,8 @@ public class StudentApptFragment extends Fragment {
         // Required empty public constructor
     }
 
+    ArrayAdapter<Booking> adapter;
+    ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

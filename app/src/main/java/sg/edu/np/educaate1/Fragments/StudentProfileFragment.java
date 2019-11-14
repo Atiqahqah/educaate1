@@ -144,8 +144,8 @@ public class StudentProfileFragment extends Fragment {
         profilepic = v.findViewById(R.id.sProfileImage);
         editprofile = v.findViewById(R.id.sUpdateProfileBtn);
 
-        viewPager = v.findViewById(R.id.viewPager);
-        tabLayout = v.findViewById(R.id.tabLayout);
+        viewPager = v.findViewById(R.id.sViewPager);
+        tabLayout = v.findViewById(R.id.sTabLayout);
     }
 
 

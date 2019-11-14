@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.ViewSchedule"></activity>
+        <activity android:name=".TutorMessage"></activity>
+        <activity android:name=".TutorViewSchedule" />
+        <activity android:name=".Activity.ViewSchedule" />
         <activity
             android:name=".Splash"
             android:noHistory="true">
@@ -54,15 +56,11 @@
             android:name=".TutorHome"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.StudentUpdate"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.TutorUpdate"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.MainActivity"
-            android:screenOrientation="portrait"></activity>
-
     </application>
 
 </manifest>

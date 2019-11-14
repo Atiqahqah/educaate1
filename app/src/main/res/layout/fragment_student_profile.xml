@@ -39,7 +39,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/viewPager"
+            app:layout_constraintBottom_toTopOf="@+id/sViewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/viewPager"
+            app:layout_constraintBottom_toTopOf="@+id/sViewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
+            android:id="@+id/sViewPager"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -76,7 +76,7 @@
 
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/tabLayout"
+                android:id="@+id/sTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

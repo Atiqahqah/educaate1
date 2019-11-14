@@ -65,11 +65,10 @@ public class PostSchedule extends AppCompatActivity {
         booking.setLocation(location.getText().toString());
         booking.setName(name);
 
-        String key = databaseReference.child("users").child(user.getUid()).child("booking").push().getKey();
+        String key=databaseReference.child("users").child(user.getUid()).child("booking").push().getKey();
         booking.setId(key);
-        booking.setStatus("Open");
 
         databaseReference.child("users").child(user.getUid()).child("booking").child(key).setValue(booking);
-        databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
+        //databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
     }
 }

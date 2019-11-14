@@ -28,7 +28,6 @@ import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
 import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.Fragments.ChildFragment.RatingsFragment;
 import sg.edu.np.educaate1.Fragments.ChildFragment.ReviewFragment;
-import sg.edu.np.educaate1.Fragments.ChildFragment.StudentSummaryFragment;
 import sg.edu.np.educaate1.Fragments.ChildFragment.TutorSummaryFragment;
 import sg.edu.np.educaate1.R;
 import sg.edu.np.educaate1.Activity.TutorUpdate;
@@ -131,7 +130,7 @@ public class TutorProfileFragment extends Fragment {
     private void setUpViewPager(ViewPager viewPager){
         SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
 
-        adapter.addFragment(new TutorSummaryFragment(),"TutorSummary");
+        adapter.addFragment(new TutorSummaryFragment(),"Summary");
         adapter.addFragment(new RatingsFragment(),"Ratings");
         adapter.addFragment(new ReviewFragment(),"Reviews");
 
@@ -143,8 +142,8 @@ public class TutorProfileFragment extends Fragment {
         profilepic = v.findViewById(R.id.tProfileImage);
         editprofile = v.findViewById(R.id.tUpdateProfileBtn);
 
-        viewPager = v.findViewById(R.id.viewPager);
-        tabLayout = v.findViewById(R.id.tabLayout);
+        viewPager = v.findViewById(R.id.tViewPager);
+        tabLayout = v.findViewById(R.id.tTabLayout);
     }
 
 }
