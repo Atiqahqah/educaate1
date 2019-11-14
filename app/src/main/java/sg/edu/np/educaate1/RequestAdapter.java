@@ -36,7 +36,7 @@ public class RequestAdapter extends ArrayAdapter<Student> {
         }
 
         Student s = data.get(position);
-        TextView name=item.findViewById(R.id.textView7);
+        TextView name=item.findViewById(R.id.sSummaryName);
         name.setText(s.getName());
 
         return item;

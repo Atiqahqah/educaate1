@@ -3,9 +3,9 @@
     <color name="colorPrimary">#03a9f4</color>
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#01579b</color>
-    <color name="background">#4fc3f7 </color>
+    <color name="background">#4FC3F7</color>
     <color name="navbarcolor">#e0e0e0 </color>
     <color name="navbaricon">#1565C0</color>
     <color name="navbartext">#455a64</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#0A585F</color>
 </resources>
