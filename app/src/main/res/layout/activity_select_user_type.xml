@@ -6,29 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".Activity.selectUserType">
 
-    <Button
-        android:id="@+id/tutorID"
+    <TextView
+        android:id="@+id/lblUserType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="onTutor"
-        android:text="tutor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Are you a..?"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/studentBtn"
+    <ImageView
+        android:id="@+id/bgImageStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageBtnStudent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblUserType"
+        app:srcCompat="@drawable/hand" />
+
+    <ImageView
+        android:id="@+id/imageBtnStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgImageStudent"
+        app:srcCompat="@drawable/hand" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="84dp"
+        android:background="@null"
         android:onClick="onStudent"
-        android:text="student"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/bgImageStudent"
+        app:srcCompat="@drawable/student" />
+
+    <TextView
+        android:id="@+id/lblStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Student"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+
+    <TextView
+        android:id="@+id/lblTutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Tutor"
+        app:layout_constraintEnd_toEndOf="@+id/imageBtnTutor"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="@+id/imageBtnTutor"
+        app:layout_constraintTop_toBottomOf="@+id/imageBtnTutor" />
+
+    <ImageButton
+        android:id="@+id/imageBtnTutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="52dp"
+        android:background="@null"
+        android:onClick="onTutor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgImageStudent"
+        app:srcCompat="@drawable/teacher" />
+
 </android.support.constraint.ConstraintLayout>

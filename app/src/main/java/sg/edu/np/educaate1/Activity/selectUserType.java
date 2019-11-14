@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import sg.edu.np.educaate1.R;
 
@@ -16,6 +18,8 @@ public class selectUserType extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_user_type);
     }
+
+
 
     public void onStudent(View v){
         pref=PreferenceManager.getDefaultSharedPreferences(this);
