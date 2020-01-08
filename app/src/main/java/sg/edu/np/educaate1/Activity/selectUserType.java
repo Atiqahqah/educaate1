@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import sg.edu.np.educaate1.R;
+import sg.edu.np.educaate1.Activity.StudentRegister;
+import sg.edu.np.educaate1.Activity.TutorRegister;
 
 public class selectUserType extends AppCompatActivity {
     SharedPreferences pref;

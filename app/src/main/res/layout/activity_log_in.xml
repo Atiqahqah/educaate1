@@ -11,37 +11,47 @@
         android:layout_width="350dp"
         android:layout_height="205dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.684"
         app:srcCompat="@drawable/path1" />
 
     <EditText
         android:id="@+id/fieldEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:fontFamily="@font/opensans_regular"
+        android:gravity="center"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:textColor="@color/navbartext"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageBtnStudent" />
 
     <EditText
         android:id="@+id/fieldPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:fontFamily="@font/opensans_regular"
+        android:gravity="center"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@color/navbartext"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBtnStudent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldEmail" />
 
@@ -49,21 +59,18 @@
         android:id="@+id/button"
         android:layout_width="112dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/loginbutton"
         android:onClick="onLogIn"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldPassword"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintTop_toBottomOf="@+id/imageBtnStudent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="301dp"
-        android:layout_height="77dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="8dp"
@@ -72,4 +79,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/educaate" />
+
+    <TextView
+        android:id="@+id/lblRegistration"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:fontFamily="@font/opensans_regular"
+        android:gravity="center"
+        android:text="Don't have an account?"
+        android:textColor="@color/white"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/imageBtnStudent" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:onClick="clickSignup"
+        android:text="Sign up now!"
+        android:textAllCaps="false"
+        android:textColor="#1565c0"
+        app:layout_constraintEnd_toEndOf="@+id/imageBtnStudent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toEndOf="@+id/lblRegistration"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import sg.edu.np.educaate1.Activity.LogIn;
 import sg.edu.np.educaate1.Activity.MainActivity;
 
 public class Splash extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class Splash extends AppCompatActivity {
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), LogIn.class));
             }
         };
         mHandler = new Handler();

@@ -32,34 +32,25 @@
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.TutorRegister"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.StudentRegister"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Activity.selectUserType"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LogIn"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".success"
+            android:name=".Activity.StudentRegister"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SignUp"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".StudentHome"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TutorHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.StudentUpdate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TutorRegister"
             android:screenOrientation="portrait" />
     </application>
 
