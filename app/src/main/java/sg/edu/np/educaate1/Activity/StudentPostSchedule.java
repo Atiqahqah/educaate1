@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.R;
 
-public class PostSchedule extends AppCompatActivity {
+public class StudentPostSchedule extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
     String name;
@@ -25,7 +25,7 @@ public class PostSchedule extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_schedule);
+        setContentView(R.layout.activity_student_post_schedule);
 
         mAuth=FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
@@ -50,12 +50,12 @@ public class PostSchedule extends AppCompatActivity {
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
 
         Booking booking=new Booking();
-        EditText time=findViewById(R.id.timeField);
-        EditText date=findViewById(R.id.dateField);
-        EditText subj=findViewById(R.id.subjField);
-        EditText desc=findViewById(R.id.descField);
-        EditText price=findViewById(R.id.priceField);
-        EditText location=findViewById(R.id.locationField);
+        EditText time=findViewById(R.id.timeField2);
+        EditText date=findViewById(R.id.dateField2);
+        EditText subj=findViewById(R.id.subjField2);
+        EditText desc=findViewById(R.id.descField2);
+        EditText price=findViewById(R.id.priceField2);
+        EditText location=findViewById(R.id.locationField2);
 
         booking.setDate(date.getText().toString());
         booking.setTime(time.getText().toString());
@@ -65,7 +65,7 @@ public class PostSchedule extends AppCompatActivity {
         booking.setLocation(location.getText().toString());
         booking.setName(name);
         booking.setStatus("Open");
-        booking.setType("Tutor");
+        booking.setType("Student");
 
         //get booking id
         String key=databaseReference.child("users").child(user.getUid()).child("booking").push().getKey();

@@ -10,10 +10,11 @@ public class Booking {
     private String name;
     private String id;
     private String status;
+    private String type;
 
     public Booking(){ }
 
-    public Booking(String name,String subject,String date,String time,String price,String location,String desc,String id,String status){
+    public Booking(String name,String subject,String date,String time,String price,String location,String desc,String id,String status,String type){
         this.time=time;
         this.date=date;
         this.subject=subject;
@@ -23,6 +24,7 @@ public class Booking {
         this.name=name;
         this.id=id;
         this.status=status;
+        this.type=type;
     }
 
 
@@ -95,5 +97,13 @@ public class Booking {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
