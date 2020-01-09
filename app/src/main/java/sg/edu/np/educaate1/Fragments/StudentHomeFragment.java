@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import sg.edu.np.educaate1.Activity.PostSchedule;
+import sg.edu.np.educaate1.Activity.StudentPostSchedule;
 import sg.edu.np.educaate1.Activity.ViewSchedule;
 import sg.edu.np.educaate1.Adapters.BookingAdapter;
 import sg.edu.np.educaate1.Classes.Booking;
@@ -64,7 +67,7 @@ public class StudentHomeFragment extends Fragment {
                             Log.d(TAG, msgSnapshot.getKey());
                             Log.d("Status", msgSnapshot.child("status").getValue().toString());
 
-                            if(msgSnapshot.child("status").getValue().toString().equals("Open"))
+                            if(msgSnapshot.child("status").getValue().toString().equals("Open") && msgSnapshot.child("type").getValue().toString().equals("Tutor"))
                             {
                                 Booking booking=msgSnapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
                                 bookingList.add(booking);
@@ -109,7 +112,10 @@ public class StudentHomeFragment extends Fragment {
             }
         });
 
+
         return view;
     }
+
+
 
 }

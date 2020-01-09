@@ -25,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import sg.edu.np.educaate1.Activity.PostSchedule;
+import sg.edu.np.educaate1.Activity.StudentPostSchedule;
 import sg.edu.np.educaate1.Adapters.BookingAdapter;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.R;
@@ -91,6 +93,14 @@ public class StudentApptFragment extends Fragment {
         listView=(ListView)view.findViewById(R.id.studentChooseList);
         listView.setAdapter(adapter);
 
+        Button button = (Button) view.findViewById(R.id.postSBtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), StudentPostSchedule.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
