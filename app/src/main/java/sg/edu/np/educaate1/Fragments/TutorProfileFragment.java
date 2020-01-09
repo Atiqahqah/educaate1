@@ -132,7 +132,7 @@ public class TutorProfileFragment extends Fragment {
 
         adapter.addFragment(new TutorSummaryFragment(),"Summary");
         adapter.addFragment(new RatingsFragment(),"Ratings");
-        adapter.addFragment(new ReviewFragment(),"Reviews");
+        adapter.addFragment(new ReviewFragment(),"Review");
 
         viewPager.setAdapter(adapter);
     }
