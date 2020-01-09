@@ -62,9 +62,14 @@ public class StudentHomeFragment extends Fragment {
                     if(snapshot.child("type").getValue().toString().equals("tutor")){
                         for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
                             Log.d(TAG, msgSnapshot.getKey());
-                            Booking booking=msgSnapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
-                            bookingList.add(booking);
-                            adapter.notifyDataSetChanged();//important line!!
+                            Log.d("Status", msgSnapshot.child("status").getValue().toString());
+
+                            if(msgSnapshot.child("status").getValue().toString().equals("Open"))
+                            {
+                                Booking booking=msgSnapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                                bookingList.add(booking);
+                                adapter.notifyDataSetChanged();//important line!!
+                            }
                         }
                     }
                 }

@@ -107,7 +107,7 @@ public class ViewSchedule extends AppCompatActivity {
                                 booking.setStatus("Pending");
 
                                 databaseReference.child("users").child(user.getUid()).child("booking").child(strId).setValue(booking);
-                                databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
+                                //databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
                             }
                         })
                 .setNegativeButton("Cancel",//option for cancel

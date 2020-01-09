@@ -43,7 +43,7 @@ public class TutorViewSchedule extends AppCompatActivity {
         TextView desc=findViewById(R.id.tDesc);
         desc.setText(i.getStringExtra("desc"));
 
-        final String id=i.getStringExtra("id");
+        final String bookingID=i.getStringExtra("id");
 
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
         studentList=new ArrayList<>();
@@ -54,7 +54,7 @@ public class TutorViewSchedule extends AppCompatActivity {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     if(snapshot.child("type").getValue().toString().equals("student")){
                         for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
-                            if(id.equals(msgSnapshot.getKey())){
+                            if(bookingID.equals(msgSnapshot.getKey())){
                                 Student s=snapshot.getValue(Student.class);
                                 studentList.add(s);
                                 adapter.notifyDataSetChanged();
@@ -83,6 +83,8 @@ public class TutorViewSchedule extends AppCompatActivity {
                         TutorMessage.class);
 
                 intent.putExtra("name",b.getName());
+                intent.putExtra("id",bookingID);
+
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/

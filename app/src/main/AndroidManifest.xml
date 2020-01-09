@@ -25,9 +25,6 @@
             android:name=".Activity.PostSchedule"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.BookingList"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Activity.Home"
             android:noHistory="true"
             android:screenOrientation="portrait" />
