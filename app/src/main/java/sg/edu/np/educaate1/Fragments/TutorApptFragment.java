@@ -41,6 +41,7 @@ public class TutorApptFragment extends Fragment {
     }
 
     ListView listView;
+    ListView listView2;
     ArrayList<Booking> postedBookingList;
     ArrayList<Booking> pendingBookingList;
     DatabaseReference databaseReference;
@@ -93,8 +94,8 @@ public class TutorApptFragment extends Fragment {
         listView.setAdapter(adapter);
 
         adapter2=new BookingAdapter(getActivity(),R.layout.bookinglayout,pendingBookingList);
-        listView=(ListView)view.findViewById(R.id.tutorPending);
-        listView.setAdapter(adapter2);
+        listView2=(ListView)view.findViewById(R.id.tutorPending);
+        listView2.setAdapter(adapter2);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
