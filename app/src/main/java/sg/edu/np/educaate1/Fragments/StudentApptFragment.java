@@ -38,6 +38,7 @@ import sg.edu.np.educaate1.R;
 public class StudentApptFragment extends Fragment {
 
     ListView listView;
+    ListView listView2;
     ArrayList<Booking> pendingBookingList;
     ArrayList<Booking> postedBookingList;
     DatabaseReference databaseReference;
@@ -105,8 +106,8 @@ public class StudentApptFragment extends Fragment {
         listView.setAdapter(adapter);
 
         adapter2=new BookingAdapter(getActivity(),R.layout.bookinglayout,postedBookingList);
-        listView=(ListView)view.findViewById(R.id.studentPosted);
-        listView.setAdapter(adapter2);
+        listView2=(ListView)view.findViewById(R.id.studentPosted);
+        listView2.setAdapter(adapter2);
 
         Button button = (Button) view.findViewById(R.id.postSBtn);
         button.setOnClickListener(new View.OnClickListener() {

@@ -42,6 +42,7 @@ public class TutorApptFragment extends Fragment {
 
     ListView listView;
     ListView listView2;
+
     ArrayList<Booking> postedBookingList;
     ArrayList<Booking> pendingBookingList;
     DatabaseReference databaseReference;
