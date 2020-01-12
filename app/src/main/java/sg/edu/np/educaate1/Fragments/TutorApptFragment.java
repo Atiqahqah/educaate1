@@ -36,15 +36,16 @@ import sg.edu.np.educaate1.TutorViewSchedule;
  */
 public class TutorApptFragment extends Fragment {
 
-
     public TutorApptFragment() {
         // Required empty public constructor
     }
 
     ListView listView;
-    ArrayList<Booking> bookingList;
+    ArrayList<Booking> postedBookingList;
+    ArrayList<Booking> pendingBookingList;
     DatabaseReference databaseReference;
     ArrayAdapter<Booking> adapter;
+    ArrayAdapter<Booking> adapter2;
     FirebaseAuth mAuth;
 
     @Override
@@ -57,18 +58,27 @@ public class TutorApptFragment extends Fragment {
         mAuth=FirebaseAuth.getInstance();
         FirebaseUser user=mAuth.getCurrentUser();
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-        bookingList=new ArrayList<>();
+        postedBookingList=new ArrayList<>();
+        pendingBookingList=new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                bookingList.clear();
+                postedBookingList.clear();
+                pendingBookingList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.child("booking").getChildren()){
-                    Log.d(TAG,Long.toString(snapshot.getChildrenCount()));
+                    if(snapshot.child("type").getValue().toString().equals("Student")){
+                        Booking booking=snapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                        pendingBookingList.add(booking);
+                    }
+                    else{
+                        Booking booking=snapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                        postedBookingList.add(booking);
+                    }
+                    //Log.d(TAG,Long.toString(snapshot.getChildrenCount()));
                     //Log.d(TAG,Long.toString(msgSnapshot.getChildrenCount()));
-                    Log.d(TAG, snapshot.getKey());
-                    Booking booking=snapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
-                    bookingList.add(booking);
+                    //Log.d(TAG, snapshot.getKey());
                     adapter.notifyDataSetChanged();//important line!!
+                    adapter2.notifyDataSetChanged();
                 }
             }
 
@@ -78,9 +88,13 @@ public class TutorApptFragment extends Fragment {
             }
         });
 
-        adapter=new BookingAdapter(getActivity(),R.layout.bookinglayout,bookingList);
+        adapter=new BookingAdapter(getActivity(),R.layout.bookinglayout,postedBookingList);
         listView=(ListView)view.findViewById(R.id.tutorApptList);
         listView.setAdapter(adapter);
+
+        adapter2=new BookingAdapter(getActivity(),R.layout.bookinglayout,pendingBookingList);
+        listView=(ListView)view.findViewById(R.id.tutorPending);
+        listView.setAdapter(adapter2);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -98,6 +112,8 @@ public class TutorApptFragment extends Fragment {
                 intent.putExtra("price",b.getPrice());
                 intent.putExtra("subj",b.getSubject());
                 intent.putExtra("id",b.getId());
+                intent.putExtra("type",b.getType());
+                intent.putExtra("status",b.getStatus());
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/

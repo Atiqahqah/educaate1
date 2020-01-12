@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class ViewSchedule extends AppCompatActivity {
     private Button bookBtn;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
+    String TAG;
     String strName;
     String strSubj;
     String strLocation;
@@ -39,6 +41,8 @@ public class ViewSchedule extends AppCompatActivity {
     String strPrice;
     String strDesc;
     String strId;
+    String strType;
+    String strStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,10 @@ public class ViewSchedule extends AppCompatActivity {
 
         strId = i.getStringExtra("id");
 
+        strType=i.getStringExtra("type");
+
+        strStatus=i.getStringExtra("status");
+
         bookBtn = findViewById(R.id.bookScheduleBtn);
         bookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +112,10 @@ public class ViewSchedule extends AppCompatActivity {
                                 booking.setLocation(strLocation);
                                 booking.setName(strName);
                                 booking.setId(strId);
-                                booking.setStatus("Pending");
+                                booking.setStatus(strStatus);
+                                booking.setType(strType);
+
+                                //Log.d(TAG,strType);
 
                                 databaseReference.child("users").child(user.getUid()).child("booking").child(strId).setValue(booking);
                                 //databaseReference.child("booking").child(user.getUid()).push().setValue(booking);

@@ -38,9 +38,11 @@ import sg.edu.np.educaate1.R;
 public class StudentApptFragment extends Fragment {
 
     ListView listView;
-    ArrayList<Booking> bookingList;
+    ArrayList<Booking> pendingBookingList;
+    ArrayList<Booking> postedBookingList;
     DatabaseReference databaseReference;
     ArrayAdapter<Booking> adapter;
+    ArrayAdapter<Booking> adapter2;
     String TAG;
     SharedPreferences pref;
     String name;
@@ -70,16 +72,25 @@ public class StudentApptFragment extends Fragment {
         FirebaseUser user=mAuth.getCurrentUser();
 
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-        bookingList=new ArrayList<>();
+        pendingBookingList=new ArrayList<>();
+        postedBookingList=new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                bookingList.clear();
+                pendingBookingList.clear();
+                postedBookingList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.child("booking").getChildren()){
-                            Log.d(TAG, snapshot.getKey());
-                            Booking booking=snapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
-                            bookingList.add(booking);
-                            adapter.notifyDataSetChanged();//important line!!
+                    if(snapshot.child("type").getValue().toString().equals("Tutor")){
+                        Log.d(TAG, snapshot.getKey());
+                        Booking booking=snapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                        pendingBookingList.add(booking);
+                    }
+                    else{
+                        Booking booking=snapshot.getValue(Booking.class); //write this to make codes simple and make app load faster
+                        postedBookingList.add(booking);
+                    }
+                    adapter.notifyDataSetChanged();
+                    adapter2.notifyDataSetChanged();//important line!!
                 }
             }
 
@@ -89,9 +100,13 @@ public class StudentApptFragment extends Fragment {
             }
         });
 
-        adapter=new BookingAdapter(getActivity(),R.layout.bookinglayout,bookingList);
+        adapter=new BookingAdapter(getActivity(),R.layout.bookinglayout,pendingBookingList);
         listView=(ListView)view.findViewById(R.id.studentChooseList);
         listView.setAdapter(adapter);
+
+        adapter2=new BookingAdapter(getActivity(),R.layout.bookinglayout,postedBookingList);
+        listView=(ListView)view.findViewById(R.id.studentPosted);
+        listView.setAdapter(adapter2);
 
         Button button = (Button) view.findViewById(R.id.postSBtn);
         button.setOnClickListener(new View.OnClickListener() {

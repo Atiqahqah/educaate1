@@ -104,6 +104,8 @@ public class StudentHomeFragment extends Fragment {
                 intent.putExtra("price",b.getPrice());
                 intent.putExtra("subj",b.getSubject());
                 intent.putExtra("id",b.getId());
+                intent.putExtra("type",b.getType());
+                intent.putExtra("status",b.getStatus());
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/
