@@ -1,14 +1,19 @@
 package sg.edu.np.educaate1.Activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 import sg.edu.np.educaate1.Activity.Home;
 import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.R;
@@ -28,6 +35,7 @@ public class StudentRegister extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private static final String TAG = "EmailPassword";
     SharedPreferences pref;
+    DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private EditText sEmailField;
     private EditText sPasswordField;
@@ -36,6 +44,13 @@ public class StudentRegister extends AppCompatActivity {
     private EditText sGender;
     private EditText sPhoneNo;
     private EditText sEduLvl;
+    String age;
+    int day;
+    int month;
+    int year;
+    EditText d;
+    EditText m;
+    EditText y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +63,13 @@ public class StudentRegister extends AppCompatActivity {
         sEmailField = findViewById(R.id.srEmailET);
         sPasswordField = findViewById(R.id.srPasswordET);
         sName = findViewById(R.id.srNameET);
-        sAge = findViewById(R.id.srAgeET);
         //sGender = findViewById(R.id.srGenderET);
         sPhoneNo = findViewById(R.id.srPhoneNoET);
+
+        d=findViewById(R.id.day);
+        m=findViewById(R.id.month);
+        y=findViewById(R.id.year);
+
     }
 
     public void  updateUI(FirebaseUser account){
@@ -66,6 +85,10 @@ public class StudentRegister extends AppCompatActivity {
     }
 
     public void createStudentAccount(String email,String password){
+        day=Integer.parseInt(d.getText().toString());
+        month=Integer.parseInt(m.getText().toString());
+        year=Integer.parseInt(y.getText().toString());
+        age=getAge(year,month,day);
         pref= PreferenceManager.getDefaultSharedPreferences(this);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -81,7 +104,7 @@ public class StudentRegister extends AppCompatActivity {
                             Student s = new Student();
                             s.setEmail(sEmailField.getText().toString());
                             s.setName(sName.getText().toString());
-                            s.setAge(sAge.getText().toString());
+                            s.setAge(age);
                             s.setGender("not specified");
                             s.setPhoneNo(sPhoneNo.getText().toString());
                             s.setEduLevel("not specified");
@@ -105,5 +128,22 @@ public class StudentRegister extends AppCompatActivity {
         if (i == R.id.srRegisterBtn) {
             createStudentAccount(sEmailField.getText().toString(), sPasswordField.getText().toString());
         }
+    }
+
+    private String getAge(int year,int month,int day){
+        Calendar dob=Calendar.getInstance();
+        Calendar today=Calendar.getInstance();
+
+        dob.set(year, month, day);
+
+        int age=today.get(Calendar.YEAR)-dob.get(Calendar.YEAR);
+
+        if(today.get(Calendar.DAY_OF_YEAR)<dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+        Integer ageInt=new Integer(age);
+        String ageS=ageInt.toString();
+
+        return ageS;
     }
 }

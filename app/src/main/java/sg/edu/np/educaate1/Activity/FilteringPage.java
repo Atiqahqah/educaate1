@@ -1,19 +1,15 @@
-package sg.edu.np.educaate1.Fragments;
+package sg.edu.np.educaate1.Activity;
 
-
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,46 +20,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import sg.edu.np.educaate1.Activity.FilteringPage;
-import sg.edu.np.educaate1.Activity.PostSchedule;
-import sg.edu.np.educaate1.Activity.ViewSchedule;
-import sg.edu.np.educaate1.Adapters.BookingAdapter;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TutorHomeFragment extends Fragment {
+public class FilteringPage extends AppCompatActivity {
+    ArrayList<String> subjects;
     ListView listView;
-    ArrayList<Booking> displayBookingList;
+    //ArrayList<Booking> displayBookingList;
     DatabaseReference databaseReference;
     DatabaseReference databaseReference2;
     ArrayAdapter<Booking> adapter;
-    String TAG;
-    SharedPreferences pref;
-    String name;
-
     FirebaseAuth mAuth;
 
-    public TutorHomeFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tutor_home, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_filtering_page);
 
         mAuth= FirebaseAuth.getInstance();
         final FirebaseUser user=mAuth.getCurrentUser();
 
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
-        displayBookingList=new ArrayList<>();
+        final List<Booking> displayBookingList=new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -90,7 +70,7 @@ public class TutorHomeFragment extends Fragment {
             }
         });
 
-        databaseReference2= FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
+        /*databaseReference2= FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,7 +83,6 @@ public class TutorHomeFragment extends Fragment {
                             }
                         }
                     }
-                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -111,53 +90,17 @@ public class TutorHomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        adapter=new BookingAdapter(getActivity(),R.layout.bookinglayout,displayBookingList);
-        listView=(ListView)view.findViewById(R.id.tutorhome);
-        listView.setAdapter(adapter);
+        for(int i=0;i<displayBookingList.size();i++){
+            //subjects.add(displayBookingList.get(i).getSubject());
+        }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent,
-                                    View view, int position, long id){
-                Booking b = (Booking) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getActivity(),
-                        ViewSchedule.class);
+        Spinner mySpinner=(Spinner)findViewById(R.id.subjFilter);
+        ArrayAdapter<Booking>adapter=new ArrayAdapter<Booking>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,displayBookingList);
+        //ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(this,R.array.subjects,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(adapter);
 
-                intent.putExtra("name",b.getName());
-                intent.putExtra("date",b.getDate());
-                intent.putExtra("time",b.getTime());
-                intent.putExtra("desc",b.getDesc());
-                intent.putExtra("location",b.getLocation());
-                intent.putExtra("price",b.getPrice());
-                intent.putExtra("subj",b.getSubject());
-                intent.putExtra("id",b.getId());
-                intent.putExtra("status",b.getStatus());
-                intent.putExtra("type",b.getType());
-
-                startActivity(intent);
-            }
-        });
-
-        Button button = (Button) view.findViewById(R.id.postBtn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), PostSchedule.class);
-                startActivity(intent);
-            }
-        });
-
-        Button button1 = (Button) view.findViewById(R.id.filterBtn);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FilteringPage.class);
-                startActivity(intent);
-            }
-        });
-
-        return view;
     }
 }

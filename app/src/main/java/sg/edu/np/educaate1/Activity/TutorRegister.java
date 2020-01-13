@@ -19,7 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import sg.edu.np.educaate1.Activity.Home;
+import java.util.Calendar;
+
 import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.R;
 
@@ -39,6 +40,14 @@ public class TutorRegister extends AppCompatActivity {
     private EditText tQuali;
     private EditText tDesc;
 
+    String age;
+    int day;
+    int month;
+    int year;
+    EditText d;
+    EditText m;
+    EditText y;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +57,15 @@ public class TutorRegister extends AppCompatActivity {
         tEmailField = findViewById(R.id.trEmailET);
         tPasswordField = findViewById(R.id.trPasswordET);
         tName = findViewById(R.id.trNameET);
-        tAge = findViewById(R.id.trAgeET);
         tGender = findViewById(R.id.trGenderET);
         tPhoneNo = findViewById(R.id.trPhoneNoET);
         tEduLvl = findViewById(R.id.trEduLvlET);
         tQuali = findViewById(R.id.trQualificationET);
         tDesc = findViewById(R.id.trDescriptionET);
+
+        d=findViewById(R.id.tDay);
+        m=findViewById(R.id.tMonth);
+        y=findViewById(R.id.tYear);
     }
 
     public void  updateUI(FirebaseUser account){
@@ -69,6 +81,10 @@ public class TutorRegister extends AppCompatActivity {
     }
 
     public void createTutorAccount(String email,String password){
+        day=Integer.parseInt(d.getText().toString());
+        month=Integer.parseInt(m.getText().toString());
+        year=Integer.parseInt(y.getText().toString());
+        age=getAge(year,month,day);
         pref= PreferenceManager.getDefaultSharedPreferences(this);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -84,7 +100,7 @@ public class TutorRegister extends AppCompatActivity {
                             Tutor t = new Tutor();
                             t.setEmail(tEmailField.getText().toString());
                             t.setName(tName.getText().toString());
-                            t.setAge(tAge.getText().toString());
+                            t.setAge(age);
                             t.setGender(tGender.getText().toString());
                             t.setPhoneNo(tPhoneNo.getText().toString());
                             t.setEduLevel(tEduLvl.getText().toString());
@@ -111,5 +127,22 @@ public class TutorRegister extends AppCompatActivity {
         if (i == R.id.trRegisterBtn) {
             createTutorAccount(tEmailField.getText().toString(), tPasswordField.getText().toString());
         }
+    }
+
+    private String getAge(int year,int month,int day){
+        Calendar dob=Calendar.getInstance();
+        Calendar today=Calendar.getInstance();
+
+        dob.set(year, month, day);
+
+        int age=today.get(Calendar.YEAR)-dob.get(Calendar.YEAR);
+
+        if(today.get(Calendar.DAY_OF_YEAR)<dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+        Integer ageInt=new Integer(age);
+        String ageS=ageInt.toString();
+
+        return ageS;
     }
 }
