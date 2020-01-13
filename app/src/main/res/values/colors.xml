@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#03a9f4</color>
-    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorPrimaryDark">#607d8b</color>
     <color name="colorAccent">#01579B</color>
-    <color name="background">#4fc3f7 </color>
-    <color name="navbarcolor">#e0e0e0 </color>
-    <color name="navbaricon">#1565C0</color>
-    <color name="navbartext">#455A64</color>
+    <color name="backgroundBlue">#4FC3F7</color>
+    <color name="background">#FAFAFA</color>
+    <color name="navbarcolor">#fafafa </color>
+    <color name="navbaricon">#0288D1</color>
+    <color name="navbartext">#0288D1</color>
     <color name="white">#FFFFFF</color>
 </resources>

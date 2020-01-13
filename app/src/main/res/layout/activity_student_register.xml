@@ -2,8 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundBlue"
     tools:context=".Activity.StudentRegister">
 
 
@@ -55,108 +57,82 @@
             android:id="@+id/lblGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/opensans_bold"
             android:text="Gender"
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lblReconfirm"
             app:layout_constraintTop_toBottomOf="@+id/lblReconfirm" />
 
         <TextView
             android:id="@+id/lblReconfirm"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="22dp"
             android:fontFamily="@font/opensans_bold"
             android:text="Re-enter password"
             android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/srPasswordET2"
             app:layout_constraintEnd_toStartOf="@+id/srPasswordET2"
-            app:layout_constraintHorizontal_bias="0.629"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblPassword" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/lblPassword" />
 
         <TextView
             android:id="@+id/lblName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/opensans_bold"
             android:text="Name"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/srNameET"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/srNameET"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/lblEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/opensans_bold"
             android:text="Email"
             android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/srEmailET"
             app:layout_constraintEnd_toStartOf="@+id/srEmailET"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblName" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/lblName" />
 
         <TextView
             android:id="@+id/lblPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/opensans_bold"
             android:text="Password"
             android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/srPasswordET"
             app:layout_constraintEnd_toStartOf="@+id/srPasswordET"
-            app:layout_constraintHorizontal_bias="0.263"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
-
-        <TextView
-            android:id="@+id/lblPhoneNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Phone Number"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblGender" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/lblEmail" />
 
         <TextView
             android:id="@+id/lblDOB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
             android:fontFamily="@font/opensans_bold"
             android:text="Date of Birth"
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblPhoneNum" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/srAgeET"
+            app:layout_constraintStart_toStartOf="@+id/lblGender" />
 
         <EditText
             android:id="@+id/srNameET"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="52dp"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblName"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -177,21 +153,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/srEmailET" />
+            app:layout_constraintTop_toBottomOf="@+id/srPasswordET" />
 
         <EditText
             android:id="@+id/srAgeET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Age"
@@ -199,7 +174,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/srPhoneNoET" />
+            tools:layout_editor_absoluteY="230dp" />
 
         <EditText
             android:id="@+id/srEmailET"
@@ -214,28 +189,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/srNameET" />
 
-        <EditText
-            android:id="@+id/srPhoneNoET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Phone Number"
-            android:inputType="phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/srPasswordET2" />
-
         <Button
             android:id="@+id/srRegisterBtn"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="96dp"
             android:background="@drawable/btn"
             android:fontFamily="@font/opensans_light"
             android:onClick="onStudentRegister"
