@@ -78,11 +78,11 @@ public class TutorViewSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent,
                                     View view, int position, long id){
-                Student b = (Student) parent.getItemAtPosition(position);
+                Student s = (Student) parent.getItemAtPosition(position);
                 Intent intent = new Intent(TutorViewSchedule.this,
                         TutorMessage.class);
 
-                intent.putExtra("name",b.getName());
+                intent.putExtra("email",s.getEmail());
                 intent.putExtra("id",bookingID);
 
                 /*SharedPreferences.Editor editor=pref.edit();
