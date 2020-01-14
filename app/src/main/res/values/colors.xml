@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#607d8b</color>
     <color name="colorAccent">#01579B</color>
     <color name="backgroundBlue">#4FC3F7</color>
-    <color name="background">#FAFAFA</color>
+    <color name="background">#eceff1</color>
     <color name="navbarcolor">#fafafa </color>
     <color name="navbaricon">#0288D1</color>
     <color name="navbartext">#0288D1</color>
