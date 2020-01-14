@@ -65,7 +65,6 @@ public class StudentRegister extends AppCompatActivity {
         sName = findViewById(R.id.srNameET);
         //sGender = findViewById(R.id.srGenderET);
         //sPhoneNo = findViewById(R.id.srPhoneNoET);
-        sPhoneNo = findViewById(R.id.srPhoneNoET);
 
         d=findViewById(R.id.day);
         m=findViewById(R.id.month);
@@ -107,7 +106,7 @@ public class StudentRegister extends AppCompatActivity {
                             s.setName(sName.getText().toString());
                             s.setAge(age);
                             s.setGender("not specified");
-                            s.setPhoneNo(sPhoneNo.getText().toString());
+                            //s.setPhoneNo(sPhoneNo.getText().toString());
                             s.setEduLevel("not specified");
                             s.setType("student");
 

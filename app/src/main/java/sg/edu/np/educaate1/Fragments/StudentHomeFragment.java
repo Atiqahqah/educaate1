@@ -103,11 +103,13 @@ public class StudentHomeFragment extends Fragment {
                         for (int i=0;i<bookingList.size();i++){
                             if(userSnapshot.child("id").getValue().toString().equals(bookingList.get(i).getId())){
                                 bookingList.remove(bookingList.get(i));
+                                //adapter.notifyDataSetChanged();
                             }
                         }
                     }
-                    adapter.notifyDataSetChanged();
+                    //adapter.notifyDataSetChanged();
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override

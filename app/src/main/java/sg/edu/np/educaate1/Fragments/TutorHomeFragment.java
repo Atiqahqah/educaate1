@@ -103,8 +103,9 @@ public class TutorHomeFragment extends Fragment {
                             }
                         }
                     }
-                    adapter.notifyDataSetChanged();
+                    //adapter.notifyDataSetChanged();
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
