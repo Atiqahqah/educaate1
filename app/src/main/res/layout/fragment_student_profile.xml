@@ -11,24 +11,26 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray">
+        android:background="#607d8b">
 
         <ImageButton
             android:id="@+id/sReturnProfileBtn"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#607d8b"
             android:src="@android:drawable/ic_menu_revert"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/sUpdateProfileBtn"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#607d8b"
             android:src="@android:drawable/ic_menu_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +41,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
+            android:background="@color/background"
             app:layout_constraintBottom_toTopOf="@+id/sViewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -53,8 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:text="TextView"
+            android:fontFamily="@font/montserrat_bold"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/sViewPager"
@@ -69,6 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:background="#eceff1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
+                android:background="#78909c"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

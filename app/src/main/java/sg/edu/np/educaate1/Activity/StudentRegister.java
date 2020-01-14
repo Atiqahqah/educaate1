@@ -64,6 +64,7 @@ public class StudentRegister extends AppCompatActivity {
         sPasswordField = findViewById(R.id.srPasswordET);
         sName = findViewById(R.id.srNameET);
         //sGender = findViewById(R.id.srGenderET);
+        //sPhoneNo = findViewById(R.id.srPhoneNoET);
         sPhoneNo = findViewById(R.id.srPhoneNoET);
 
         d=findViewById(R.id.day);

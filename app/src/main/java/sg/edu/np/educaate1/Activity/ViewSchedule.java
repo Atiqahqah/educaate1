@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.Fragments.StudentHomeFragment;
 import sg.edu.np.educaate1.R;
 
 public class ViewSchedule extends AppCompatActivity {
@@ -88,6 +91,22 @@ public class ViewSchedule extends AppCompatActivity {
             public void onClick(View v) {
                 displayConfirmation();//when user clicks on the delete button, displayConfirmation() will be called and alert dialog will be displayed
             }
+
+
+        });
+
+        Button backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StudentHomeFragment fragment = new StudentHomeFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment);
+                fragmentTransaction.commitAllowingStateLoss();
+                ///startActivity(new Intent(ViewSchedule.this, StudentHomeFragment.class));//when user clicks on the delete button, displayConfirmation() will be called and alert dialog will be displayed
+            }
+
+
         });
     }
 
@@ -130,4 +149,5 @@ public class ViewSchedule extends AppCompatActivity {
                         })
                 .show();
     }
+
 }
