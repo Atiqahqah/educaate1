@@ -2,6 +2,7 @@ package sg.edu.np.educaate1.Fragments;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -72,6 +73,8 @@ public class StudentProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_student_profile, container, false);
+        SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
         InitialiseViews(view);
 
         //get data from firebase
@@ -86,6 +89,12 @@ public class StudentProfileFragment extends Fragment {
                 student = dataSnapshot.getValue(Student.class);
                 //Set Data to View
                 name.setText(student.getName());
+                editor.putString("student email",student.getEmail());
+                editor.putString("student age",student.getAge());
+                editor.putString("student gender",student.getGender());
+                editor.putString("student phone",student.getPhoneNo());
+                editor.putString("student edu",student.getEduLevel());
+                editor.apply();
             }
 
             @Override
@@ -132,9 +141,9 @@ public class StudentProfileFragment extends Fragment {
     private void setUpViewPager(ViewPager viewPager){
         SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
 
-        adapter.addFragment(new StudentSummaryFragment(),"StudentSummary");
+        adapter.addFragment(new StudentSummaryFragment(),"Summary");
         adapter.addFragment(new RatingsFragment(),"Ratings");
-        adapter.addFragment(new ReviewFragment(),"Reviews");
+        adapter.addFragment(new ReviewFragment(),"Review");
 
         viewPager.setAdapter(adapter);
     }
