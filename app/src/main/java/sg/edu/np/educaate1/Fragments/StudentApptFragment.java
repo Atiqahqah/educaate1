@@ -29,6 +29,7 @@ import sg.edu.np.educaate1.Activity.PostSchedule;
 import sg.edu.np.educaate1.Activity.StudentPostSchedule;
 import sg.edu.np.educaate1.Adapters.BookingAdapter;
 import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.DeleteBooking;
 import sg.edu.np.educaate1.R;
 
 
@@ -108,6 +109,32 @@ public class StudentApptFragment extends Fragment {
         adapter2=new BookingAdapter(getActivity(),R.layout.bookinglayout,postedBookingList);
         listView2=(ListView)view.findViewById(R.id.studentPosted);
         listView2.setAdapter(adapter2);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent,
+                                    View view, int position, long id){
+                Booking b = (Booking) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(),
+                        DeleteBooking.class);
+
+                intent.putExtra("name",b.getName());
+                intent.putExtra("date",b.getDate());
+                intent.putExtra("time",b.getTime());
+                intent.putExtra("desc",b.getDesc());
+                intent.putExtra("location",b.getLocation());
+                intent.putExtra("price",b.getPrice());
+                intent.putExtra("subj",b.getSubject());
+                intent.putExtra("id",b.getId());
+                intent.putExtra("type",b.getType());
+                intent.putExtra("status",b.getStatus());
+                /*SharedPreferences.Editor editor=pref.edit();
+                editor.putString("DATE",b.getDate());
+                editor.apply();*/
+
+                startActivity(intent);
+            }
+        });
 
         Button button = (Button) view.findViewById(R.id.postSBtn);
         button.setOnClickListener(new View.OnClickListener() {

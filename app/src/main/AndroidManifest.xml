@@ -14,6 +14,7 @@
         <activity android:name=".Activity.StudentPostSchedule" />
         <activity android:name=".TutorMessage" />
         <activity android:name=".TutorViewSchedule" />
+        <activity android:name=".DeleteBooking" />
         <activity android:name=".Activity.ViewSchedule" />
         <activity
             android:name=".Splash"
