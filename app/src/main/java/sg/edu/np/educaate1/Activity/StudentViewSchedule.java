@@ -1,4 +1,4 @@
-package sg.edu.np.educaate1;
+package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -19,17 +19,23 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Classes.Student;
+import sg.edu.np.educaate1.Classes.Tutor;
+import sg.edu.np.educaate1.R;
+import sg.edu.np.educaate1.RequestAdapter;
+import sg.edu.np.educaate1.StudentRequestAdapter;
+import sg.edu.np.educaate1.TutorMessage;
+import sg.edu.np.educaate1.TutorViewSchedule;
 
-public class TutorViewSchedule extends AppCompatActivity {
+public class StudentViewSchedule extends AppCompatActivity {
     DatabaseReference databaseReference;
-    ArrayList<Student> studentList;
+    ArrayList<Tutor> tutorList;
     ArrayAdapter adapter;
     ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutor_view_schedule);
+        setContentView(R.layout.activity_student_view_schedule);
 
         Intent i=getIntent();
         TextView subj=findViewById(R.id.tSubj);
@@ -46,17 +52,17 @@ public class TutorViewSchedule extends AppCompatActivity {
         final String bookingID=i.getStringExtra("id");
 
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
-        studentList=new ArrayList<>();
+        tutorList=new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                studentList.clear();
+                tutorList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    if(snapshot.child("type").getValue().toString().equals("student")){
+                    if(snapshot.child("type").getValue().toString().equals("tutor")){
                         for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
                             if(bookingID.equals(msgSnapshot.getKey())){
-                                Student s=snapshot.getValue(Student.class);
-                                studentList.add(s);
+                                Tutor t=snapshot.getValue(Tutor.class);
+                                tutorList.add(t);
                                 adapter.notifyDataSetChanged();
                             }
                         }
@@ -70,7 +76,7 @@ public class TutorViewSchedule extends AppCompatActivity {
             }
         });
 
-        adapter=new RequestAdapter(this,R.layout.requestlayout,studentList);
+        adapter=new StudentRequestAdapter(this,R.layout.requestlayout,tutorList);
         listView=(ListView)findViewById(R.id.requestList);
         listView.setAdapter(adapter);
 
@@ -78,11 +84,11 @@ public class TutorViewSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent,
                                     View view, int position, long id){
-                Student s = (Student) parent.getItemAtPosition(position);
-                Intent intent = new Intent(TutorViewSchedule.this,
-                        TutorMessage.class);
+                Tutor b = (Tutor) parent.getItemAtPosition(position);
+                Intent intent = new Intent(StudentViewSchedule.this,
+                        TutorMessage.class);//change intent to go to another class instead
 
-                intent.putExtra("email",s.getEmail());
+                intent.putExtra("name",b.getName());
                 intent.putExtra("id",bookingID);
 
                 /*SharedPreferences.Editor editor=pref.edit();

@@ -50,7 +50,7 @@ public class StudentRegister extends AppCompatActivity {
         sName = findViewById(R.id.srNameET);
         sAge = findViewById(R.id.srAgeET);
         //sGender = findViewById(R.id.srGenderET);
-        sPhoneNo = findViewById(R.id.srPhoneNoET);
+        //sPhoneNo = findViewById(R.id.srPhoneNoET);
     }
 
     public void  updateUI(FirebaseUser account){

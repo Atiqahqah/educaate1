@@ -47,6 +47,8 @@ public class BookingAdapter extends ArrayAdapter<Booking> {
         location.setText(s.getLocation());
         TextView name=item.findViewById(R.id.nameTxt);
         name.setText(s.getName());
+        TextView status=item.findViewById(R.id.statusTxt);
+        status.setText(s.getStatus());
 
         return item;
     }
