@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.Classes.Tutor;
 
 public class StudentRequestAdapter extends ArrayAdapter<Tutor> {
@@ -37,7 +36,7 @@ public class StudentRequestAdapter extends ArrayAdapter<Tutor> {
         }
 
         Tutor t = data.get(position);
-        TextView name=item.findViewById(R.id.textView7);
+        TextView name=item.findViewById(R.id.tutorProfileAgetv);
         name.setText(t.getName());
 
         return item;
