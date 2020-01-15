@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,10 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
+import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.R;
 
-public class TutorRegister extends AppCompatActivity {
+public class TutorRegister extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private static final String TAG = "EmailPassword";
@@ -33,12 +37,12 @@ public class TutorRegister extends AppCompatActivity {
     private EditText tEmailField;
     private EditText tPasswordField;
     private EditText tName;
-    private EditText tAge;
-    private EditText tGender;
     private EditText tPhoneNo;
     private EditText tEduLvl;
     private EditText tQuali;
     private EditText tDesc;
+
+    String gender;
 
     String age;
     int day;
@@ -57,7 +61,6 @@ public class TutorRegister extends AppCompatActivity {
         tEmailField = findViewById(R.id.trEmailET);
         tPasswordField = findViewById(R.id.trPasswordET);
         tName = findViewById(R.id.trNameET);
-        tGender = findViewById(R.id.trGenderET);
         tPhoneNo = findViewById(R.id.trPhoneNoET);
         tEduLvl = findViewById(R.id.trEduLvlET);
         tQuali = findViewById(R.id.trQualificationET);
@@ -66,6 +69,13 @@ public class TutorRegister extends AppCompatActivity {
         d=findViewById(R.id.tDay);
         m=findViewById(R.id.tMonth);
         y=findViewById(R.id.tYear);
+
+        Spinner mySpinner=(Spinner)findViewById(R.id.tutorGender);
+        ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(this,R.array.gender,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(adapter);
+
+        mySpinner.setOnItemSelectedListener(TutorRegister.this);
     }
 
     public void  updateUI(FirebaseUser account){
@@ -101,7 +111,7 @@ public class TutorRegister extends AppCompatActivity {
                             t.setEmail(tEmailField.getText().toString());
                             t.setName(tName.getText().toString());
                             t.setAge(age);
-                            t.setGender(tGender.getText().toString());
+                            t.setGender(gender);
                             t.setPhoneNo(tPhoneNo.getText().toString());
                             t.setEduLevel(tEduLvl.getText().toString());
                             t.setQualification(tQuali.getText().toString());
@@ -144,5 +154,15 @@ public class TutorRegister extends AppCompatActivity {
         String ageS=ageInt.toString();
 
         return ageS;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        gender=adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        gender="Male";
     }
 }

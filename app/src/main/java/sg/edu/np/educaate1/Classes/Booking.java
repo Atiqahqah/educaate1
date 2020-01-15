@@ -11,10 +11,19 @@ public class Booking {
     private String id;
     private String status;
     private String type;
+    private String tutorid;
 
     public Booking(){ }
 
-    public Booking(String name,String subject,String date,String time,String price,String location,String desc,String id,String status,String type){
+    public String getTutorid() {
+        return tutorid;
+    }
+
+    public void setTutorid(String tutorid) {
+        this.tutorid = tutorid;
+    }
+
+    public Booking(String name, String subject, String date, String time, String price, String location, String desc, String id, String status, String type, String tutorid){
         this.time=time;
         this.date=date;
         this.subject=subject;
@@ -25,6 +34,7 @@ public class Booking {
         this.id=id;
         this.status=status;
         this.type=type;
+        this.tutorid=tutorid;
     }
 
 

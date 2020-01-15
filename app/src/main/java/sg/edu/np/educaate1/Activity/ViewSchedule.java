@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.Classes.Chat;
 import sg.edu.np.educaate1.Fragments.StudentHomeFragment;
 import sg.edu.np.educaate1.R;
 
@@ -46,13 +47,14 @@ public class ViewSchedule extends AppCompatActivity {
     String strId;
     String strType;
     String strStatus;
+    String strTutorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_schedule);
 
-        Intent i=getIntent();
+        Intent i=getIntent();//get intent from student home fragment
 
         strName = i.getStringExtra("name");
         TextView name=findViewById(R.id.nameFld);
@@ -80,6 +82,8 @@ public class ViewSchedule extends AppCompatActivity {
         desc.setText(strDesc);
 
         strId = i.getStringExtra("id");
+
+        strTutorId=i.getStringExtra("tutorid");
 
         strType=i.getStringExtra("type");
 
@@ -133,11 +137,25 @@ public class ViewSchedule extends AppCompatActivity {
                                 booking.setId(strId);
                                 booking.setStatus("Pending");
                                 booking.setType(strType);
+                                booking.setTutorid(strTutorId);
 
                                 //Log.d(TAG,strType);
+                                Chat chat=new Chat();
+                                chat.setStudentID(user.getUid());
+                                String key=databaseReference.child("chat").child(strId).push().getKey();
+                                chat.setId(key);
+                                chat.setTutorID(strTutorId);
 
                                 databaseReference.child("users").child(user.getUid()).child("booking").child(strId).setValue(booking);
-                                //databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
+                                databaseReference.child("chat").child(strId).child(key).setValue(chat);
+
+                                /*Intent intent=new Intent(ViewSchedule.this,StudentMessage.class);
+
+                                intent.putExtra("id",strId);
+                                intent.putExtra("tutorid",strTutorId);
+                                intent.putExtra("studentid",user.getUid());
+
+                                startActivity(intent);*/
                             }
                         })
                 .setNegativeButton("Cancel",//option for cancel
