@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.FilteringPage"></activity>
+        <activity android:name=".Activity.StudentViewPosted"></activity>
+        <activity android:name=".Activity.FilteringPage" />
         <activity android:name=".Activity.StudentViewSchedule" />
         <activity android:name=".Activity.StudentPostSchedule" />
         <activity android:name=".TutorMessage" />
         <activity android:name=".TutorViewSchedule" />
+        <activity android:name=".DeleteBooking" />
         <activity android:name=".Activity.ViewSchedule" />
+        <activity android:name=".Activity.StudentMessage"></activity>
         <activity
             android:name=".Splash"
             android:noHistory="true">

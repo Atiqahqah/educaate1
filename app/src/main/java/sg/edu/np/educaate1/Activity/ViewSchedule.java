@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.Classes.Chat;
 import sg.edu.np.educaate1.Fragments.StudentHomeFragment;
 import sg.edu.np.educaate1.R;
 
@@ -46,40 +47,43 @@ public class ViewSchedule extends AppCompatActivity {
     String strId;
     String strType;
     String strStatus;
+    String strTutorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_schedule);
 
-        Intent i=getIntent();
+        Intent i=getIntent();//get intent from student home fragment
 
         strName = i.getStringExtra("name");
         TextView name=findViewById(R.id.nameFld);
-        name.setText(i.getStringExtra("name"));
+        name.setText(strName);
 
         strSubj = i.getStringExtra("subj");
         TextView subj=findViewById(R.id.subjFld);
-        subj.setText(i.getStringExtra("subj"));
+        subj.setText(strSubj);
 
         strLocation = i.getStringExtra("location");
         TextView location=findViewById(R.id.locationFld);
-        location.setText(i.getStringExtra("location"));
+        location.setText(strLocation);
 
         strDate = i.getStringExtra("date");
         strTime = i.getStringExtra("time");
         TextView datetime=findViewById(R.id.datetimeFld);
-        datetime.setText(i.getStringExtra("date")+" "+i.getStringExtra("time"));
+        datetime.setText(strDate+" "+strTime);
 
         strPrice = i.getStringExtra("price");
         TextView price=findViewById(R.id.priceFld);
-        price.setText("$"+i.getStringExtra("price"));
+        price.setText("$"+strPrice);
 
         strDesc = i.getStringExtra("desc");
         TextView desc=findViewById(R.id.descFld);
-        desc.setText(i.getStringExtra("desc"));
+        desc.setText(strDesc);
 
         strId = i.getStringExtra("id");
+
+        strTutorId=i.getStringExtra("tutorid");
 
         strType=i.getStringExtra("type");
 
@@ -131,13 +135,27 @@ public class ViewSchedule extends AppCompatActivity {
                                 booking.setLocation(strLocation);
                                 booking.setName(strName);
                                 booking.setId(strId);
-                                booking.setStatus(strStatus);
+                                booking.setStatus("Pending");
                                 booking.setType(strType);
+                                booking.setTutorid(strTutorId);
 
                                 //Log.d(TAG,strType);
+                                Chat chat=new Chat();
+                                chat.setStudentID(user.getUid());
+                                String key=databaseReference.child("chat").child(strId).push().getKey();
+                                chat.setId(key);
+                                chat.setTutorID(strTutorId);
 
                                 databaseReference.child("users").child(user.getUid()).child("booking").child(strId).setValue(booking);
-                                //databaseReference.child("booking").child(user.getUid()).push().setValue(booking);
+                                databaseReference.child("chat").child(strId).child(key).setValue(chat);
+
+                                /*Intent intent=new Intent(ViewSchedule.this,StudentMessage.class);
+
+                                intent.putExtra("id",strId);
+                                intent.putExtra("tutorid",strTutorId);
+                                intent.putExtra("studentid",user.getUid());
+
+                                startActivity(intent);*/
                             }
                         })
                 .setNegativeButton("Cancel",//option for cancel

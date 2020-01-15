@@ -66,6 +66,7 @@ public class PostSchedule extends AppCompatActivity {
         booking.setName(name);
         booking.setStatus("Open");
         booking.setType("Tutor");
+        booking.setTutorid(user.getUid());
 
         //get booking id
         String key=databaseReference.child("users").child(user.getUid()).child("booking").push().getKey();

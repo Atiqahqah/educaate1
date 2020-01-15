@@ -11,8 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +34,7 @@ import sg.edu.np.educaate1.Activity.Home;
 import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.R;
 
-public class StudentRegister extends AppCompatActivity {
+public class StudentRegister extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private static final String TAG = "EmailPassword";
@@ -40,10 +44,11 @@ public class StudentRegister extends AppCompatActivity {
     private EditText sEmailField;
     private EditText sPasswordField;
     private EditText sName;
-    private EditText sAge;
-    private EditText sGender;
     private EditText sPhoneNo;
     private EditText sEduLvl;
+
+    String gender;
+
     String age;
     int day;
     int month;
@@ -66,10 +71,16 @@ public class StudentRegister extends AppCompatActivity {
         //sGender = findViewById(R.id.srGenderET);
         //sPhoneNo = findViewById(R.id.srPhoneNoET);
 
-        d=findViewById(R.id.day);
-        m=findViewById(R.id.month);
-        y=findViewById(R.id.year);
+        d=findViewById(R.id.dayT);
+        m=findViewById(R.id.monthT);
+        y=findViewById(R.id.yearT);
 
+        Spinner mySpinner=(Spinner)findViewById(R.id.studentGender);
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.gender,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(adapter);
+
+        mySpinner.setOnItemSelectedListener(StudentRegister.this);
     }
 
     public void  updateUI(FirebaseUser account){
@@ -145,5 +156,15 @@ public class StudentRegister extends AppCompatActivity {
         String ageS=ageInt.toString();
 
         return ageS;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        gender=adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        gender="Male";
     }
 }

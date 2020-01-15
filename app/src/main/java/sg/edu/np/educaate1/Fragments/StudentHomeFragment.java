@@ -140,6 +140,7 @@ public class StudentHomeFragment extends Fragment {
                 intent.putExtra("id",b.getId());
                 intent.putExtra("type",b.getType());
                 intent.putExtra("status",b.getStatus());
+                intent.putExtra("tutorid",b.getTutorid());
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/

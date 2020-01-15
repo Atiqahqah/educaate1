@@ -82,18 +82,6 @@
             app:layout_constraintTop_toBottomOf="@+id/trEmailET" />
 
         <EditText
-            android:id="@+id/trGenderET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="Gender"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trPasswordET" />
-
-        <EditText
             android:id="@+id/trPhoneNoET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,7 +117,7 @@
             android:inputType="number"
             app:layout_constraintEnd_toStartOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trGenderET" />
+            app:layout_constraintTop_toBottomOf="@+id/tutorGender" />
 
         <EditText
             android:id="@+id/trQualificationET"
@@ -185,46 +173,55 @@
             android:inputType="number"
             app:layout_constraintEnd_toStartOf="@+id/textView14"
             app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/trGenderET" />
+            app:layout_constraintTop_toBottomOf="@+id/tutorGender" />
 
         <EditText
             android:id="@+id/tYear"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="134dp"
             android:ems="10"
             android:hint="YYYY"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/trGenderET" />
+            app:layout_constraintTop_toBottomOf="@+id/tutorGender" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
             android:text="/"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/tMonth"
             app:layout_constraintStart_toEndOf="@+id/tDay"
-            app:layout_constraintTop_toBottomOf="@+id/trGenderET" />
+            app:layout_constraintTop_toTopOf="@+id/tMonth" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="2dp"
             android:text="/"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/tYear"
             app:layout_constraintStart_toEndOf="@+id/tMonth"
-            app:layout_constraintTop_toBottomOf="@+id/trGenderET" />
+            app:layout_constraintTop_toTopOf="@+id/tYear" />
+
+        <Spinner
+            android:id="@+id/tutorGender"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trPasswordET" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
