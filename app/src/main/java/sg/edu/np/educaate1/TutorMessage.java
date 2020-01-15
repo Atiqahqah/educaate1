@@ -135,7 +135,7 @@ public class TutorMessage extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         //FirebaseUser user = mAuth.getCurrentUser();
         //add user type into database
-        databaseReference= FirebaseDatabase.getInstance().getReference();
+        //databaseReference= FirebaseDatabase.getInstance().getReference();
 
         //edit booking status under tutor to close
         Booking booking=new Booking();

@@ -165,6 +165,32 @@ public class StudentApptFragment extends Fragment {
             }
         });
 
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent,
+                                    View view, int position, long id){
+                Booking b = (Booking) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(),
+                        TutorViewSchedule.class);
+
+                intent.putExtra("name",b.getName());
+                intent.putExtra("date",b.getDate());
+                intent.putExtra("time",b.getTime());
+                intent.putExtra("desc",b.getDesc());
+                intent.putExtra("location",b.getLocation());
+                intent.putExtra("price",b.getPrice());
+                intent.putExtra("subj",b.getSubject());
+                intent.putExtra("id",b.getId());
+                intent.putExtra("type",b.getType());
+                intent.putExtra("status",b.getStatus());
+                /*SharedPreferences.Editor editor=pref.edit();
+                editor.putString("DATE",b.getDate());
+                editor.apply();*/
+
+                startActivity(intent);
+            }
+        });
+
         Button button = (Button) view.findViewById(R.id.postSBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

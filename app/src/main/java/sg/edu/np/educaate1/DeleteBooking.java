@@ -78,7 +78,7 @@ public class DeleteBooking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(strStatus.equals("Confirm")) {
-                    displayConfirmStatus();//when user clicks on the delete button, displayConfirmation() will be called and alert dialog will be displayed
+                    displayConfirmStatus();
                 }
                 else {
                     displayDelConfirmation();
