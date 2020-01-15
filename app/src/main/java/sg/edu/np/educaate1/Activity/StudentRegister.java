@@ -71,9 +71,9 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
         //sGender = findViewById(R.id.srGenderET);
         //sPhoneNo = findViewById(R.id.srPhoneNoET);
 
-        d=findViewById(R.id.day);
-        m=findViewById(R.id.month);
-        y=findViewById(R.id.year);
+        d=findViewById(R.id.dayT);
+        m=findViewById(R.id.monthT);
+        y=findViewById(R.id.yearT);
 
         Spinner mySpinner=(Spinner)findViewById(R.id.studentGender);
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.gender,android.R.layout.simple_spinner_item);
