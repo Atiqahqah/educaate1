@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,10 @@ public class StudentUpdate extends AppCompatActivity {
         //sDescription = findViewById(R.id.sUpdateDescription);
         sPhoneNo = findViewById(R.id.sUpdateNumber);
         sEduLvl = findViewById(R.id.sUpdateEdu);
+
+        //Spinner spinnerChoice = (Spinner) findViewById(R.id.genderSpinner);
+        //ArrayAdapter<String> = new ArrayAdapter<String>(StudentRegister.this, list)
+
 
         SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES ,0);
         uid = sharedPreferences.getString(UID, null);
