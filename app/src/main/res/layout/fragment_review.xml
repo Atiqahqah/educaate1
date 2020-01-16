@@ -8,7 +8,7 @@
     tools:context=".Fragments.ChildFragment.ReviewFragment">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/lblPending"
         android:layout_width="363dp"
         android:layout_height="107dp"
         android:layout_marginTop="8dp"

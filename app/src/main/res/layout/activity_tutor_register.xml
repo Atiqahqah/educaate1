@@ -4,56 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundBlue"
     tools:context=".Activity.TutorRegister">
 
-    <TextView
-        android:id="@+id/trTitle"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Tutor Registration"
-        android:textColor="@color/white"
-        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trTitle"
-        app:layout_constraintVertical_bias="0.078"
-        app:srcCompat="@drawable/teacher" />
+        <ImageView
+            android:id="@+id/tutorImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/trTitle"
+            app:layout_constraintStart_toStartOf="@+id/trTitle"
+            app:layout_constraintTop_toBottomOf="@+id/trTitle"
+            app:layout_constraintVertical_bias="0.078"
+            app:srcCompat="@drawable/teacher" />
+
+        <TextView
+            android:id="@+id/trTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Tutor Registration"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="1.0">
 
         <EditText
             android:id="@+id/trNameET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="Name"
             android:inputType="textPersonName"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,24 +76,34 @@
             android:id="@+id/trEmailET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/trNameET"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/trNameET"
             app:layout_constraintTop_toBottomOf="@+id/trNameET" />
 
         <EditText
             android:id="@+id/trPasswordET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="Password"
             android:inputType="textPassword"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/trEmailET"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/trEmailET"
             app:layout_constraintTop_toBottomOf="@+id/trEmailET" />
 
         <EditText
@@ -87,60 +112,82 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="Phone Number"
             android:inputType="phone"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/trPasswordET"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/trPasswordET"
             app:layout_constraintTop_toBottomOf="@+id/tDay" />
 
         <EditText
             android:id="@+id/trEduLvlET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
+            android:padding="2dp"
             android:hint="Education Level"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/trPhoneNoET"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/trPhoneNoET"
             app:layout_constraintTop_toBottomOf="@+id/trPhoneNoET" />
 
         <EditText
             android:id="@+id/tDay"
-            android:layout_width="64dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="DD"
             android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/textView10"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tutorGender" />
+            android:padding="2dp"
+            android:paddingTop="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tMonth"
+            app:layout_constraintStart_toStartOf="@+id/trPasswordET" />
 
         <EditText
             android:id="@+id/trQualificationET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="Qualification"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/trEduLvlET"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/trEduLvlET"
             app:layout_constraintTop_toBottomOf="@+id/trEduLvlET" />
 
         <EditText
             android:id="@+id/trDescriptionET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="Description"
             android:inputType="textMultiLine"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/trQualificationET"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/trQualificationET"
             app:layout_constraintTop_toBottomOf="@+id/trQualificationET" />
 
         <Button
@@ -150,7 +197,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/btn"
             android:fontFamily="@font/opensans_light"
             android:onClick="onTutorRegister"
@@ -158,70 +205,76 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trDescriptionET" />
 
         <EditText
             android:id="@+id/tMonth"
-            android:layout_width="59dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="MM"
             android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/textView14"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/tutorGender" />
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tDay"
+            app:layout_constraintStart_toEndOf="@+id/dobDivider1"
+            app:layout_constraintTop_toBottomOf="@+id/tutorGender"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/tYear"
-            android:layout_width="94dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="134dp"
+
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="YYYY"
             android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/tutorGender" />
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tMonth"
+            app:layout_constraintEnd_toEndOf="@+id/trPasswordET"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/dobDivider2"
+            app:layout_constraintTop_toTopOf="@+id/tMonth"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/dobDivider1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
             android:text="/"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/tMonth"
+            app:layout_constraintBottom_toBottomOf="@+id/tDay"
             app:layout_constraintStart_toEndOf="@+id/tDay"
-            app:layout_constraintTop_toTopOf="@+id/tMonth" />
+            app:layout_constraintTop_toTopOf="@+id/tDay" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/dobDivider2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="2dp"
             android:text="/"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/tYear"
+            app:layout_constraintBottom_toBottomOf="@+id/dobDivider1"
             app:layout_constraintStart_toEndOf="@+id/tMonth"
-            app:layout_constraintTop_toTopOf="@+id/tYear" />
+            app:layout_constraintTop_toTopOf="@+id/dobDivider1"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Spinner
             android:id="@+id/tutorGender"
             android:layout_width="210dp"
             android:layout_height="40dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/trPasswordET"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="@+id/trPasswordET"
             app:layout_constraintTop_toBottomOf="@+id/trPasswordET" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
