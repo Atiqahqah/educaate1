@@ -6,6 +6,7 @@ public class Chat {
     private String id;
     private String studentID;
     private String tutorID;
+    private String bookingType;
 
     public String getId() {
         return id;
@@ -17,10 +18,11 @@ public class Chat {
 
     public Chat(){}
 
-    public Chat(String id,String studentID,String tutorID){
+    public Chat(String id,String studentID,String tutorID,String bookingType){
         this.id=id;
         this.studentID=studentID;
         this.tutorID=tutorID;
+        this.bookingType=bookingType;
     }
 
 
@@ -38,5 +40,13 @@ public class Chat {
 
     public void setTutorID(String tutorID) {
         this.tutorID = tutorID;
+    }
+
+    public String getBookingType() {
+        return bookingType;
+    }
+
+    public void setBookingType(String bookingType) {
+        this.bookingType = bookingType;
     }
 }

@@ -41,7 +41,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
+        android:layout_width="398dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -49,90 +49,25 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-        <TextView
-            android:id="@+id/lblGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Gender"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@+id/lblReconfirm"
-            app:layout_constraintTop_toBottomOf="@+id/lblReconfirm" />
-
-        <TextView
-            android:id="@+id/lblReconfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Re-enter password"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/srPasswordET2"
-            app:layout_constraintEnd_toStartOf="@+id/srPasswordET2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/lblPassword" />
-
-        <TextView
-            android:id="@+id/lblName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Name"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/srNameET"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/lblEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Email"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/srEmailET"
-            app:layout_constraintEnd_toStartOf="@+id/srEmailET"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/lblName" />
-
-        <TextView
-            android:id="@+id/lblPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Password"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/srPasswordET"
-            app:layout_constraintEnd_toStartOf="@+id/srPasswordET"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/lblEmail" />
-
-        <TextView
-            android:id="@+id/lblDOB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Date of Birth"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@+id/lblGender"
-            tools:layout_editor_absoluteY="241dp" />
-
         <EditText
             android:id="@+id/srNameET"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="210dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
+            android:hint="Name"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toEndOf="@+id/lblName"
+            android:padding="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -140,11 +75,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
+            android:hint="Password"
             android:inputType="textPassword"
+            android:padding="2dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/srEmailET" />
 
@@ -153,12 +94,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
+            android:hint="Re-enter password"
             android:inputType="textPassword"
+            android:padding="2dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/srPasswordET" />
 
@@ -167,11 +113,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
+            android:hint="E-mail"
             android:inputType="textEmailAddress"
+            android:padding="2dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/srNameET" />
 
@@ -189,17 +141,18 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Spinner
             android:id="@+id/studentGender"
             android:layout_width="218dp"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/srPasswordET2" />
 
@@ -207,25 +160,34 @@
             android:id="@+id/dayT"
             android:layout_width="61dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="13dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="DD"
             android:inputType="textPersonName"
+            android:padding="2dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/monthT"
             app:layout_constraintEnd_toStartOf="@+id/monthT"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/srPasswordET2"
             app:layout_constraintTop_toBottomOf="@+id/studentGender" />
 
         <EditText
             android:id="@+id/monthT"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="11dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="MM"
             android:inputType="textPersonName"
+            android:padding="2dp"
             app:layout_constraintEnd_toStartOf="@+id/yearT"
             app:layout_constraintTop_toBottomOf="@+id/studentGender" />
 
@@ -233,13 +195,16 @@
             android:id="@+id/yearT"
             android:layout_width="68dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
             android:hint="YYYY"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/studentGender" />
+            android:padding="2dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/monthT"
+            app:layout_constraintEnd_toEndOf="@+id/srPasswordET2" />
 
     </android.support.constraint.ConstraintLayout>
 

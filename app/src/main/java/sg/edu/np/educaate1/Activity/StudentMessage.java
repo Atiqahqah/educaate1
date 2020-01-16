@@ -62,7 +62,16 @@ public class StudentMessage extends AppCompatActivity {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     //idList.add(snapshot.getKey());
                     //Log.d("myid", user.getUid());
-                    if(snapshot.child("studentID").getValue().toString().equals(studentId)){
+                    if(snapshot.child("bookingType").getValue().toString().equals("Tutor")&&snapshot.child("studentID").getValue().toString().equals(studentId)){
+                        chatID=snapshot.getKey();
+                        Log.d("myid", user.getUid());
+                        for(DataSnapshot msgSnapshot:snapshot.child("messages").getChildren()){
+                            Log.d("messages", msgSnapshot.getKey());
+                            String msg=msgSnapshot.child("msg").getValue().toString();
+                            msgList.add(msg);
+                        }
+                    }
+                    else if(snapshot.child("tutorID").getValue().toString().equals(tutorId)&&snapshot.child("bookingType").getValue().toString().equals("Student")){
                         chatID=snapshot.getKey();
                         Log.d("myid", user.getUid());
                         for(DataSnapshot msgSnapshot:snapshot.child("messages").getChildren()){
@@ -81,17 +90,11 @@ public class StudentMessage extends AppCompatActivity {
                         }
                     }*/
 
-
-
-                             //write this to make codes simple and make app load faster
                     //Log.d("msg", msg);
-
 
                     Log.d("msg list", Integer.toString(msgList.size()));
 
                     adapter.notifyDataSetChanged();//important line!!
-                    //}
-                    //adapter.notifyDataSetChanged();
                 }
             }
 
@@ -112,21 +115,13 @@ public class StudentMessage extends AppCompatActivity {
         final EditText text=findViewById(R.id.editText2);
         String msg=text.getText().toString();
 
-        final FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        Message message=new Message();
+        msg="Student: "+msg;
+        message.setMsg(msg);
 
-        /*if(msgList.size()!=0){
-            for(int i=0;i<msgList.size();i++){
-                databaseReference.child("messages").child(Integer.toString(i+1)).setValue(msgList.get(i));
-            }
-        }*/
+        String count=Integer.toString(msgList.size()+1);
 
-            Message message=new Message();
-            msg="Student: "+msg;
-            message.setMsg(msg);
-
-            String count=Integer.toString(msgList.size()+1);
-
-            databaseReference.child(chatID).child("messages").child(count).setValue(message);
+        databaseReference.child(chatID).child("messages").child(count).setValue(message);
 
 
         /*Message message=new Message();

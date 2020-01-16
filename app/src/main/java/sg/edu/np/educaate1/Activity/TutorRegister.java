@@ -117,6 +117,7 @@ public class TutorRegister extends AppCompatActivity implements AdapterView.OnIt
                             t.setQualification(tQuali.getText().toString());
                             t.setDescription(tDesc.getText().toString());
                             t.setType("tutor");
+                            t.setId(user.getUid());
 
                             databaseReference.child("users").child(user.getUid()).setValue(t);
                             //databaseReference.child("email").child("tutor").child("tutorEmail").setValue(tEmailField.getText().toString());
