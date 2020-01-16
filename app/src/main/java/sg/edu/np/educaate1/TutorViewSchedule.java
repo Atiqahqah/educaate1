@@ -23,8 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import sg.edu.np.educaate1.Activity.StudentMessage;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Student;
+import sg.edu.np.educaate1.Classes.Tutor;
 
 public class TutorViewSchedule extends AppCompatActivity {
     DatabaseReference databaseReference;
@@ -45,15 +47,22 @@ public class TutorViewSchedule extends AppCompatActivity {
     String strType;
     String strStatus;
     String bookingID;
+    String tutorID;
+    String studentID;
+
+    FirebaseAuth mAuth;
 
     ArrayList<String> studentIDList;
+
+    ArrayList<Tutor> tutorList;
+    ArrayList<String> tutorIDList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_view_schedule);
 
-        Intent i=getIntent();
+        Intent i=getIntent();//get intent from student/tutor appt
 
         strName = i.getStringExtra("name");
 
@@ -81,15 +90,20 @@ public class TutorViewSchedule extends AppCompatActivity {
         //strId = i.getStringExtra("id");
 
         strType=i.getStringExtra("type");
+        tutorID=i.getStringExtra("tutorid");
+        studentID=i.getStringExtra("studentid");
 
         strStatus=i.getStringExtra("status");
 
         bookingID=i.getStringExtra("id");
 
+        mAuth= FirebaseAuth.getInstance();
+        final FirebaseUser user=mAuth.getCurrentUser();
+
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
         studentList=new ArrayList<>();
         studentIDList=new ArrayList<>();
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        /*databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 studentList.clear();
@@ -112,13 +126,69 @@ public class TutorViewSchedule extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        adapter=new RequestAdapter(this,R.layout.requestlayout,studentList);
+        tutorList=new ArrayList<>();
+        tutorIDList=new ArrayList<>();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(strType.equals("Tutor")) {
+                    studentList.clear();
+                    studentIDList.clear();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.child("type").getValue().toString().equals("student")) {
+                            for (DataSnapshot msgSnapshot : snapshot.child("booking").getChildren()) {
+                                if (bookingID.equals(msgSnapshot.getKey())) {
+                                    Student s = snapshot.getValue(Student.class);
+                                    studentList.add(s);
+                                    studentIDList.add(snapshot.getKey());
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if(strType.equals("Student")) {
+                    tutorList.clear();
+                    tutorIDList.clear();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.child("type").getValue().toString().equals("tutor")) {
+                            for (DataSnapshot msgSnapshot : snapshot.child("booking").getChildren()) {
+                                if (bookingID.equals(msgSnapshot.getKey())) {
+                                    Tutor t = snapshot.getValue(Tutor.class);
+                                    tutorList.add(t);
+                                    tutorIDList.add(snapshot.getKey());
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //Log.d("tutor list size", Integer.toString(tutorList.size()));
+
+        if(strType.equals("Tutor")) {
+            adapter=new RequestAdapter(this,R.layout.requestlayout,studentList);
+        }
+        if(strType.equals("Student")) {
+            adapter=new StudentRequestAdapter(this,R.layout.requestlayout,tutorList);
+        }
+
+        //adapter=new RequestAdapter(this,R.layout.requestlayout,studentList);
         listView=(ListView)findViewById(R.id.requestList);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        //my codes
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent,
                                     View view, int position, long id){
@@ -126,14 +196,54 @@ public class TutorViewSchedule extends AppCompatActivity {
                 Intent intent = new Intent(TutorViewSchedule.this,
                         TutorMessage.class);
 
-                intent.putExtra("email",s.getEmail());
+                intent.putExtra("studentid",s.getId());
+                intent.putExtra("tutorid",user.getUid());
                 intent.putExtra("id",bookingID);
 
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/
 
-                startActivity(intent);
+            //    startActivity(intent);
+          //  }
+        //});
+
+        //kai sim
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent,
+                                    View view, int position, long id){
+                //Intent intent = new Intent(TutorViewSchedule.this, TutorMessage.class);
+
+                if(strType.equals("Tutor")) {
+                    Intent intent = new Intent(TutorViewSchedule.this, TutorMessage.class);
+                    Student s = (Student) parent.getItemAtPosition(position);
+                    intent.putExtra("email",s.getEmail());
+                    intent.putExtra("studentid",s.getId());
+                    intent.putExtra("tutorid",user.getUid());
+                    intent.putExtra("type","tutor");
+                    intent.putExtra("id",bookingID);
+                    startActivity(intent);
+                }
+
+                if(strType.equals("Student")) {
+                    Intent intent = new Intent(TutorViewSchedule.this, StudentMessage.class);
+                    Tutor t = (Tutor) parent.getItemAtPosition(position);
+                    intent.putExtra("email",t.getEmail());
+                    intent.putExtra("tutorid",t.getId());
+                    intent.putExtra("studentid",user.getUid());
+                    intent.putExtra("type","student");
+                    intent.putExtra("id",bookingID);
+                    startActivity(intent);
+                }
+
+                //intent.putExtra("id",bookingID);
+
+                /*SharedPreferences.Editor editor=pref.edit();
+                editor.putString("DATE",b.getDate());
+                editor.apply();*/
+
+                //startActivity(intent);
             }
         });
 
@@ -174,10 +284,19 @@ public class TutorViewSchedule extends AppCompatActivity {
                                 bookingCancel.setId(bookingID);
                                 bookingCancel.setType(strType);
                                 bookingCancel.setStatus("Cancel");
+                                if(strType.equals("Tutor")) {
 
-                                if(studentIDList.size()!=0){
-                                    for(int index=0;index<studentIDList.size();index++){
-                                        databaseReference.child("users").child(studentIDList.get(index)).child("booking").child(bookingID).setValue(bookingCancel);
+                                    if (studentIDList.size() != 0) {
+                                        for (int index = 0; index < studentIDList.size(); index++) {
+                                            databaseReference.child("users").child(studentIDList.get(index)).child("booking").child(bookingID).setValue(bookingCancel);
+                                        }
+                                    }
+                                }
+                                if(strType.equals("Tutor")) {
+                                    if (tutorIDList.size() != 0) {
+                                        for (int index = 0; index < tutorIDList.size(); index++) {
+                                            databaseReference.child("users").child(tutorIDList.get(index)).child("booking").child(bookingID).setValue(bookingCancel);
+                                        }
                                     }
                                 }
 

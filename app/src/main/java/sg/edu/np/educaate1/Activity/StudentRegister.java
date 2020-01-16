@@ -120,6 +120,7 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
                             //s.setPhoneNo(sPhoneNo.getText().toString());
                             s.setEduLevel("not specified");
                             s.setType("student");
+                            s.setId(user.getUid());
 
                             databaseReference.child("users").child(user.getUid()).setValue(s);
                         } else {

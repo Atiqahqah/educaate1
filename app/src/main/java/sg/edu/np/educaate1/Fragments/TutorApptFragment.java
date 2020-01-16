@@ -59,7 +59,7 @@ public class TutorApptFragment extends Fragment {
         //return inflater.inflate(R.layout.fragment_tutor_appt, container, false);
 
         mAuth=FirebaseAuth.getInstance();
-        FirebaseUser user=mAuth.getCurrentUser();
+        final FirebaseUser user=mAuth.getCurrentUser();
         databaseReference= FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
         postedBookingList=new ArrayList<>();
         pendingBookingList=new ArrayList<>();
@@ -117,9 +117,8 @@ public class TutorApptFragment extends Fragment {
                 intent.putExtra("id",b.getId());
                 intent.putExtra("type",b.getType());
                 intent.putExtra("status",b.getStatus());
-                /*SharedPreferences.Editor editor=pref.edit();
-                editor.putString("DATE",b.getDate());
-                editor.apply();*/
+                //intent.putExtra("tutorid",b.getTutorid());
+                //intent.putExtra("studentid",b.get)
 
                 startActivity(intent);
             }
@@ -143,9 +142,11 @@ public class TutorApptFragment extends Fragment {
                 intent.putExtra("id",b.getId());
                 intent.putExtra("type",b.getType());
                 intent.putExtra("status",b.getStatus());
+                intent.putExtra("studentid",b.getTutorid());//id of student who posted
                 /*SharedPreferences.Editor editor=pref.edit();
                 editor.putString("DATE",b.getDate());
                 editor.apply();*/
+                intent.putExtra("tutorid",user.getUid());
 
                 startActivity(intent);
             }

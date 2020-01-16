@@ -136,6 +136,7 @@ public class TutorHomeFragment extends Fragment {
                 intent.putExtra("id",b.getId());
                 intent.putExtra("status",b.getStatus());
                 intent.putExtra("type",b.getType());
+                intent.putExtra("tutorid",b.getTutorid());
 
                 startActivity(intent);
             }
