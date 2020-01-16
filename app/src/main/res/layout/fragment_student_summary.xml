@@ -8,91 +8,137 @@
     tools:context=".Fragments.ChildFragment.StudentSummaryFragment">
 
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/studentProfleEmailtv"
-                android:layout_width="0dp"
+                android:id="@+id/lblEmail"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
-                android:text="TextView"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="E-mail:"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/studentProfileGendertv"
-                android:layout_width="0dp"
+                android:id="@+id/lblGender"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Gender:"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
+
+            <TextView
+                android:id="@+id/lblAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Age:"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblGender" />
+
+            <TextView
+                android:id="@+id/lblPhoneNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Phone no:"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblAge" />
+
+            <TextView
+                android:id="@+id/lblPhoneNo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Education level:"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblPhoneNo" />
+
+            <TextView
+                android:id="@+id/studentProfileEmailtv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="TextView"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/lblEmail"
+                app:layout_constraintStart_toEndOf="@+id/lblEmail" />
+
+            <TextView
+                android:id="@+id/studentProfileGendertv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/lblGender"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studentProfleEmailtv" />
+                app:layout_constraintStart_toEndOf="@+id/lblGender" />
 
             <TextView
                 android:id="@+id/studentProfleAgetv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="TextView"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studentProfileGendertv" />
+                android:textSize="20sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/lblAge"
+                app:layout_constraintStart_toEndOf="@+id/lblAge" />
 
             <TextView
                 android:id="@+id/studentProfilePhonetv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="TextView"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studentProfleAgetv" />
+                android:textSize="20sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/lblPhoneNo"
+                app:layout_constraintStart_toEndOf="@+id/lblPhoneNo" />
 
             <TextView
                 android:id="@+id/studentProfileEduLvltv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="300dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="TextView"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/studentProfilePhonetv" />
+                android:textSize="20sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/lblPhoneNo2"
+                app:layout_constraintStart_toEndOf="@+id/lblPhoneNo2" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

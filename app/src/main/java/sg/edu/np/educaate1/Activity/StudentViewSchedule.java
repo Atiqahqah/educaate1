@@ -18,13 +18,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.R;
-import sg.edu.np.educaate1.RequestAdapter;
 import sg.edu.np.educaate1.StudentRequestAdapter;
 import sg.edu.np.educaate1.TutorMessage;
-import sg.edu.np.educaate1.TutorViewSchedule;
 
 public class StudentViewSchedule extends AppCompatActivity {
     DatabaseReference databaseReference;
@@ -42,7 +39,7 @@ public class StudentViewSchedule extends AppCompatActivity {
         subj.setText(i.getStringExtra("subj"));
         TextView location=findViewById(R.id.tLoc);
         location.setText(i.getStringExtra("location"));
-        TextView datetime=findViewById(R.id.tDateTime);
+        TextView datetime=findViewById(R.id.tDateTimez);
         datetime.setText(i.getStringExtra("date")+" "+i.getStringExtra("time"));
         TextView price=findViewById(R.id.tPrice);
         price.setText("$"+i.getStringExtra("price"));

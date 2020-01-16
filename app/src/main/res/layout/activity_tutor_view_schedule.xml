@@ -7,79 +7,128 @@
     tools:context=".TutorViewSchedule">
 
     <TextView
-        android:id="@+id/tSubj"
+        android:id="@+id/lblInfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="Additional  Info"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/lblInfo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lblInfo"
+        app:layout_constraintTop_toBottomOf="@+id/tPrice" />
 
     <TextView
-        android:id="@+id/tDateTime"
+        android:id="@+id/lblInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tSubj" />
-
-    <TextView
-        android:id="@+id/tLoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tDateTime" />
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="Booking Info"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tDelBtn"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+        android:fontFamily="@font/opensans_regular"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/tSubj"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/tLoc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tLoc" />
+
+    <TextView
+        android:id="@+id/tLoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/tDateTimez"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tDateTimez" />
+
+    <TextView
+        android:id="@+id/tDateTimez"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:drawableLeft="@drawable/ic_access_time_black_24dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tSubj" />
+
+    <TextView
+        android:id="@+id/tSubj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:drawableLeft="@drawable/ic_library_books_black_24dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/lblInfo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblInfo" />
 
     <TextView
         android:id="@+id/tDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensans_light"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tLoc" />
+        app:layout_constraintStart_toStartOf="@+id/lblInfo2"
+        app:layout_constraintTop_toBottomOf="@+id/lblInfo2" />
 
     <ListView
         android:id="@+id/requestList"
-        android:layout_width="395dp"
-        android:layout_height="382dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/lblRequestList" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
+        android:id="@+id/lblRequestList"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:padding="4dp"
         android:text="Pending Requests"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tDesc" />
+        android:textColor="@color/background"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/tDesc"
+        tools:layout_editor_absoluteX="8dp" />
 
     <Button
         android:id="@+id/tDelBtn"
@@ -87,7 +136,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_simple"
+        android:fontFamily="@font/opensans_bold"
         android:text="Delete"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

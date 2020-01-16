@@ -2,6 +2,7 @@ package sg.edu.np.educaate1.Fragments;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -68,6 +69,8 @@ public class TutorProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tutor_profile, container, false);
+        SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
         InitialiseViews(view);
 
         //get data from firebase
@@ -82,6 +85,14 @@ public class TutorProfileFragment extends Fragment {
                 tutor = dataSnapshot.getValue(Tutor.class);
                 //Set data to View
                 name.setText(tutor.getName());
+                editor.putString("tutor email",tutor.getEmail());
+                editor.putString("tutor age",tutor.getAge());
+                editor.putString("tutor gender",tutor.getGender());
+                editor.putString("tutor phone",tutor.getPhoneNo());
+                editor.putString("tutor edu",tutor.getEduLevel());
+                editor.putString("tutor qual",tutor.getQualification());
+                editor.putString("tutor desc",tutor.getDescription());
+                editor.apply();
             }
 
             @Override
