@@ -24,7 +24,7 @@ public class PaymentOption extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PaymentOption.this,PaymentConfirm.class);
-                intent.putExtra("cash","Cash");
+                intent.putExtra("paymenttype","Cash");
                 startActivity(intent);
             }
         });
@@ -33,7 +33,7 @@ public class PaymentOption extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PaymentOption.this,PaymentConfirm.class);
-                intent.putExtra("card","Card");
+                intent.putExtra("paymenttype","Card");
                 startActivity(intent);
             }
         });
