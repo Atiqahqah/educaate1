@@ -26,6 +26,7 @@ import sg.edu.np.educaate1.Adapters.BookingAdapter;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Chat;
 import sg.edu.np.educaate1.Classes.Message;
+import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.R;
 
 public class StudentMessage extends AppCompatActivity {
@@ -45,6 +46,15 @@ public class StudentMessage extends AppCompatActivity {
     Button confirmBtn;
     Button paymentBtn;
 
+    //for confirmation
+    private DatabaseReference databaseReferenceC;
+    private DatabaseReference databaseReferenceCS;
+    String tutorEmail;
+    ArrayList<String> tutorIDList;
+    private String currTutorID;
+    Booking b;
+    FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +69,7 @@ public class StudentMessage extends AppCompatActivity {
         tutorId=i.getStringExtra("tutorid");
         studentId=i.getStringExtra("studentid");
         id=i.getStringExtra("id");
+        tutorEmail=i.getStringExtra("email");
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
         final FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
@@ -119,6 +130,54 @@ public class StudentMessage extends AppCompatActivity {
         adapter=new ArrayAdapter<>(StudentMessage.this,android.R.layout.simple_list_item_1,msgList);
         listView=(ListView)findViewById(R.id.messageList);
         listView.setAdapter(adapter);
+
+        //codes for confirm function
+        databaseReferenceC = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("booking");
+        databaseReferenceC.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    b=snapshot.getValue(Booking.class);
+                    Log.d("booking ID b",b.getId());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //get all UID of tutor that have the booking ID
+        databaseReferenceCS= FirebaseDatabase.getInstance().getReference().child("users");
+        tutorIDList=new ArrayList<>();
+        databaseReferenceCS.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tutorIDList.clear();
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    if(snapshot.child("type").getValue().toString().equals("tutor")){
+                        for(DataSnapshot msgSnapshot:snapshot.child("booking").getChildren()){
+                            if(id.equals(msgSnapshot.getKey())){
+                                Tutor t=snapshot.getValue(Tutor.class);
+                                tutorIDList.add(snapshot.getKey());
+                                Log.d("Tutor ID",snapshot.getKey());
+                            }
+                        }
+                        if(snapshot.child("email").getValue().toString().equals(tutorEmail)){
+                            currTutorID = snapshot.getKey();
+                            Log.d("current Tutor ID",currTutorID);
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("booking").child(id);
@@ -188,5 +247,70 @@ public class StudentMessage extends AppCompatActivity {
         else{
             sentmsg.setText("write a message");
         }*/
+    }
+
+    public void studentConfirm(View v) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        //FirebaseUser user = mAuth.getCurrentUser();
+
+
+        //edit booking status under student to close
+        Booking booking = new Booking();
+
+        booking.setDate(b.getDate());
+        booking.setTime(b.getTime());
+        booking.setSubject(b.getSubject());
+        booking.setDesc(b.getDesc());
+        booking.setPrice(b.getPrice());
+        booking.setLocation(b.getLocation());
+        booking.setName(b.getName());
+        booking.setId(b.getId());
+        booking.setType(b.getType());
+        booking.setTutorid(b.getTutorid());
+        booking.setStatus("Close");
+
+        databaseReference.child("users").child(user.getUid()).child("booking").child(b.getId()).setValue(booking);
+
+
+        //edit booking status under selected tutor to confirm
+        Booking bookingConfirm = new Booking();
+
+        bookingConfirm.setDate(b.getDate());
+        bookingConfirm.setTime(b.getTime());
+        bookingConfirm.setSubject(b.getSubject());
+        bookingConfirm.setDesc(b.getDesc());
+        bookingConfirm.setPrice(b.getPrice());
+        bookingConfirm.setLocation(b.getLocation());
+        bookingConfirm.setName(b.getName());
+        bookingConfirm.setId(b.getId());
+        bookingConfirm.setType(b.getType());
+        bookingConfirm.setTutorid(b.getTutorid());
+        bookingConfirm.setStatus("Confirm");
+
+        //edit booking status under other tutor to cancel
+        Booking bookingCancel = new Booking();
+
+        bookingCancel.setDate(b.getDate());
+        bookingCancel.setTime(b.getTime());
+        bookingCancel.setSubject(b.getSubject());
+        bookingCancel.setDesc(b.getDesc());
+        bookingCancel.setPrice(b.getPrice());
+        bookingCancel.setLocation(b.getLocation());
+        bookingCancel.setName(b.getName());
+        bookingCancel.setId(b.getId());
+        bookingCancel.setType(b.getType());
+        bookingCancel.setTutorid(b.getTutorid());
+        bookingCancel.setStatus("Cancel");
+
+        if (tutorIDList.size() != 0) {
+            for (int i = 0; i < tutorIDList.size(); i++) {
+                if (tutorIDList.get(i) == currTutorID) {
+                    databaseReference.child("users").child(currTutorID).child("booking").child(b.getId()).setValue(bookingConfirm);
+                } else {
+                    databaseReference.child("users").child(tutorIDList.get(i)).child("booking").child(b.getId()).setValue(bookingCancel);
+                }
+            }
+        }
     }
 }
