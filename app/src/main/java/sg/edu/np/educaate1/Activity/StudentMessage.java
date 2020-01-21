@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class StudentMessage extends AppCompatActivity {
     ArrayList<String> msgList;
     ArrayList<String>idList;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
     ArrayAdapter<String> adapter;
     String TAG;
     String tutorId;
@@ -40,10 +42,18 @@ public class StudentMessage extends AppCompatActivity {
     String msg;
     String chatID;
 
+    Button confirmBtn;
+    Button paymentBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_message);
+
+        confirmBtn=(Button)findViewById(R.id.button9);
+        confirmBtn.setVisibility(View.VISIBLE);
+        paymentBtn=findViewById(R.id.button10);
+        paymentBtn.setVisibility(View.GONE);
 
         Intent i=getIntent();//get intent from student appt
         tutorId=i.getStringExtra("tutorid");
@@ -109,6 +119,38 @@ public class StudentMessage extends AppCompatActivity {
         adapter=new ArrayAdapter<>(StudentMessage.this,android.R.layout.simple_list_item_1,msgList);
         listView=(ListView)findViewById(R.id.messageList);
         listView.setAdapter(adapter);
+
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("booking").child(id);
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //for(DataSnapshot snapshot:dataSnapshot.child(id).getChildren()){
+                    Log.d("confirmid",id);
+                    //Log.d("confirm",snapshot.child("status").getValue().toString());
+                    if(dataSnapshot.child("status").getValue().toString().equals("Confirm")){
+                        //Log.d("confirm",snapshot.child("status").getValue().toString());
+                        confirmBtn.setVisibility(View.GONE);
+                        paymentBtn.setVisibility(View.VISIBLE);
+                    }
+                    else if(dataSnapshot.child("status").getValue().toString().equals("Close") && dataSnapshot.child("type").getValue().toString().equals("Student")){
+                        confirmBtn.setVisibility(View.GONE);
+                        paymentBtn.setVisibility(View.VISIBLE);
+                    }
+                    else if(dataSnapshot.child("type").getValue().toString().equals("Tutor")){
+                        confirmBtn.setVisibility(View.GONE);
+                    }
+                    /*else if(snapshot.child("status").getValue().toString().equals("Close")){
+                        confirmBtn.setVisibility(View.VISIBLE);
+                    }*/
+                //}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void send(View v){
