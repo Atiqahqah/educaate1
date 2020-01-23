@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,10 +52,17 @@ public class TutorMessage extends AppCompatActivity {
     Booking b;
     FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
 
+    //for button
+    DatabaseReference confirmDatabase;
+    Button confirmBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_message);
+
+        confirmBtn=findViewById(R.id.button5);
+        confirmBtn.setVisibility(View.VISIBLE);
 
         Intent i=getIntent();
         tutorID=i.getStringExtra("tutorid");
@@ -166,6 +174,37 @@ public class TutorMessage extends AppCompatActivity {
                         }
                     }
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //codes for confirmation button
+        confirmDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("booking").child(id);
+        confirmDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //for(DataSnapshot snapshot:dataSnapshot.child(id).getChildren()){
+                    Log.d("confirmid",id);
+                    //Log.d("confirm",snapshot.child("status").getValue().toString());
+                    if(dataSnapshot.child("status").getValue().toString().equals("Confirm")){
+                        //Log.d("confirm",snapshot.child("status").getValue().toString());
+                        confirmBtn.setVisibility(View.GONE);
+                    }
+                    else if(dataSnapshot.child("status").getValue().toString().equals("Close") && dataSnapshot.child("type").getValue().toString().equals("Student")){
+                        confirmBtn.setVisibility(View.GONE);
+                    }
+                    else if(dataSnapshot.child("type").getValue().toString().equals("Student")){
+                        confirmBtn.setVisibility(View.GONE);
+                    }
+                    /*else if(snapshot.child("status").getValue().toString().equals("Close")){
+                        confirmBtn.setVisibility(View.VISIBLE);
+                    }*/
+                //}
             }
 
             @Override

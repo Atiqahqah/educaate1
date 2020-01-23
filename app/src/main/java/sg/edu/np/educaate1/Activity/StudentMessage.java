@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class StudentMessage extends AppCompatActivity {
     ArrayList<String> msgList;
     ArrayList<String>idList;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
     ArrayAdapter<String> adapter;
     String TAG;
     String tutorId;
@@ -40,6 +42,17 @@ public class StudentMessage extends AppCompatActivity {
     String id;
     String msg;
     String chatID;
+
+    String strName;
+    String strSubj;
+    String strLocation;
+    String strDate;
+    String strTime;
+    String strPrice;
+    String strDesc;
+
+    Button confirmBtn;
+    Button paymentBtn;
 
     //for confirmation
     private DatabaseReference databaseReferenceC;
@@ -55,11 +68,24 @@ public class StudentMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_message);
 
+        confirmBtn=(Button)findViewById(R.id.button9);
+        confirmBtn.setVisibility(View.VISIBLE);
+        paymentBtn=findViewById(R.id.button10);
+        paymentBtn.setVisibility(View.GONE);
+
         Intent i=getIntent();//get intent from student appt
         tutorId=i.getStringExtra("tutorid");
         studentId=i.getStringExtra("studentid");
         id=i.getStringExtra("id");
         tutorEmail=i.getStringExtra("email");
+
+        strName=i.getStringExtra("name");
+        strDate=i.getStringExtra("date");
+        strDesc=i.getStringExtra("desc");
+        strPrice=i.getStringExtra("price");
+        strLocation=i.getStringExtra("name");
+        strSubj=i.getStringExtra("subj");
+        strTime=i.getStringExtra("time");
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
         final FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
@@ -161,6 +187,38 @@ public class StudentMessage extends AppCompatActivity {
                         }
                     }
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("booking").child(id);
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //for(DataSnapshot snapshot:dataSnapshot.child(id).getChildren()){
+                    Log.d("confirmid",id);
+                    //Log.d("confirm",snapshot.child("status").getValue().toString());
+                    if(dataSnapshot.child("status").getValue().toString().equals("Confirm")){
+                        //Log.d("confirm",snapshot.child("status").getValue().toString());
+                        confirmBtn.setVisibility(View.GONE);
+                        paymentBtn.setVisibility(View.VISIBLE);
+                    }
+                    else if(dataSnapshot.child("status").getValue().toString().equals("Close") && dataSnapshot.child("type").getValue().toString().equals("Student")){
+                        confirmBtn.setVisibility(View.GONE);
+                        paymentBtn.setVisibility(View.VISIBLE);
+                    }
+                    else if(dataSnapshot.child("type").getValue().toString().equals("Tutor")){
+                        confirmBtn.setVisibility(View.GONE);
+                    }
+                    /*else if(snapshot.child("status").getValue().toString().equals("Close")){
+                        confirmBtn.setVisibility(View.VISIBLE);
+                    }*/
+                //}
             }
 
             @Override
@@ -270,5 +328,21 @@ public class StudentMessage extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void  payment(View v){
+        Intent intent=new Intent(StudentMessage.this,PaymentConfirm.class);
+        intent.putExtra("tutorid",tutorId);
+        intent.putExtra("studentid",studentId);
+        intent.putExtra("bookingid",id);
+        intent.putExtra("name",strName);
+        intent.putExtra("desc",strDesc);
+        intent.putExtra("time",strTime);
+        intent.putExtra("date",strDate);
+        intent.putExtra("location",strLocation);
+        intent.putExtra("subj",strSubj);
+        intent.putExtra("price",strPrice);
+
+        startActivity(intent);
     }
 }

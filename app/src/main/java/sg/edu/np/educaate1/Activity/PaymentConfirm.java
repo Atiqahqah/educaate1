@@ -5,7 +5,11 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,13 +22,26 @@ import com.google.firebase.database.ValueEventListener;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.R;
 
-public class PaymentConfirm extends AppCompatActivity {
+public class PaymentConfirm extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     TextView Payee;
     TextView Payer;
     TextView Date;
     TextView PaymentType;
     TextView Price;
     Button Confirm;
+
+    String tutorId;
+    String studentId;
+    String id;
+    String chatID;
+
+    String strName;
+    String strSubj;
+    String strLocation;
+    String strDate;
+    String strTime;
+    String strPrice;
+    String strDesc;
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String UID = "Uid";
@@ -38,43 +55,50 @@ public class PaymentConfirm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_confirm);
-        Intent intent = getIntent();
-        SharedPreferences pref = getSharedPreferences(MyPREFERENCES, 0); // 0 - for private mode
-        InitialiseView();
-        String bookingid = pref.getString("bookingid","");
-        String uid = pref.getString("uid","");
-        String tuid = pref.getString("tuid","");
-        String paymenttype = intent.getStringExtra("paymenttype");
+        Intent i = getIntent();
+        tutorId=i.getStringExtra("tutorid");
+        studentId=i.getStringExtra("studentid");
+        id=i.getStringExtra("bookingid");
 
-        mAuth = FirebaseAuth.getInstance();
+        strName=i.getStringExtra("name");
+        strDate=i.getStringExtra("date");
+        strDesc=i.getStringExtra("desc");
+        strPrice=i.getStringExtra("price");
+        strLocation=i.getStringExtra("name");
+        strSubj=i.getStringExtra("subj");
+        strTime=i.getStringExtra("time");
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("user").child(uid).child("booking").child(bookingid);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                booking = dataSnapshot.getValue(Booking.class);
-            }
+        Payee = findViewById(R.id.confirmPaymentPayee);
+        Payee.setText(strName);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        //Payer = findViewById(R.id.confirmPaymentPayer);
 
-            }
-        });
+        //Date = findViewById(R.id.confirmPaymentDate);
+        //PaymentType = findViewById(R.id.confirmPaymentType);
+        Price = findViewById(R.id.confirmPaymentPrice);
+        Price.setText(strPrice);
 
+        Spinner mySpinner=(Spinner)findViewById(R.id.paymentMethod);
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.paymentMethods,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(adapter);
 
-
-        PaymentType.setText(paymenttype);
-
-
+        mySpinner.setOnItemSelectedListener(PaymentConfirm.this);
     }
 
     public void InitialiseView(){
         Payee = findViewById(R.id.confirmPaymentPayee);
-        Payer = findViewById(R.id.confirmPaymentPayer);
-        Date = findViewById(R.id.confirmPaymentDate);
-        PaymentType = findViewById(R.id.confirmPaymentType);
         Price = findViewById(R.id.confirmPaymentPrice);
         Confirm = findViewById(R.id.confirmPaymentBtn);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

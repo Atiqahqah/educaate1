@@ -82,6 +82,8 @@ public class DeleteBooking extends AppCompatActivity {
         strStatus=i.getStringExtra("status");
         Log.d("Status", strStatus);
 
+        //get price
+
         mAuth= FirebaseAuth.getInstance();
         final FirebaseUser user=mAuth.getCurrentUser();
 
@@ -111,6 +113,14 @@ public class DeleteBooking extends AppCompatActivity {
                     i.putExtra("tutorid",tutorId);
                     i.putExtra("studentid",studentId);
 
+                    i.putExtra("name",strName);
+                    i.putExtra("date",strDate);
+                    i.putExtra("time",strTime);
+                    i.putExtra("desc",strDesc);
+                    i.putExtra("location",strLocation);
+                    i.putExtra("price",strPrice);
+                    i.putExtra("subj",strSubj);
+
                     startActivity(i);
                 }
                 else if(user.getUid().equals(tutorId)){
@@ -118,6 +128,14 @@ public class DeleteBooking extends AppCompatActivity {
                     i.putExtra("id",strId);
                     i.putExtra("tutorid",tutorId);
                     i.putExtra("studentid",studentId);
+
+                    i.putExtra("name",strName);
+                    i.putExtra("date",strDate);
+                    i.putExtra("time",strTime);
+                    i.putExtra("desc",strDesc);
+                    i.putExtra("location",strLocation);
+                    i.putExtra("price",strPrice);
+                    i.putExtra("subj",strSubj);
 
                     startActivity(i);
                 }
