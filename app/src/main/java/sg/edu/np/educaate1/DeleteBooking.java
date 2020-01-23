@@ -15,7 +15,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import sg.edu.np.educaate1.Activity.StudentMessage;
 import sg.edu.np.educaate1.Classes.Booking;
+import sg.edu.np.educaate1.Classes.Tutor;
 
 public class DeleteBooking extends AppCompatActivity {
 
@@ -33,13 +35,17 @@ public class DeleteBooking extends AppCompatActivity {
     String strId;
     String strType;
     String strStatus;
+    String tutorId;
+    String studentId;
+
+    Button chatBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_booking);
 
-        Intent i=getIntent();
+        Intent i=getIntent();//get intent from
 
         strName = i.getStringExtra("name");
         TextView name=findViewById(R.id.delNameFld);
@@ -68,10 +74,18 @@ public class DeleteBooking extends AppCompatActivity {
 
         strId = i.getStringExtra("id");
 
+        tutorId=i.getStringExtra("tutorid");
+        studentId=i.getStringExtra("studentid");
+
         strType=i.getStringExtra("type");
 
         strStatus=i.getStringExtra("status");
         Log.d("Status", strStatus);
+
+        //get price
+
+        mAuth= FirebaseAuth.getInstance();
+        final FirebaseUser user=mAuth.getCurrentUser();
 
         delBtn = findViewById(R.id.delScheduleBtn);
         delBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +97,49 @@ public class DeleteBooking extends AppCompatActivity {
                 else {
                     displayDelConfirmation();
                 }
+            }
+        });
+
+        Log.d("userid",user.getUid());
+        Log.d("student",tutorId);
+
+        chatBtn=findViewById(R.id.button5);
+        chatBtn.setOnClickListener(new View.OnClickListener() {//this is currently for students only
+            @Override
+            public void onClick(View view) {
+                if(user.getUid().equals(studentId)){
+                    Intent i=new Intent(DeleteBooking.this, StudentMessage.class);
+                    i.putExtra("id",strId);
+                    i.putExtra("tutorid",tutorId);
+                    i.putExtra("studentid",studentId);
+
+                    i.putExtra("name",strName);
+                    i.putExtra("date",strDate);
+                    i.putExtra("time",strTime);
+                    i.putExtra("desc",strDesc);
+                    i.putExtra("location",strLocation);
+                    i.putExtra("price",strPrice);
+                    i.putExtra("subj",strSubj);
+
+                    startActivity(i);
+                }
+                else if(user.getUid().equals(tutorId)){
+                    Intent i=new Intent(DeleteBooking.this, TutorMessage.class);
+                    i.putExtra("id",strId);
+                    i.putExtra("tutorid",tutorId);
+                    i.putExtra("studentid",studentId);
+
+                    i.putExtra("name",strName);
+                    i.putExtra("date",strDate);
+                    i.putExtra("time",strTime);
+                    i.putExtra("desc",strDesc);
+                    i.putExtra("location",strLocation);
+                    i.putExtra("price",strPrice);
+                    i.putExtra("subj",strSubj);
+
+                    startActivity(i);
+                }
+
             }
         });
     }

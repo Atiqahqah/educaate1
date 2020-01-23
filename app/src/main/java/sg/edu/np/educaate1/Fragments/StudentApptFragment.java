@@ -119,7 +119,7 @@ public class StudentApptFragment extends Fragment {
                                     View view, int position, long id){
                 Booking b = (Booking) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(),
-                        StudentMessage.class);
+                        DeleteBooking.class);
 
                 intent.putExtra("name",b.getName());
                 intent.putExtra("date",b.getDate());
@@ -160,32 +160,8 @@ public class StudentApptFragment extends Fragment {
                 intent.putExtra("id",b.getId());
                 intent.putExtra("type",b.getType());
                 intent.putExtra("status",b.getStatus());
-
-                startActivity(intent);
-            }
-        });
-
-        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent,
-                                    View view, int position, long id){
-                Booking b = (Booking) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getActivity(),
-                        TutorViewSchedule.class);
-
-                intent.putExtra("name",b.getName());
-                intent.putExtra("date",b.getDate());
-                intent.putExtra("time",b.getTime());
-                intent.putExtra("desc",b.getDesc());
-                intent.putExtra("location",b.getLocation());
-                intent.putExtra("price",b.getPrice());
-                intent.putExtra("subj",b.getSubject());
-                intent.putExtra("id",b.getId());
-                intent.putExtra("type",b.getType());
-                intent.putExtra("status",b.getStatus());
-                /*SharedPreferences.Editor editor=pref.edit();
-                editor.putString("DATE",b.getDate());
-                editor.apply();*/
+                intent.putExtra("tutorid",b.getTutorid());
+                intent.putExtra("studentid",user.getUid());
 
                 startActivity(intent);
             }

@@ -166,7 +166,7 @@
             android:fontFamily="@font/opensans_bold"
             android:gravity="center"
             android:hint="DD"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:padding="2dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/monthT"
             app:layout_constraintEnd_toStartOf="@+id/monthT"
@@ -185,7 +185,7 @@
             android:fontFamily="@font/opensans_bold"
             android:gravity="center"
             android:hint="MM"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:padding="2dp"
             app:layout_constraintEnd_toStartOf="@+id/yearT"
             app:layout_constraintTop_toBottomOf="@+id/studentGender" />
@@ -200,7 +200,7 @@
             android:fontFamily="@font/opensans_bold"
             android:gravity="center"
             android:hint="YYYY"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:padding="2dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/monthT"
             app:layout_constraintEnd_toEndOf="@+id/srPasswordET2" />

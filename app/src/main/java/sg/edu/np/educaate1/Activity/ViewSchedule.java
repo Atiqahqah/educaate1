@@ -54,7 +54,7 @@ public class ViewSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_schedule);
 
-        Intent i=getIntent();//get intent from student home fragment
+        Intent i=getIntent();//get intent from student/tutor home fragment
 
         strName = i.getStringExtra("name");
         TextView name=findViewById(R.id.nameFld);
@@ -140,14 +140,28 @@ public class ViewSchedule extends AppCompatActivity {
                                 booking.setTutorid(strTutorId);
 
                                 //Log.d(TAG,strType);
-                                Chat chat=new Chat();
-                                chat.setStudentID(user.getUid());
-                                String key=databaseReference.child("chat").child(strId).push().getKey();
-                                chat.setId(key);
-                                chat.setTutorID(strTutorId);
+                                if(strType.equals("Student")){
+                                    Chat chat=new Chat();
+                                    chat.setStudentID(strTutorId);
+                                    String key=databaseReference.child("chat").child(strId).push().getKey();
+                                    chat.setId(key);
+                                    chat.setTutorID(user.getUid());
+                                    chat.setBookingType(strType);
+                                    databaseReference.child("chat").child(strId).child(key).setValue(chat);
+                                }
+                                else{
+                                    Chat chat=new Chat();
+                                    chat.setStudentID(user.getUid());
+                                    String key=databaseReference.child("chat").child(strId).push().getKey();
+                                    chat.setId(key);
+                                    chat.setTutorID(strTutorId);
+                                    chat.setBookingType(strType);
+                                    databaseReference.child("chat").child(strId).child(key).setValue(chat);
+                                }
+
 
                                 databaseReference.child("users").child(user.getUid()).child("booking").child(strId).setValue(booking);
-                                databaseReference.child("chat").child(strId).child(key).setValue(chat);
+
 
                                 /*Intent intent=new Intent(ViewSchedule.this,StudentMessage.class);
 
