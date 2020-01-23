@@ -11,78 +11,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="117dp"
         android:text="To:"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/confirmPaymentPayee"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    <TextView
-        android:id="@+id/confirmpaymentDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="103dp"
-        android:text="Date:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/confirmPaymentDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentFrom" />
 
     <TextView
         android:id="@+id/confirmpaymentPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="108dp"
         android:layout_marginEnd="100dp"
         android:text="Price:"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/confirmPaymentPrice"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentType" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentTo" />
 
     <TextView
         android:id="@+id/confirmpaymentType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="33dp"
+        android:layout_marginTop="72dp"
         android:text="PaymentType:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/confirmPaymentType"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentDate" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentPrice" />
 
     <Button
         android:id="@+id/confirmPaymentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentPrice"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/confirmpaymentFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="97dp"
-        android:text="From:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/confirmPaymentPayer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentTo" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmpaymentType"
+        app:layout_constraintVertical_bias="0.892" />
 
     <TextView
         android:id="@+id/textView20"
@@ -99,7 +74,7 @@
         android:id="@+id/confirmPaymentPayee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="113dp"
+        android:layout_marginTop="72dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="22sp"
@@ -109,52 +84,27 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
-        android:id="@+id/confirmPaymentPayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPaymentPayee" />
-
-    <TextView
-        android:id="@+id/confirmPaymentDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPaymentPayer" />
-
-    <TextView
-        android:id="@+id/confirmPaymentType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="159dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPaymentDate" />
-
-    <TextView
         android:id="@+id/confirmPaymentPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="200dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPaymentType" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPaymentPayee" />
+
+    <Spinner
+        android:id="@+id/paymentMethod"
+        android:layout_width="185dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/confirmpaymentType"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPaymentPrice" />
 
 </android.support.constraint.ConstraintLayout>

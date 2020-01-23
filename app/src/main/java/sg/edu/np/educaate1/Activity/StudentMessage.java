@@ -43,6 +43,14 @@ public class StudentMessage extends AppCompatActivity {
     String msg;
     String chatID;
 
+    String strName;
+    String strSubj;
+    String strLocation;
+    String strDate;
+    String strTime;
+    String strPrice;
+    String strDesc;
+
     Button confirmBtn;
     Button paymentBtn;
 
@@ -70,6 +78,14 @@ public class StudentMessage extends AppCompatActivity {
         studentId=i.getStringExtra("studentid");
         id=i.getStringExtra("id");
         tutorEmail=i.getStringExtra("email");
+
+        strName=i.getStringExtra("name");
+        strDate=i.getStringExtra("date");
+        strDesc=i.getStringExtra("desc");
+        strPrice=i.getStringExtra("price");
+        strLocation=i.getStringExtra("name");
+        strSubj=i.getStringExtra("subj");
+        strTime=i.getStringExtra("time");
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
         final FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
@@ -312,5 +328,21 @@ public class StudentMessage extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void  payment(View v){
+        Intent intent=new Intent(StudentMessage.this,PaymentConfirm.class);
+        intent.putExtra("tutorid",tutorId);
+        intent.putExtra("studentid",studentId);
+        intent.putExtra("bookingid",id);
+        intent.putExtra("name",strName);
+        intent.putExtra("desc",strDesc);
+        intent.putExtra("time",strTime);
+        intent.putExtra("date",strDate);
+        intent.putExtra("location",strLocation);
+        intent.putExtra("subj",strSubj);
+        intent.putExtra("price",strPrice);
+
+        startActivity(intent);
     }
 }
