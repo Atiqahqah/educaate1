@@ -2,12 +2,12 @@ package sg.edu.np.educaate1.Classes;
 
 public class Rating {
     private String ReviewId;
-    private String Name;
+    private String userID;
     private String Desc;
     private int Score;
 
-    public Rating(String id, String n, String d, int s){
-        Name = n;
+    public Rating(String id, String uid, String d, int s){
+        userID = uid;
         Desc = d;
         Score = s;
         ReviewId = id;
@@ -19,8 +19,8 @@ public class Rating {
         return Score;
     }
 
-    public String getName() {
-        return Name;
+    public String getUserID() {
+        return userID;
     }
 
     public String getDesc() {
@@ -33,9 +33,7 @@ public class Rating {
         Desc = desc;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
+    public void setUserID(String userid) { userID = userid; }
 
     public void setScore(int score) {
         Score = score;
