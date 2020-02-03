@@ -15,18 +15,27 @@
             android:id="@+id/postBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Post"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_playlist_add_black_24dp"
+            android:drawableTint="@color/colorPrimary"
+            android:fontFamily="@font/opensans_regular"
+            android:text="Post new schedule"
+            android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/filterBtn"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblTutorHome"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/tutorhome"
-            android:layout_width="395dp"
-            android:layout_height="528dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:divider="@null"
+            android:dividerHeight="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,11 +45,26 @@
             android:id="@+id/filterBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_filter"
+            android:fontFamily="@font/opensans_regular"
             android:text="filter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/postBtn"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/lblTutorHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:drawableLeft="@drawable/ic_home_black_24dp"
+            android:fontFamily="@font/opensans_bold"
+            android:text="Tutor Home"
+            android:textSize="18dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/postBtn"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

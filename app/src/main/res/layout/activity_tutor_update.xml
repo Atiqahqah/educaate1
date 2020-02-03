@@ -2,36 +2,74 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.TutorUpdate">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="293dp"
-        android:layout_height="441dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/constraintLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tUpdateTitle"
-        app:layout_constraintVertical_bias="0.239">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/tUpdateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Update Profile"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/suImage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tUpdateTitle"
+            app:srcCompat="@drawable/teacher" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
         <EditText
             android:id="@+id/tUpdateName"
             android:layout_width="240dp"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="Name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/tUpdateDescription"
             android:layout_width="240dp"
-            android:layout_height="140dp"
+            android:layout_height="120dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
@@ -40,40 +78,39 @@
             android:hint="Description "
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tUpdateQualifications" />
 
         <EditText
             android:id="@+id/tUpdatePhone"
             android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Phone"
             android:inputType="phone"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdateName"
-            app:layout_constraintVertical_bias="0.026" />
+            app:layout_constraintTop_toBottomOf="@+id/tUpdateName" />
 
         <EditText
             android:id="@+id/tUpdateEdu"
             android:layout_width="240dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Education Level"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tUpdatePhone" />
 
         <EditText
             android:id="@+id/tUpdateQualifications"
             android:layout_width="240dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Qualifications"
@@ -86,25 +123,13 @@
             android:id="@+id/tUpdateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Update"
+            android:text="Update Profile"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tUpdateDescription"
-            app:layout_constraintVertical_bias="0.716" />
+            app:layout_constraintTop_toBottomOf="@+id/tUpdateDescription" />
 
     </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tUpdateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Tutor Profile"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

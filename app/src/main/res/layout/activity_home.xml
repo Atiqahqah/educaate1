@@ -20,7 +20,8 @@
         app:itemBackground="@color/navbarcolor"
         app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
         app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
-        app:menu="@menu/bottom_nav" />
+        app:menu="@menu/bottom_nav"
+        />
 
     <FrameLayout
         android:id="@+id/frame_layout"
