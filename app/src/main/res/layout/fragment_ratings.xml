@@ -9,16 +9,34 @@
 
     <TextView
         android:id="@+id/ratingScoreTV"
-        android:layout_width="241dp"
-        android:layout_height="115dp"
+        android:layout_width="118dp"
+        android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Ratings"
+        android:text="3.6"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.539" />
+
+    <ProgressBar
+        android:id="@+id/ratingProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="304dp"
+        android:layout_height="297dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:progress="80"
+        android:progressDrawable="@drawable/cirlceprogressbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.598" />
+
 </android.support.constraint.ConstraintLayout>
