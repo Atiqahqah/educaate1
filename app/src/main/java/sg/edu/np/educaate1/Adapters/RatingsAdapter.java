@@ -33,7 +33,7 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.RatingVi
     @Override
     public void onBindViewHolder(@NonNull RatingViewHolder ratingViewHolder, int i) {
         Rating rating = ratingList.get(i);
-        ratingViewHolder.Name.setText(rating.getName());
+        //ratingViewHolder.Name.setText(rating.getName());
         ratingViewHolder.Desc.setText(rating.getDesc());
         ratingViewHolder.Score.setText(rating.getScore());
     }

@@ -14,6 +14,8 @@
 
         <ListView
             android:id="@+id/tutorApptList"
+            android:divider="@null"
+            android:dividerHeight="5dp"
             android:layout_width="395dp"
             android:layout_height="293dp"
             android:layout_marginStart="8dp"
@@ -30,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Posted Schedules"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/tutorApptList"
@@ -44,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Pending"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +55,8 @@
 
         <ListView
             android:id="@+id/tutorPending"
+            android:divider="@null"
+            android:dividerHeight="5dp"
             android:layout_width="395dp"
             android:layout_height="257dp"
             android:layout_marginStart="8dp"
