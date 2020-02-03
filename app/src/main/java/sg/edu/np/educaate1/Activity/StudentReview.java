@@ -57,10 +57,10 @@ public class StudentReview extends AppCompatActivity {
                 desc = Review.getText().toString();
                 score = Integer.parseInt(Rating.getText().toString());
 
-                String ratingID = databaseReference.child("Rating").push().getKey();
+                String ratingID = databaseReference.child("rating").push().getKey();
 
                 Rating rating = new Rating(ratingID,UID,desc,score);
-                databaseReference.child("Rating").child(ratingID).setValue(rating);
+                databaseReference.child("rating").child(ratingID).setValue(rating);
             }
         });
     }

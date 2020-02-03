@@ -19,13 +19,17 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
+import sg.edu.np.educaate1.Classes.Rating;
 import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.Fragments.ChildFragment.RatingsFragment;
 import sg.edu.np.educaate1.Fragments.ChildFragment.ReviewFragment;
@@ -41,23 +45,27 @@ public class StudentProfileFragment extends Fragment {
     //FireBase
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
     private FirebaseUser user;
     private String UID;
 
     //object and Data
     private Student student;
+    private Rating rating;
 
     //Views
     ImageView profilepic;
     TextView name;
     ImageButton editprofile;
-    Button summary;
-    Button rating;
-    Button review;
 
     //Fragments and TabLayout
     ViewPager viewPager;
     TabLayout tabLayout;
+
+    int i;
+
+    //ArrayList for reviewobject
+    ArrayList<Rating> ReviewList = new ArrayList<>();
 
     public StudentProfileFragment() {
         // Required empty public constructor
@@ -102,6 +110,24 @@ public class StudentProfileFragment extends Fragment {
 
             }
         });
+
+        i = 0;
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("rating");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                rating = dataSnapshot.getValue(Rating.class);
+                ReviewList.add(rating);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
