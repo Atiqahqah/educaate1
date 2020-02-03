@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -128,6 +129,10 @@ public class StudentProfileFragment extends Fragment {
             }
         });
 
+        Gson gson = new Gson();
+        String json = gson.toJson(ReviewList);
+        editor.putString("review",json);
+        editor.apply();
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
