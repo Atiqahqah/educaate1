@@ -161,6 +161,9 @@ public class ViewSchedule extends AppCompatActivity {
 
 
                                 databaseReference.child("users").child(user.getUid()).child("booking").child(strId).setValue(booking);
+                                Toast.makeText(getApplicationContext(),"Scheduled has been booked!",Toast.LENGTH_LONG).show();
+
+
 
 
                                 /*Intent intent=new Intent(ViewSchedule.this,StudentMessage.class);

@@ -223,6 +223,7 @@ public class TutorViewSchedule extends AppCompatActivity {
                     intent.putExtra("tutorid",user.getUid());
                     intent.putExtra("type","tutor");
                     intent.putExtra("id",bookingID);
+                    intent.putExtra("bookeename",s.getName());
                     startActivity(intent);
                 }
 
@@ -234,6 +235,7 @@ public class TutorViewSchedule extends AppCompatActivity {
                     intent.putExtra("studentid",user.getUid());
                     intent.putExtra("type","student");
                     intent.putExtra("id",bookingID);
+                    intent.putExtra("bookeename",t.getName());
                     startActivity(intent);
                 }
 

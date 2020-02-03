@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Activity.StudentMessage;
@@ -42,6 +44,7 @@ public class TutorMessage extends AppCompatActivity {
     String studentID;
     String id;
     String chatID;
+    String name;
 
     //for confirmation
     private DatabaseReference databaseReferenceC;
@@ -69,8 +72,12 @@ public class TutorMessage extends AppCompatActivity {
         studentID=i.getStringExtra("studentid");
         id=i.getStringExtra("id");
         studentEmail=i.getStringExtra("email");
+        name=i.getStringExtra("bookeename");
 
         Log.d("tutormsgid",tutorID);
+
+        TextView nameLabel=findViewById(R.id.textView7);
+        nameLabel.setText(name);
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
         final FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

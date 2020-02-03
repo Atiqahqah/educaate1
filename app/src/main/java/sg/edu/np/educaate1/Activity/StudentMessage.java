@@ -50,6 +50,7 @@ public class StudentMessage extends AppCompatActivity {
     String strTime;
     String strPrice;
     String strDesc;
+    String name;
 
     Button confirmBtn;
     Button paymentBtn;
@@ -78,6 +79,7 @@ public class StudentMessage extends AppCompatActivity {
         studentId=i.getStringExtra("studentid");
         id=i.getStringExtra("id");
         tutorEmail=i.getStringExtra("email");
+        //name=i.getStringExtra("bookeename");
 
         strName=i.getStringExtra("name");
         strDate=i.getStringExtra("date");
@@ -86,6 +88,9 @@ public class StudentMessage extends AppCompatActivity {
         strLocation=i.getStringExtra("name");
         strSubj=i.getStringExtra("subj");
         strTime=i.getStringExtra("time");
+
+        TextView nameLabel=findViewById(R.id.textView9);
+        nameLabel.setText(strName);
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
         final FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
