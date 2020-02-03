@@ -46,6 +46,8 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
     private EditText sName;
     private EditText sPhoneNo;
     private EditText sEduLvl;
+    EditText sConfirmPass;
+    TextView errorMsg;
 
     String gender;
 
@@ -64,10 +66,13 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
 
         mAuth = FirebaseAuth.getInstance();
 
-
         sEmailField = findViewById(R.id.srEmailET);
         sPasswordField = findViewById(R.id.srPasswordET);
+        sConfirmPass=findViewById(R.id.srPasswordET2);
         sName = findViewById(R.id.srNameET);
+        errorMsg=findViewById(R.id.studentError);
+
+        errorMsg.setText("");
         //sGender = findViewById(R.id.srGenderET);
         //sPhoneNo = findViewById(R.id.srPhoneNoET);
 
@@ -96,50 +101,65 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
     }
 
     public void createStudentAccount(String email,String password){
-        day=Integer.parseInt(d.getText().toString());
-        month=Integer.parseInt(m.getText().toString());
-        year=Integer.parseInt(y.getText().toString());
-        age=getAge(year,month,day);
-        pref= PreferenceManager.getDefaultSharedPreferences(this);
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            //add user type into database
-                            databaseReference= FirebaseDatabase.getInstance().getReference();
-                            Student s = new Student();
-                            s.setEmail(sEmailField.getText().toString());
-                            s.setName(sName.getText().toString());
-                            s.setAge(age);
-                            s.setGender("not specified");
-                            //s.setPhoneNo(sPhoneNo.getText().toString());
-                            s.setEduLevel("not specified");
-                            s.setType("student");
-                            s.setId(user.getUid());
+                pref= PreferenceManager.getDefaultSharedPreferences(this);
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
+                                    //add user type into database
+                                    databaseReference= FirebaseDatabase.getInstance().getReference();
+                                    Student s = new Student();
+                                    s.setEmail(sEmailField.getText().toString());
+                                    s.setName(sName.getText().toString());
+                                    s.setAge(age);
+                                    s.setGender("not specified");
+                                    //s.setPhoneNo(sPhoneNo.getText().toString());
+                                    s.setEduLevel("not specified");
+                                    s.setType("student");
+                                    s.setId(user.getUid());
 
-                            databaseReference.child("users").child(user.getUid()).setValue(s);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(StudentRegister.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
+                                    databaseReference.child("users").child(user.getUid()).setValue(s);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(StudentRegister.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
+                                }
 
-                    }
-                });
+                            }
+                        });
     }
 
     public void onStudentRegister(View v) {
-        int i = v.getId();
-        if (i == R.id.srRegisterBtn) {
-            createStudentAccount(sEmailField.getText().toString(), sPasswordField.getText().toString());
-        }
+        //if (i == R.id.srRegisterBtn) {
+            if(sEmailField.getText().toString().equals("")||sName.getText().toString().equals("")||sPasswordField.getText().toString().equals("")||d.getText().toString().equals("")||m.getText().toString().equals("")||y.getText().toString().equals("")){
+                errorMsg.setText("Please fill up all the details");
+            }
+            else {
+                day=Integer.parseInt(d.getText().toString());
+                month=Integer.parseInt(m.getText().toString());
+                year=Integer.parseInt(y.getText().toString());
+                age=getAge(year,month,day);
+                if (Integer.parseInt(age) < 16) {
+                    errorMsg.setText("You must be 16 or older to sign up");
+                }
+                else if (!sPasswordField.getText().toString().equals(sConfirmPass.getText().toString())) {
+                    sPasswordField.setText("");
+                    sConfirmPass.setText("");
+                    errorMsg.setText("Passwords do not match");
+                }
+                else {
+                    createStudentAccount(sEmailField.getText().toString(), sPasswordField.getText().toString());
+                }
+            }
+            //createStudentAccount(sEmailField.getText().toString(), sPasswordField.getText().toString());
+        //}
     }
 
     private String getAge(int year,int month,int day){

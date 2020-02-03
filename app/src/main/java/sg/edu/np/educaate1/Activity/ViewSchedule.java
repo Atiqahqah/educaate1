@@ -1,5 +1,6 @@
 package sg.edu.np.educaate1.Activity;
 
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Chat;
 import sg.edu.np.educaate1.Fragments.StudentHomeFragment;
+import sg.edu.np.educaate1.Fragments.TutorHomeFragment;
 import sg.edu.np.educaate1.R;
 
 public class ViewSchedule extends AppCompatActivity {
@@ -183,6 +185,18 @@ public class ViewSchedule extends AppCompatActivity {
                             }
                         })
                 .show();
+    }
+
+    public void backBtn(View v){
+        if(strType.equals("Student")){
+            //Intent i=new Intent(ViewSchedule.this, TutorHomeFragment.class);
+            //startActivity(i);
+        }
+        else{
+
+            //Intent i=new Intent(ViewSchedule.this,StudentHomeFragment.class);
+            //startActivity(i);
+        }
     }
 
 }

@@ -81,7 +81,7 @@ public class TutorViewSchedule extends AppCompatActivity {
 
         strPrice = i.getStringExtra("price");
         TextView price=findViewById(R.id.tPrice);
-        price.setText("$"+strPrice);
+        price.setText(strPrice);
 
         strDesc = i.getStringExtra("desc");
         TextView desc=findViewById(R.id.tDesc);

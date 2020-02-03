@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +42,7 @@ public class TutorRegister extends AppCompatActivity implements AdapterView.OnIt
     private EditText tEduLvl;
     private EditText tQuali;
     private EditText tDesc;
+    TextView errorMsg;
 
     String gender;
 
@@ -57,6 +59,9 @@ public class TutorRegister extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_register);
         mAuth = FirebaseAuth.getInstance();
+
+        errorMsg=findViewById(R.id.textView4);
+        errorMsg.setText("");
 
         tEmailField = findViewById(R.id.trEmailET);
         tPasswordField = findViewById(R.id.trPasswordET);
@@ -134,9 +139,19 @@ public class TutorRegister extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void onTutorRegister(View v) {
-        int i = v.getId();
-        if (i == R.id.trRegisterBtn) {
+        if(tEmailField.getText().toString().equals("")||tName.getText().toString().equals("")||tPasswordField.getText().toString().equals("")
+                ||d.getText().toString().equals("")||m.getText().toString().equals("")||y.getText().toString().equals("")
+        ||tDesc.getText().toString().equals("")||tEduLvl.getText().toString().equals("")||tPhoneNo.getText().toString().equals("")||tQuali.getText().toString().equals("")){
+            errorMsg.setText("Please fill up all the details");
+        }
+        else if(Integer.parseInt(d.getText().toString())>31||Integer.parseInt(m.getText().toString())>12){
+            errorMsg.setText("Please enter the correct date format");
+            d.setText("");
+            m.setText("");
+        }
+        else {
             createTutorAccount(tEmailField.getText().toString(), tPasswordField.getText().toString());
+            errorMsg.setText("");
         }
     }
 
