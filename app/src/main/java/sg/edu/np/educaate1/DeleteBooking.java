@@ -143,6 +143,7 @@ public class DeleteBooking extends AppCompatActivity {
                     i.putExtra("location",strLocation);
                     i.putExtra("price",strPrice);
                     i.putExtra("subj",strSubj);
+                    i.putExtra("type",strType);
 
                     startActivity(i);
                 }
@@ -159,6 +160,7 @@ public class DeleteBooking extends AppCompatActivity {
                     i.putExtra("location",strLocation);
                     i.putExtra("price",strPrice);
                     i.putExtra("subj",strSubj);
+                    i.putExtra("type",strType);
 
                     startActivity(i);
                 }
