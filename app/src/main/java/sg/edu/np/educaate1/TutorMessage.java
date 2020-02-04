@@ -27,6 +27,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Activity.StudentMessage;
+import sg.edu.np.educaate1.Activity.StudentReview;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Message;
 import sg.edu.np.educaate1.Classes.Student;
@@ -58,6 +59,7 @@ public class TutorMessage extends AppCompatActivity {
     //for button
     DatabaseReference confirmDatabase;
     Button confirmBtn;
+    Button rateBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class TutorMessage extends AppCompatActivity {
 
         confirmBtn=findViewById(R.id.button5);
         confirmBtn.setVisibility(View.VISIBLE);
+        rateBtn=findViewById(R.id.tRateBtn);
+        rateBtn.setVisibility(View.GONE);
 
         Intent i=getIntent();
         tutorID=i.getStringExtra("tutorid");
@@ -147,8 +151,10 @@ public class TutorMessage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    b=snapshot.getValue(Booking.class);
-                    Log.d("booking ID b",b.getId());
+                    if(snapshot.child("id").getValue().equals(id)){
+                        b=snapshot.getValue(Booking.class);
+                        Log.d("booking ID b",b.getId());
+                    }
                 }
             }
 
@@ -202,8 +208,12 @@ public class TutorMessage extends AppCompatActivity {
                         //Log.d("confirm",snapshot.child("status").getValue().toString());
                         confirmBtn.setVisibility(View.GONE);
                     }
-                    else if(dataSnapshot.child("status").getValue().toString().equals("Close") && dataSnapshot.child("type").getValue().toString().equals("Student")){
+                    else if(dataSnapshot.child("status").getValue().toString().equals("Close") && dataSnapshot.child("type").getValue().toString().equals("Tutor")){
                         confirmBtn.setVisibility(View.GONE);
+                    }
+                    else if(dataSnapshot.child("status").getValue().toString().equals("Paid")){
+                        confirmBtn.setVisibility(View.GONE);
+                        rateBtn.setVisibility(View.VISIBLE);
                     }
                     else if(dataSnapshot.child("type").getValue().toString().equals("Student")){
                         confirmBtn.setVisibility(View.GONE);
@@ -303,5 +313,10 @@ public class TutorMessage extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void tutorRate(View v){
+        Intent intent=new Intent(TutorMessage.this, StudentReview.class);
+        startActivity(intent);
     }
 }

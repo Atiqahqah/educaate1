@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +43,7 @@ public class PaymentConfirm extends AppCompatActivity implements AdapterView.OnI
     String strTime;
     String strPrice;
     String strDesc;
+    String strType;
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String UID = "Uid";
@@ -67,6 +69,7 @@ public class PaymentConfirm extends AppCompatActivity implements AdapterView.OnI
         strLocation=i.getStringExtra("name");
         strSubj=i.getStringExtra("subj");
         strTime=i.getStringExtra("time");
+        strType=i.getStringExtra("type");
 
         Payee = findViewById(R.id.confirmPaymentPayee);
         Payee.setText(strName);
@@ -100,5 +103,34 @@ public class PaymentConfirm extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void confirmPayment(View v){
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        //FirebaseUser user = mAuth.getCurrentUser();
+
+
+        //edit booking status under both tutor and student
+        Booking booking = new Booking();
+
+        booking.setDate(strDate);
+        booking.setTime(strTime);
+        booking.setSubject(strSubj);
+        booking.setDesc(strDesc);
+        booking.setPrice(strPrice);
+        booking.setLocation(strLocation);
+        booking.setName(strName);
+        booking.setId(id);
+        booking.setType(strType);
+        if(strType.equals("Tutor")){
+            booking.setTutorid(tutorId);
+        }
+        else if(strType.equals("Student")) {
+            booking.setTutorid(studentId);
+        }
+        booking.setStatus("Paid");
+
+        databaseReference.child("users").child(studentId).child("booking").child(id).setValue(booking);
+        databaseReference.child("users").child(tutorId).child("booking").child(id).setValue(booking);
     }
 }

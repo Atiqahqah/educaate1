@@ -142,4 +142,17 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/postedBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/btn_simple"
+        android:fontFamily="@font/opensans_bold"
+        android:text="Back"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/lblRequestList"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

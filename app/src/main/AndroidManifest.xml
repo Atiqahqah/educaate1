@@ -21,6 +21,7 @@
         <activity android:name=".DeleteBooking" />
         <activity android:name=".Activity.ViewSchedule" />
         <activity android:name=".Activity.StudentMessage" />
+        <activity android:name=".Activity.TutorUpdate" />
         <activity
             android:name=".Splash"
             android:noHistory="true">

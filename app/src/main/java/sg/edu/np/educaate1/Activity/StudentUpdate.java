@@ -1,5 +1,6 @@
 package sg.edu.np.educaate1.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.health.UidHealthStats;
 import android.preference.PreferenceManager;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -111,6 +113,19 @@ public class StudentUpdate extends AppCompatActivity {
                 }
             });
         }
+
+        Button cancelBtn = findViewById(R.id.sUpCancelBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+                Intent i=new Intent(StudentUpdate.this, Home.class);
+                i.putExtra("uid",user.getUid());
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     public void UpdateStudentProfile() {

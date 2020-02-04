@@ -66,7 +66,7 @@ public class StudentProfileFragment extends Fragment {
     int i;
 
     //ArrayList for reviewobject
-    ArrayList<Rating> ReviewList = new ArrayList<>();
+    ArrayList<Rating> ReviewList = new ArrayList<>();;
 
     public StudentProfileFragment() {
         // Required empty public constructor
@@ -118,9 +118,11 @@ public class StudentProfileFragment extends Fragment {
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                rating = dataSnapshot.getValue(Rating.class);
-                ReviewList.add(rating);
+                //ReviewList.clear();
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    rating = dataSnapshot.getValue(Rating.class);
+                    ReviewList.add(rating);
+                }
             }
 
             @Override

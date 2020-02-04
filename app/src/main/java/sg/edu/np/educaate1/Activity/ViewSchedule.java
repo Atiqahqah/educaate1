@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,18 +102,26 @@ public class ViewSchedule extends AppCompatActivity {
 
         });
 
+
         Button backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StudentHomeFragment fragment = new StudentHomeFragment();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_layout, fragment);
-                fragmentTransaction.commitAllowingStateLoss();
-                ///startActivity(new Intent(ViewSchedule.this, StudentHomeFragment.class));//when user clicks on the delete button, displayConfirmation() will be called and alert dialog will be displayed
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+                Intent i=new Intent(ViewSchedule.this, Home.class);
+                i.putExtra("uid",user.getUid());
+                startActivity(i);
+                finish();
             }
+        });
 
+        ImageView profile = findViewById(R.id.profilePicture);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
         });
     }
 

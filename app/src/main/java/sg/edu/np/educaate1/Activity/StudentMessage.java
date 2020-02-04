@@ -50,10 +50,12 @@ public class StudentMessage extends AppCompatActivity {
     String strTime;
     String strPrice;
     String strDesc;
+    String strType;
     String name;
 
     Button confirmBtn;
     Button paymentBtn;
+    Button rateBtn;
 
     //for confirmation
     private DatabaseReference databaseReferenceC;
@@ -73,6 +75,8 @@ public class StudentMessage extends AppCompatActivity {
         confirmBtn.setVisibility(View.VISIBLE);
         paymentBtn=findViewById(R.id.button10);
         paymentBtn.setVisibility(View.GONE);
+        rateBtn=findViewById(R.id.sRateBtn);
+        rateBtn.setVisibility(View.GONE);
 
         Intent i=getIntent();//get intent from student appt
         tutorId=i.getStringExtra("tutorid");
@@ -88,6 +92,7 @@ public class StudentMessage extends AppCompatActivity {
         strLocation=i.getStringExtra("name");
         strSubj=i.getStringExtra("subj");
         strTime=i.getStringExtra("time");
+        strType=i.getStringExtra("type");
 
         TextView nameLabel=findViewById(R.id.textView9);
         nameLabel.setText(strName);
@@ -158,8 +163,10 @@ public class StudentMessage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    b=snapshot.getValue(Booking.class);
-                    Log.d("booking ID b",b.getId());
+                    if(snapshot.child("id").equals(id)){
+                        b=snapshot.getValue(Booking.class);
+                        Log.d("booking ID b",b.getId());
+                    }
                 }
             }
 
@@ -212,10 +219,17 @@ public class StudentMessage extends AppCompatActivity {
                         //Log.d("confirm",snapshot.child("status").getValue().toString());
                         confirmBtn.setVisibility(View.GONE);
                         paymentBtn.setVisibility(View.VISIBLE);
+                        rateBtn.setVisibility(View.GONE);
                     }
                     else if(dataSnapshot.child("status").getValue().toString().equals("Close") && dataSnapshot.child("type").getValue().toString().equals("Student")){
                         confirmBtn.setVisibility(View.GONE);
                         paymentBtn.setVisibility(View.VISIBLE);
+                        rateBtn.setVisibility(View.GONE);
+                    }
+                    else if(dataSnapshot.child("status").getValue().toString().equals("Paid")){
+                        confirmBtn.setVisibility(View.GONE);
+                        paymentBtn.setVisibility(View.GONE);
+                        rateBtn.setVisibility(View.VISIBLE);
                     }
                     else if(dataSnapshot.child("type").getValue().toString().equals("Tutor")){
                         confirmBtn.setVisibility(View.GONE);
@@ -347,7 +361,13 @@ public class StudentMessage extends AppCompatActivity {
         intent.putExtra("location",strLocation);
         intent.putExtra("subj",strSubj);
         intent.putExtra("price",strPrice);
+        intent.putExtra("type", strType);
 
+        startActivity(intent);
+    }
+
+    public void studentRate(View v){
+        Intent intent=new Intent(StudentMessage.this,StudentReview.class);
         startActivity(intent);
     }
 }
