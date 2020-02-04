@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import sg.edu.np.educaate1.Activity.Home;
 import sg.edu.np.educaate1.Activity.StudentMessage;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Student;
@@ -259,6 +260,19 @@ public class TutorViewSchedule extends AppCompatActivity {
                 else {
                     displayDelConfirmation();
                 }
+            }
+        });
+
+        Button backBtn = findViewById(R.id.postedBackBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+                Intent i=new Intent(TutorViewSchedule.this, Home.class);
+                i.putExtra("uid",user.getUid());
+                startActivity(i);
+                finish();
             }
         });
     }

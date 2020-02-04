@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import sg.edu.np.educaate1.Activity.Home;
 import sg.edu.np.educaate1.Activity.StudentMessage;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Tutor;
@@ -97,6 +99,27 @@ public class DeleteBooking extends AppCompatActivity {
                 else {
                     displayDelConfirmation();
                 }
+            }
+        });
+
+        Button backBtn = findViewById(R.id.delBackBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+                Intent i=new Intent(DeleteBooking.this, Home.class);
+                i.putExtra("uid",user.getUid());
+                startActivity(i);
+                finish();
+            }
+        });
+
+        ImageView profile = findViewById(R.id.delProfilePicture);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

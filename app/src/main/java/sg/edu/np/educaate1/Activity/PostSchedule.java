@@ -1,5 +1,6 @@
 package sg.edu.np.educaate1.Activity;
 
+import android.content.Intent;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -62,6 +64,19 @@ public class PostSchedule extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        Button cancelBtn = findViewById(R.id.tPostCancelBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+                Intent i=new Intent(PostSchedule.this, Home.class);
+                i.putExtra("uid",user.getUid());
+                startActivity(i);
+                finish();
             }
         });
 

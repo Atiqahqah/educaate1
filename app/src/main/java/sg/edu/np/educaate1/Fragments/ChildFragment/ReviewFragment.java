@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -25,7 +26,7 @@ import sg.edu.np.educaate1.R;
  */
 public class ReviewFragment extends Fragment {
     ArrayList<Rating> ratingList;
-
+    TextView notavail;
     public ReviewFragment() {
         // Required empty public constructor
     }
@@ -45,10 +46,16 @@ public class ReviewFragment extends Fragment {
         if(json != ""){
             ratingList = gson.fromJson(json,type);
         }
-        RecyclerView ratingView = v.findViewById(R.id.ratingRV);
-        ratingView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RatingsAdapter ratingsAdapter = new RatingsAdapter(getActivity(),ratingList);
-        ratingView.setAdapter(ratingsAdapter);
+        if(ratingList.size() != 0){
+            RecyclerView ratingView = v.findViewById(R.id.ratingRV);
+            ratingView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            RatingsAdapter ratingsAdapter = new RatingsAdapter(getActivity(),ratingList);
+            ratingView.setAdapter(ratingsAdapter);
+        }
+       else{
+           notavail = v.findViewById(R.id.ratingNotAvailTV);
+           notavail.setText("Currently Rating Not Available");
+        }
         return v ;
     }
 

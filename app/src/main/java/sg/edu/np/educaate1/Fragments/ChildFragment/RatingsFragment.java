@@ -42,6 +42,8 @@ public class RatingsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_ratings, container, false);
         ratings = v.findViewById(R.id.ratingScoreTV);
         pgb = v.findViewById(R.id.ratingProgressBar);
+        ratingList = new ArrayList<>();
+
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         Gson gson =new Gson();
         String json = pref.getString("review","");
