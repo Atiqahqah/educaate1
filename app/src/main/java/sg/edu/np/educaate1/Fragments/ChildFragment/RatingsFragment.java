@@ -49,14 +49,20 @@ public class RatingsFragment extends Fragment {
         if(json != ""){
             ratingList = gson.fromJson(json,type);
         }
-        for (i = 0; i <= ratingList.size(); i ++){
-            int score = ratingList.get(i).getScore();
-            TotalScore += score;
+        if(ratingList.size() != 0){
+            for (i = 0; i <= ratingList.size(); i ++){
+                int score = ratingList.get(i).getScore();
+                TotalScore += score;
+            }
+            DecimalFormat df = new DecimalFormat("#.#");
+            AvgScore = df.format(TotalScore/i);
+            ratings.setText(AvgScore);
+            pgb.setProgress((TotalScore/i)*100);
         }
-        DecimalFormat df = new DecimalFormat("#.#");
-        AvgScore = df.format(TotalScore/i);
-        ratings.setText(AvgScore);
-        pgb.setProgress((TotalScore/i)*100);
+        else{
+            ratings.setText("0");
+            pgb.setProgress(0);
+        }
         return v;
 
     }
