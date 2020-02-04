@@ -24,8 +24,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
+import sg.edu.np.educaate1.Classes.Rating;
 import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.Fragments.ChildFragment.RatingsFragment;
 import sg.edu.np.educaate1.Fragments.ChildFragment.ReviewFragment;
@@ -41,24 +45,27 @@ public class TutorProfileFragment extends Fragment {
     //FireBase
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
     private FirebaseUser user;
     private String UID;
 
     //object and Data
     private Tutor tutor;
+    private Rating rating;
 
     //Views
     ImageView profilepic;
     TextView name;
     ImageButton editprofile;
-    Button summary;
-    Button rating;
-    Button review;
 
     //Fragments and TabLayout
     ViewPager viewPager;
     TabLayout tabLayout;
 
+    int i;
+
+    //ArrayList for reviewobject
+    ArrayList<Rating> ReviewList = new ArrayList<>();
 
     public TutorProfileFragment() {
         // Required empty public constructor
@@ -100,6 +107,28 @@ public class TutorProfileFragment extends Fragment {
 
             }
         });
+
+        i = 0;
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("rating");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                    rating = dataSnapshot.getValue(Rating.class);
+                ReviewList.add(rating);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        Gson gson = new Gson();
+        String json = gson.toJson(ReviewList);
+        editor.putString("review",json);
+        editor.apply();
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
