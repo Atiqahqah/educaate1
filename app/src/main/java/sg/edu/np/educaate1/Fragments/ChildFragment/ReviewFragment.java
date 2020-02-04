@@ -54,7 +54,7 @@ public class ReviewFragment extends Fragment {
             ratingView.setAdapter(ratingsAdapter);
         }
        else{
-            notavail = v.findViewById(R.id.ratingNoAvailTV);
+            notavail = v.findViewById(R.id.ratingNotAvailTV);
             notavail.setText("Currently Not Available");
         }
         return v ;

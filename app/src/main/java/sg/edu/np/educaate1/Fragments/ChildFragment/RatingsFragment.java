@@ -53,7 +53,7 @@ public class RatingsFragment extends Fragment {
         }
         if(ratingList.size() != 0){
             for (i = 0; i <= ratingList.size(); i ++){
-                int score = ratingList.get(i).getScore();
+                double score = ratingList.get(i).getScore();
                 TotalScore += score;
             }
             DecimalFormat df = new DecimalFormat("#.#");

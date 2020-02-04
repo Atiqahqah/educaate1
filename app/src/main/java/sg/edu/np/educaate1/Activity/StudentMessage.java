@@ -1,6 +1,7 @@
 package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,11 @@ import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.R;
 
 public class StudentMessage extends AppCompatActivity {
+    //Shared Pref
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String TUID = "tutorid";
+
     ListView listView;
     ArrayList<String> msgList;
     ArrayList<String>idList;
@@ -70,6 +76,9 @@ public class StudentMessage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_message);
+        //Initialise SharedPref
+        SharedPreferences pref = getSharedPreferences("MyPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
 
         confirmBtn=(Button)findViewById(R.id.button9);
         confirmBtn.setVisibility(View.VISIBLE);
@@ -190,6 +199,8 @@ public class StudentMessage extends AppCompatActivity {
                                 Tutor t=snapshot.getValue(Tutor.class);
                                 tutorIDList.add(snapshot.getKey());
                                 Log.d("Tutor ID",snapshot.getKey());
+                                editor.putString(TUID,t.getId());
+                                editor.apply();
                             }
                         }
                         if(snapshot.child("email").getValue().toString().equals(tutorEmail)){

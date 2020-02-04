@@ -33,7 +33,7 @@ public class StudentReview extends AppCompatActivity {
 
     String id;
     String desc;
-    int score;
+    double score;
     String UID;
 
     Student student;
@@ -55,7 +55,7 @@ public class StudentReview extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 desc = Review.getText().toString();
-                score = Integer.parseInt(Rating.getText().toString());
+                score = Double.parseDouble(Rating.getText().toString());
 
                 String ratingID = databaseReference.child("rating").push().getKey();
 

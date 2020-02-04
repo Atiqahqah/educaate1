@@ -85,6 +85,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:onClick="tutorRate"
         android:text="Rate"
         app:layout_constraintBottom_toTopOf="@+id/tutormsgList"
         app:layout_constraintEnd_toEndOf="parent"
