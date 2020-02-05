@@ -6,12 +6,16 @@ public class Rating {
     private String Desc;
     private double Score;
 
-    public Rating(String id, String uid, String d, double s){
-        userID = uid;
-        Desc = d;
-        Score = s;
-        ReviewId = id;
+    public Rating(){
     }
+
+    public Rating(String desc, String reviewId, double score, String userID){
+        this.userID = userID;
+        this.Desc = desc;
+        this.Score = score;
+        this.ReviewId = reviewId;
+    }
+
 
     public  String getReviewId(){return ReviewId;}
 

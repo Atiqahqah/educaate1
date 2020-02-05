@@ -66,7 +66,7 @@ public class StudentProfileFragment extends Fragment {
     int i;
 
     //ArrayList for reviewobject
-    ArrayList<Rating> ReviewList = new ArrayList<>();;
+    ArrayList<Rating> ReviewList ;
 
     public StudentProfileFragment() {
         // Required empty public constructor
@@ -82,6 +82,7 @@ public class StudentProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_student_profile, container, false);
+        ReviewList = new ArrayList<>();
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         InitialiseViews(view);
@@ -118,11 +119,16 @@ public class StudentProfileFragment extends Fragment {
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //ReviewList.clear();
+                ReviewList.clear();
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                    rating = dataSnapshot.getValue(Rating.class);
+                    rating = dataSnapshot1.getValue(Rating.class);
                     ReviewList.add(rating);
+
                 }
+                Gson gson = new Gson();
+                String json = gson.toJson(ReviewList);
+                editor.putString("review",json);
+                editor.apply();
             }
 
             @Override
@@ -131,10 +137,6 @@ public class StudentProfileFragment extends Fragment {
             }
         });
 
-        Gson gson = new Gson();
-        String json = gson.toJson(ReviewList);
-        editor.putString("review",json);
-        editor.apply();
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override

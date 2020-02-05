@@ -34,7 +34,7 @@ public class StudentMessage extends AppCompatActivity {
     //Shared Pref
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String TUID = "tutorid";
+    public static final String RUID = "reviewerid";
 
     ListView listView;
     ArrayList<String> msgList;
@@ -77,7 +77,7 @@ public class StudentMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_message);
         //Initialise SharedPref
-        SharedPreferences pref = getSharedPreferences("MyPref", 0); // 0 - for private mode
+        SharedPreferences pref = getSharedPreferences(MyPREFERENCES, 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
 
         confirmBtn=(Button)findViewById(R.id.button9);
@@ -102,6 +102,10 @@ public class StudentMessage extends AppCompatActivity {
         strSubj=i.getStringExtra("subj");
         strTime=i.getStringExtra("time");
         strType=i.getStringExtra("type");
+
+        //add to shared prefs
+        editor.putString(RUID,tutorId);
+        editor.apply();
 
         TextView nameLabel=findViewById(R.id.textView9);
         nameLabel.setText(strName);
@@ -199,8 +203,7 @@ public class StudentMessage extends AppCompatActivity {
                                 Tutor t=snapshot.getValue(Tutor.class);
                                 tutorIDList.add(snapshot.getKey());
                                 Log.d("Tutor ID",snapshot.getKey());
-                                editor.putString(TUID,t.getId());
-                                editor.apply();
+
                             }
                         }
                         if(snapshot.child("email").getValue().toString().equals(tutorEmail)){

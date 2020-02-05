@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +67,7 @@ public class TutorProfileFragment extends Fragment {
     int i;
 
     //ArrayList for reviewobject
-    ArrayList<Rating> ReviewList = new ArrayList<>();
+    ArrayList<Rating> ReviewList;
 
     public TutorProfileFragment() {
         // Required empty public constructor
@@ -76,6 +78,7 @@ public class TutorProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tutor_profile, container, false);
+        ReviewList = new ArrayList<>();
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         InitialiseViews(view);
@@ -84,6 +87,34 @@ public class TutorProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         UID = user.getUid();
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("rating");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ReviewList.clear();
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    rating = dataSnapshot1.getValue(Rating.class);
+                    ReviewList.add(rating);
+                    Log.d("RatingID",ReviewList.get(i).getReviewId());
+                    i+=1;
+                }
+                Gson gson = new Gson();
+                String json1 = gson.toJson(ReviewList.get(0));
+                Log.d("JSON String", json1);
+                final String json = gson.toJson(ReviewList);
+                editor.putString("review",json);
+                editor.apply();
+                Log.d("JSON String", json);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(UID);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -100,6 +131,7 @@ public class TutorProfileFragment extends Fragment {
                 editor.putString("tutor qual",tutor.getQualification());
                 editor.putString("tutor desc",tutor.getDescription());
                 editor.apply();
+
             }
 
             @Override
@@ -110,25 +142,8 @@ public class TutorProfileFragment extends Fragment {
 
         i = 0;
 
-        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("rating");
-        databaseReference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                    rating = dataSnapshot.getValue(Rating.class);
-                ReviewList.add(rating);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-
-        Gson gson = new Gson();
-        String json = gson.toJson(ReviewList);
-        editor.putString("review",json);
-        editor.apply();
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override

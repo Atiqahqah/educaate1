@@ -52,7 +52,7 @@ public class RatingsFragment extends Fragment {
             ratingList = gson.fromJson(json,type);
         }
         if(ratingList.size() != 0){
-            for (i = 0; i <= ratingList.size(); i ++){
+            for (i = 0; i < ratingList.size(); i ++){
                 double score = ratingList.get(i).getScore();
                 TotalScore += score;
             }
