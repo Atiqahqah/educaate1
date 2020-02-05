@@ -163,7 +163,7 @@ public class StudentMessage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    if(snapshot.child("id").equals(id)){
+                    if(snapshot.child("id").getValue().equals(id)){
                         b=snapshot.getValue(Booking.class);
                         Log.d("booking ID b",b.getId());
                     }
