@@ -1,5 +1,6 @@
 package sg.edu.np.educaate1.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -73,7 +74,12 @@ public class OthersProfile extends AppCompatActivity {
         //get data from firebase
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        UID = pref.getString("otheruid","");
+        //UID = pref.getString("otheruid","");
+
+        Intent intent=getIntent();//get intent from student/tutor home fragment
+
+        UID = intent.getStringExtra("postUID");
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(UID);
         databaseReference.addValueEventListener(new ValueEventListener() {

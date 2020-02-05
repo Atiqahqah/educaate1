@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import sg.edu.np.educaate1.Activity.Home;
+import sg.edu.np.educaate1.Activity.OthersProfile;
 import sg.edu.np.educaate1.Activity.StudentMessage;
 import sg.edu.np.educaate1.Classes.Booking;
 import sg.edu.np.educaate1.Classes.Tutor;
@@ -119,7 +120,17 @@ public class DeleteBooking extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
 
+                Intent i=new Intent(DeleteBooking.this, OthersProfile.class);
+
+                if(user.getUid().equals(tutorId)) {
+                    i.putExtra("postUID",studentId);
+                }
+                else if (user.getUid().equals(studentId)){
+                    i.putExtra("postUID",tutorId);
+                }
+                startActivity(i);
             }
         });
 
