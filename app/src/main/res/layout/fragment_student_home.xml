@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="Here you can see the current available list of tutors. \n More and more tutors and subjects are being added \n every day, so check back often!"
                 android:textSize="11sp"
