@@ -33,6 +33,10 @@ import sg.edu.np.educaate1.Classes.Message;
 import sg.edu.np.educaate1.Classes.Student;
 
 public class TutorMessage extends AppCompatActivity {
+    //Shared Pref
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String RUID = "reviewerid";
 
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
@@ -65,6 +69,9 @@ public class TutorMessage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_message);
+        //Initialise SharedPref
+        SharedPreferences pref = getSharedPreferences(MyPREFERENCES, 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
 
         confirmBtn=findViewById(R.id.button5);
         confirmBtn.setVisibility(View.VISIBLE);
@@ -77,6 +84,10 @@ public class TutorMessage extends AppCompatActivity {
         id=i.getStringExtra("id");
         studentEmail=i.getStringExtra("email");
         name=i.getStringExtra("bookeename");
+
+        //add to shared prefs
+        editor.putString(RUID,studentID);
+        editor.apply();
 
         Log.d("tutormsgid",tutorID);
 

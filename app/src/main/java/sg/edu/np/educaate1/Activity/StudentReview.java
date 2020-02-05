@@ -1,5 +1,6 @@
 package sg.edu.np.educaate1.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.educaate1.Classes.Rating;
 import sg.edu.np.educaate1.Classes.Student;
+import sg.edu.np.educaate1.DeleteBooking;
 import sg.edu.np.educaate1.R;
 
 public class StudentReview extends AppCompatActivity {
@@ -25,7 +28,7 @@ public class StudentReview extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String TUID = "tutorid";
+    public static final String RUID = "reviewerid";
 
     TextView Review;
     TextView Rating;
@@ -33,7 +36,7 @@ public class StudentReview extends AppCompatActivity {
 
     String id;
     String desc;
-    int score;
+    double score;
     String UID;
 
     Student student;
@@ -45,22 +48,28 @@ public class StudentReview extends AppCompatActivity {
         InitialiseView();
 
         sharedPreferences = getSharedPreferences(MyPREFERENCES ,0);
-        String tutorID =sharedPreferences.getString(TUID,"") ;
+        String reviewerID =sharedPreferences.getString(RUID,"") ;
 
         mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(tutorID);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(reviewerID);
         UID = mAuth.getCurrentUser().getUid();
 
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 desc = Review.getText().toString();
-                score = Integer.parseInt(Rating.getText().toString());
+                score = Double.parseDouble(Rating.getText().toString());
 
                 String ratingID = databaseReference.child("rating").push().getKey();
 
-                Rating rating = new Rating(ratingID,UID,desc,score);
+                Rating rating = new Rating(desc,ratingID,score,UID);
                 databaseReference.child("rating").child(ratingID).setValue(rating);
+
+
+                Intent i=new Intent(StudentReview.this, Home.class);
+                i.putExtra("uid",UID);
+                startActivity(i);
+                finish();
             }
         });
     }

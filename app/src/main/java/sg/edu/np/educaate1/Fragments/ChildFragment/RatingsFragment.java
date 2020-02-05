@@ -4,6 +4,7 @@ package sg.edu.np.educaate1.Fragments.ChildFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,11 @@ public class RatingsFragment extends Fragment {
     ProgressBar pgb;
     TextView ratings;
     ArrayList<Rating> ratingList;
-    int TotalScore;
+    double TotalScore;
     String AvgScore;
+    double avgScoreDouble;
+    double ratingListSize;
+    double percentage;
     int i;
     public RatingsFragment() {
         // Required empty public constructor
@@ -43,6 +47,7 @@ public class RatingsFragment extends Fragment {
         ratings = v.findViewById(R.id.ratingScoreTV);
         pgb = v.findViewById(R.id.ratingProgressBar);
         ratingList = new ArrayList<>();
+        ratingList.clear();
 
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         Gson gson =new Gson();
@@ -52,14 +57,21 @@ public class RatingsFragment extends Fragment {
             ratingList = gson.fromJson(json,type);
         }
         if(ratingList.size() != 0){
-            for (i = 0; i <= ratingList.size(); i ++){
-                int score = ratingList.get(i).getScore();
+            for (i = 0; i < ratingList.size(); i ++) {
+                double score = ratingList.get(i).getScore();
+                Log.d("score", Double.toString(score));
                 TotalScore += score;
             }
+
+            ratingListSize = Double.valueOf(ratingList.size());
+            avgScoreDouble = TotalScore/ratingListSize;
             DecimalFormat df = new DecimalFormat("#.#");
-            AvgScore = df.format(TotalScore/i);
+            AvgScore = df.format(avgScoreDouble);
+            Log.d("avg score", AvgScore);
+
+            percentage = (TotalScore/ratingListSize)/5*100;
             ratings.setText(AvgScore);
-            pgb.setProgress((TotalScore/i)*100);
+            pgb.setProgress((int)percentage);
         }
         else{
             ratings.setText("0");

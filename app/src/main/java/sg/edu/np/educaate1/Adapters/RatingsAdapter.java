@@ -8,14 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Classes.Rating;
+import sg.edu.np.educaate1.Classes.Student;
 import sg.edu.np.educaate1.R;
 
 public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.RatingViewHolder>{
     public Context context;
     public ArrayList<Rating> ratingList;
+    public DatabaseReference databaseReference;
 
     public RatingsAdapter(Context c, ArrayList<Rating> rlist){
         context = c;
@@ -31,11 +39,24 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.RatingVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RatingViewHolder ratingViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final RatingViewHolder ratingViewHolder, int i) {
         Rating rating = ratingList.get(i);
-        //ratingViewHolder.Name.setText(rating.getName());
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(rating.getUserID());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Student student = dataSnapshot.getValue(Student.class);
+                ratingViewHolder.Name.setText(student.getName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         ratingViewHolder.Desc.setText(rating.getDesc());
-        ratingViewHolder.Score.setText(rating.getScore());
+        ratingViewHolder.Score.setText(String.valueOf(rating.getScore()));
     }
 
     @Override

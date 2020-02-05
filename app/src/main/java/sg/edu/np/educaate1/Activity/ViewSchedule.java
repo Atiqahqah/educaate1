@@ -120,7 +120,11 @@ public class ViewSchedule extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
 
+                Intent i=new Intent(ViewSchedule.this, OthersProfile.class);
+                i.putExtra("postUID",strTutorId);
+                startActivity(i);
             }
         });
     }

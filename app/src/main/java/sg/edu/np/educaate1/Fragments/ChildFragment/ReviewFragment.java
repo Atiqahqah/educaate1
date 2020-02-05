@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Adapters.RatingsAdapter;
 import sg.edu.np.educaate1.Classes.Rating;
+import sg.edu.np.educaate1.Fragments.TutorProfileFragment;
 import sg.edu.np.educaate1.R;
 
 /**
@@ -27,6 +29,7 @@ import sg.edu.np.educaate1.R;
 public class ReviewFragment extends Fragment {
     ArrayList<Rating> ratingList;
     TextView notavail;
+
     public ReviewFragment() {
         // Required empty public constructor
     }
@@ -42,9 +45,11 @@ public class ReviewFragment extends Fragment {
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         Gson gson =new Gson();
         String json = pref.getString("review","");
+        Log.d("JSON String",json);
         Type type = new TypeToken<ArrayList<Rating>>() {}.getType();
         if(json != ""){
             ratingList = gson.fromJson(json,type);
+            //Log.d("Review ID",ratingList.get(0).getReviewId());
         }
         if(ratingList.size() != 0){
             RecyclerView ratingView = v.findViewById(R.id.ratingRV);
@@ -53,8 +58,8 @@ public class ReviewFragment extends Fragment {
             ratingView.setAdapter(ratingsAdapter);
         }
        else{
-           notavail = v.findViewById(R.id.ratingNotAvailTV);
-           notavail.setText("Currently Rating Not Available");
+            notavail = v.findViewById(R.id.ratingNotAvailTV);
+            notavail.setText("Currently Not Available");
         }
         return v ;
     }

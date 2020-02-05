@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +26,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
+import sg.edu.np.educaate1.Classes.Rating;
 import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.Fragments.ChildFragment.RatingsFragment;
 import sg.edu.np.educaate1.Fragments.ChildFragment.ReviewFragment;
@@ -41,24 +47,27 @@ public class TutorProfileFragment extends Fragment {
     //FireBase
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
     private FirebaseUser user;
     private String UID;
 
     //object and Data
     private Tutor tutor;
+    private Rating rating;
 
     //Views
     ImageView profilepic;
     TextView name;
     ImageButton editprofile;
-    Button summary;
-    Button rating;
-    Button review;
 
     //Fragments and TabLayout
     ViewPager viewPager;
     TabLayout tabLayout;
 
+    int i;
+
+    //ArrayList for reviewobject
+    ArrayList<Rating> ReviewList;
 
     public TutorProfileFragment() {
         // Required empty public constructor
@@ -69,6 +78,7 @@ public class TutorProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tutor_profile, container, false);
+        ReviewList = new ArrayList<>();
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
         InitialiseViews(view);
@@ -77,6 +87,34 @@ public class TutorProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         UID = user.getUid();
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(UID).child("rating");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ReviewList.clear();
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    rating = dataSnapshot1.getValue(Rating.class);
+                    ReviewList.add(rating);
+                    Log.d("RatingID",ReviewList.get(i).getReviewId());
+                    i+=1;
+                }
+                Gson gson = new Gson();
+                String json1 = gson.toJson(ReviewList.get(0));
+                Log.d("JSON String", json1);
+                final String json = gson.toJson(ReviewList);
+                editor.putString("review",json);
+                editor.apply();
+                Log.d("JSON String", json);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(UID);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -93,6 +131,7 @@ public class TutorProfileFragment extends Fragment {
                 editor.putString("tutor qual",tutor.getQualification());
                 editor.putString("tutor desc",tutor.getDescription());
                 editor.apply();
+
             }
 
             @Override
@@ -100,6 +139,11 @@ public class TutorProfileFragment extends Fragment {
 
             }
         });
+
+        i = 0;
+
+
+
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override

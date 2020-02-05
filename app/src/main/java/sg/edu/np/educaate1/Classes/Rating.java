@@ -4,18 +4,22 @@ public class Rating {
     private String ReviewId;
     private String userID;
     private String Desc;
-    private int Score;
+    private double Score;
 
-    public Rating(String id, String uid, String d, int s){
-        userID = uid;
-        Desc = d;
-        Score = s;
-        ReviewId = id;
+    public Rating(){
     }
+
+    public Rating(String desc, String reviewId, double score, String userID){
+        this.userID = userID;
+        this.Desc = desc;
+        this.Score = score;
+        this.ReviewId = reviewId;
+    }
+
 
     public  String getReviewId(){return ReviewId;}
 
-    public int getScore() {
+    public double getScore() {
         return Score;
     }
 
@@ -35,7 +39,7 @@ public class Rating {
 
     public void setUserID(String userid) { userID = userid; }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         Score = score;
     }
 }

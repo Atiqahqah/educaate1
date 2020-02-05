@@ -1,6 +1,7 @@
 package sg.edu.np.educaate1.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,11 @@ import sg.edu.np.educaate1.Classes.Tutor;
 import sg.edu.np.educaate1.R;
 
 public class StudentMessage extends AppCompatActivity {
+    //Shared Pref
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String RUID = "reviewerid";
+
     ListView listView;
     ArrayList<String> msgList;
     ArrayList<String>idList;
@@ -70,6 +76,9 @@ public class StudentMessage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_message);
+        //Initialise SharedPref
+        SharedPreferences pref = getSharedPreferences(MyPREFERENCES, 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
 
         confirmBtn=(Button)findViewById(R.id.button9);
         confirmBtn.setVisibility(View.VISIBLE);
@@ -93,6 +102,10 @@ public class StudentMessage extends AppCompatActivity {
         strSubj=i.getStringExtra("subj");
         strTime=i.getStringExtra("time");
         strType=i.getStringExtra("type");
+
+        //add to shared prefs
+        editor.putString(RUID,tutorId);
+        editor.apply();
 
         TextView nameLabel=findViewById(R.id.textView9);
         nameLabel.setText(strName);
@@ -163,7 +176,7 @@ public class StudentMessage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    if(snapshot.child("id").equals(id)){
+                    if(snapshot.child("id").getValue().equals(id)){
                         b=snapshot.getValue(Booking.class);
                         Log.d("booking ID b",b.getId());
                     }
@@ -190,6 +203,7 @@ public class StudentMessage extends AppCompatActivity {
                                 Tutor t=snapshot.getValue(Tutor.class);
                                 tutorIDList.add(snapshot.getKey());
                                 Log.d("Tutor ID",snapshot.getKey());
+
                             }
                         }
                         if(snapshot.child("email").getValue().toString().equals(tutorEmail)){
