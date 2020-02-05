@@ -159,6 +159,7 @@
         android:background="@android:color/transparent"
         android:fontFamily="@font/opensans_bold"
         android:text="Back"
+        android:textColor="@color/navbarGray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
