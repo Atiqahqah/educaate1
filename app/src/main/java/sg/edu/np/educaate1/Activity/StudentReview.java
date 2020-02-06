@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,18 +59,35 @@ public class StudentReview extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 desc = Review.getText().toString();
-                score = Double.parseDouble(Rating.getText().toString());
+                if(desc.equals("")){
+                    Toast toast=Toast.makeText(getApplicationContext(),"Please enter a description",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
 
-                String ratingID = databaseReference.child("rating").push().getKey();
+                    try{
+                        score = Double.parseDouble(Rating.getText().toString());
+                        if(score <= 5.0){
+                            String ratingID = databaseReference.child("rating").push().getKey();
 
-                Rating rating = new Rating(desc,ratingID,score,UID);
-                databaseReference.child("rating").child(ratingID).setValue(rating);
+                            Rating rating = new Rating(desc,ratingID,score,UID);
+                            databaseReference.child("rating").child(ratingID).setValue(rating);
 
 
-                Intent i=new Intent(StudentReview.this, Home.class);
-                i.putExtra("uid",UID);
-                startActivity(i);
-                finish();
+                            Intent i=new Intent(StudentReview.this, Home.class);
+                            i.putExtra("uid",UID);
+                            startActivity(i);
+                            finish();
+                        }
+                        else{
+                            Toast toast=Toast.makeText(getApplicationContext(),"Please enter the Right score (0.0-5.0)",Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }catch(Exception e) {
+                        Toast toast=Toast.makeText(getApplicationContext(),"Please enter the Right Score (0.0-5.0)",Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
             }
         });
     }
