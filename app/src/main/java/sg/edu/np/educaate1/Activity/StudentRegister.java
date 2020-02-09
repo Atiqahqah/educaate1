@@ -103,7 +103,7 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
     public void createStudentAccount(String email,String password){
                 pref= PreferenceManager.getDefaultSharedPreferences(this);
                 mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(   this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
@@ -117,7 +117,7 @@ public class StudentRegister extends AppCompatActivity implements AdapterView.On
                                     s.setEmail(sEmailField.getText().toString());
                                     s.setName(sName.getText().toString());
                                     s.setAge(age);
-                                    s.setGender("not specified");
+                                    s.setGender(gender);
                                     //s.setPhoneNo(sPhoneNo.getText().toString());
                                     s.setEduLevel("not specified");
                                     s.setType("student");

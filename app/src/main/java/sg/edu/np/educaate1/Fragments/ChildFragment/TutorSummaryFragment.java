@@ -37,7 +37,7 @@ public class TutorSummaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tutor_summary, container, false);
         InitialiseView(view);
         SharedPreferences pref = this.getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        Email.setText(pref.getString("tutor email","lol"));
+        Email.setText(pref.getString("tutor email",""));
         Age.setText(pref.getString("tutor age",""));
         Gender.setText(pref.getString("tutor gender",""));
         Phone.setText(pref.getString("tutor phone",""));

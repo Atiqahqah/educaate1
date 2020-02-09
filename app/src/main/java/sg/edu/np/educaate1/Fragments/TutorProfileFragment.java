@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import sg.edu.np.educaate1.Activity.LogIn;
 import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
 import sg.edu.np.educaate1.Classes.Rating;
 import sg.edu.np.educaate1.Classes.Tutor;
@@ -59,7 +60,7 @@ public class TutorProfileFragment extends Fragment {
     ImageView profilepic;
     TextView name;
     ImageButton editprofile;
-
+    Button logout;
     //Fragments and TabLayout
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -100,8 +101,6 @@ public class TutorProfileFragment extends Fragment {
                     i+=1;
                 }
                 Gson gson = new Gson();
-                String json1 = gson.toJson(ReviewList.get(0));
-                Log.d("JSON String", json1);
                 final String json = gson.toJson(ReviewList);
                 editor.putString("review",json);
                 editor.apply();
@@ -152,7 +151,13 @@ public class TutorProfileFragment extends Fragment {
             }
         });
 
-
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), LogIn.class);
+                startActivity(i);
+            }
+        });
 
         return view;
     }
@@ -196,6 +201,8 @@ public class TutorProfileFragment extends Fragment {
         name = v.findViewById(R.id.tProfileNameTV);
         profilepic = v.findViewById(R.id.tProfileImage);
         editprofile = v.findViewById(R.id.tUpdateProfileBtn);
+
+        logout = v.findViewById(R.id.tLogOut);
 
         viewPager = v.findViewById(R.id.tViewPager);
         tabLayout = v.findViewById(R.id.tTabLayout);

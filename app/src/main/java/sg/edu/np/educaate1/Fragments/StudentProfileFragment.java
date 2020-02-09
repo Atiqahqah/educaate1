@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import sg.edu.np.educaate1.Activity.LogIn;
 import sg.edu.np.educaate1.Adapters.SectionPagerAdapter;
 import sg.edu.np.educaate1.Classes.Rating;
 import sg.edu.np.educaate1.Classes.Student;
@@ -58,6 +59,7 @@ public class StudentProfileFragment extends Fragment {
     ImageView profilepic;
     TextView name;
     ImageButton editprofile;
+    Button logOut;
 
     //Fragments and TabLayout
     ViewPager viewPager;
@@ -145,6 +147,14 @@ public class StudentProfileFragment extends Fragment {
             }
         });
 
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), LogIn.class);
+                startActivity(i);
+            }
+        });
+
         return view;
     }
 
@@ -187,7 +197,7 @@ public class StudentProfileFragment extends Fragment {
         name = v.findViewById(R.id.sProfileNameTV);
         profilepic = v.findViewById(R.id.sProfileImage);
         editprofile = v.findViewById(R.id.sUpdateProfileBtn);
-
+        logOut = v.findViewById(R.id.sLogOut);
         viewPager = v.findViewById(R.id.sViewPager);
         tabLayout = v.findViewById(R.id.sTabLayout);
     }
